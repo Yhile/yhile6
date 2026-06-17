@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free Image Converter — HEIC to PNG, JPG, WEBP Online | yhile.com</title>
+  <meta name="description" content="Convert HEIC to PNG, JPG, WEBP and more — 100% free, no signup, no upload, completely private. Batch convert images in your browser. No account, no login, no data stored ever. Free forever. Supports HEIC, HEIF, PNG, JPEG, WEBP, GIF, BMP, AVIF.">
+  <meta name="keywords" content="heic to png, heic to jpg, heic converter, convert heic to png, heic to jpeg, heic to webp, heif to jpg, heif converter, heic to png no watermark, heic to jpg no signup, heic to jpg free online, open heic file windows, open heic file online, convert iphone photos to jpg, iphone heic to jpg, ios photo converter, image converter online free, iphone photo converter, webp to png, png to jpg, jpg to png, png to jpeg, jpeg to png, bmp to jpg, tiff to png, gif to jpg, jpg to webp, png to webp, webp to jpg, image format converter, batch image converter, bulk image converter, batch photo converter, convert multiple photos free, convert heic online, heic converter free no signup, free image converter no watermark, photo format changer, online photo converter, compress image free, jpg compressor, webp converter, 100% free image converter, completely free, no upload image converter, private image converter, no account, no login, no registration, no email, 100% private, no data stored, secure image converter, anonymous, free forever, totally free, works in browser">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yhile.com/img-converter.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yhile.com/img-converter.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free Image Converter — HEIC to PNG, JPG, WEBP Online">
+  <meta property="og:description" content="Convert HEIC to PNG, JPG, WEBP and more. Batch convert. No upload, no signup, 100% private.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Image Converter — HEIC to PNG, JPG, WEBP Online">
+  <meta name="twitter:description" content="Convert HEIC, PNG, JPG, WEBP and more. Batch convert. No upload, no signup.">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Image Converter",
+    "url": "https://yhile.com/img-converter.html",
+    "description": "Convert HEIC to PNG, JPG, WEBP and more formats online for free. Batch conversion runs in your browser with no file uploads.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://yhile.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Convert HEIC or Any Image Format Free Online",
+    "description": "Convert HEIC, PNG, JPEG, WEBP, GIF images to any format online — free, no signup, no upload.",
+    "totalTime": "PT1M",
+    "tool": [{ "@type": "HowToTool", "name": "yhile.com Image Converter" }],
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Select your images", "text": "Click to select one or more image files, or drag and drop them onto the converter. Supports HEIC, JPG, PNG, WEBP, GIF, BMP, and TIFF." },
+      { "@type": "HowToStep", "position": 2, "name": "Choose output format", "text": "Pick your target format from the dropdown — PNG, JPEG, WEBP, or GIF." },
+      { "@type": "HowToStep", "position": 3, "name": "Convert", "text": "Click Convert. All images are processed in your browser — nothing is uploaded to any server." },
+      { "@type": "HowToStep", "position": 4, "name": "Download", "text": "Download individual converted images or click Download all as ZIP to get everything at once." }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is HEIC and why do I need to convert it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "HEIC (High Efficiency Image Container) is the default photo format on iPhones running iOS 11 and later. While it saves space, many apps and websites don't support HEIC. Converting to PNG or JPEG makes your photos work everywhere." }
+      },
+      {
+        "@type": "Question",
+        "name": "What image formats does this converter support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You can convert from HEIC, HEIF, JPG, JPEG, PNG, WEBP, GIF, BMP, and TIFF. Output formats include PNG, JPEG, WEBP, and GIF." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my images uploaded to a server?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. All conversion happens in your browser using the Canvas API and WebAssembly. Your images never leave your device." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I convert multiple images at once?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Select as many images as you want and they will all be converted in parallel. You can download them individually or as a ZIP file." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a file size limit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There is no hard limit — your browser's available memory is the only constraint. Most devices handle batches of dozens of high-resolution images without issues." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .tool-page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .tool-page h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .tool-page > .subtitle {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    /* Drop zone */
+    .drop-zone {
+      border: 2px dashed #ddd;
+      border-radius: 10px;
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      margin-bottom: 24px;
+    }
+    .drop-zone:hover, .drop-zone.dragover { border-color: #000; background: #fafafa; }
+    .drop-zone .icon { font-size: 36px; margin-bottom: 12px; }
+    .drop-zone p { font-size: 15px; color: #555; margin-bottom: 6px; }
+    .drop-zone .formats { font-size: 12px; color: #aaa; }
+    #file-input { display: none; }
+
+    /* Options bar */
+    .options-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: #f8f8f8;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .options-bar.visible { display: flex; }
+
+    .opt-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .opt-group label { font-weight: 500; white-space: nowrap; }
+
+    .opt-group select {
+      padding: 7px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fff;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .opt-group input[type="range"] {
+      width: 100px;
+      accent-color: #000;
+    }
+
+    .quality-label { font-size: 13px; color: #666; min-width: 32px; }
+
+    .btn {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: #222; }
+    .btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    .ghost-btn {
+      display: inline-block;
+      background: none;
+      border: 1px solid #ddd;
+      color: #555;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s;
+      white-space: nowrap;
+    }
+    .ghost-btn:hover { border-color: #999; }
+
+    /* Results */
+    #results { display: none; }
+    #results.visible { display: block; }
+
+    .results-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .results-header p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .result-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .result-card .thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: #f0f0f0;
+    }
+
+    .result-card .card-body {
+      padding: 12px;
+    }
+
+    .result-card .file-name {
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px;
+    }
+
+    .result-card .file-meta {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .result-card .converting {
+      font-size: 13px;
+      color: #aaa;
+      padding: 8px 0;
+    }
+
+    .result-card .error-msg {
+      font-size: 12px;
+      color: #c00;
+      margin-bottom: 10px;
+    }
+
+    /* Spinner */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #ddd;
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="tool-page">
+    <h1>Image Converter</h1>
+    <p class="subtitle">Convert images between formats in your browser. Nothing is uploaded.</p>
+
+    <div class="drop-zone" id="drop-zone">
+      <div class="icon">🖼️</div>
+      <p>Drop images here or click to choose</p>
+      <p class="formats">HEIC · HEIF · PNG · JPEG · WEBP · GIF · BMP · AVIF · SVG</p>
+      <input type="file" id="file-input" multiple accept="image/*,.heic,.heif">
+    </div>
+
+    <div class="options-bar" id="options-bar">
+      <div class="opt-group">
+        <label>Convert to</label>
+        <select id="out-format">
+          <option value="image/png">PNG</option>
+          <option value="image/jpeg" selected>JPEG</option>
+          <option value="image/webp">WEBP</option>
+        </select>
+      </div>
+
+      <div class="opt-group" id="quality-group">
+        <label>Quality</label>
+        <input type="range" id="quality" min="10" max="100" value="92" step="1">
+        <span class="quality-label" id="quality-val">92%</span>
+      </div>
+
+      <button class="btn" id="convert-btn">Convert all</button>
+      <button class="ghost-btn" id="clear-btn">Clear</button>
+    </div>
+
+    <div id="results">
+      <div class="results-header">
+        <p id="results-summary"></p>
+        <a class="ghost-btn" id="zip-btn" style="display:none">⬇ Download all as ZIP</a>
+      </div>
+      <div class="results-grid" id="results-grid"></div>
+    </div>
+  </div>
+
+  <!-- heic2any for HEIC/HEIF support -->
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+  <!-- JSZip for batch download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <script>
+    const dropZone    = document.getElementById('drop-zone');
+    const fileInput   = document.getElementById('file-input');
+    const optionsBar  = document.getElementById('options-bar');
+    const outFormat   = document.getElementById('out-format');
+    const qualityEl   = document.getElementById('quality');
+    const qualityVal  = document.getElementById('quality-val');
+    const qualityGrp  = document.getElementById('quality-group');
+    const convertBtn  = document.getElementById('convert-btn');
+    const clearBtn    = document.getElementById('clear-btn');
+    const resultsEl   = document.getElementById('results');
+    const summaryEl   = document.getElementById('results-summary');
+    const gridEl      = document.getElementById('results-grid');
+    const zipBtn      = document.getElementById('zip-btn');
+
+    let pendingFiles = [];
+    let convertedBlobs = []; // { name, blob } for zip
+
+    // ── Quality slider ──────────────────────────────────────────────────────
+    outFormat.addEventListener('change', () => {
+      qualityGrp.style.display = outFormat.value === 'image/png' ? 'none' : 'flex';
+    });
+    qualityEl.addEventListener('input', () => {
+      qualityVal.textContent = qualityEl.value + '%';
+    });
+
+    // ── File input ──────────────────────────────────────────────────────────
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      addFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', e => addFiles(e.target.files));
+
+    function addFiles(files) {
+      for (const f of files) pendingFiles.push(f);
+      optionsBar.classList.add('visible');
+      resultsEl.style.display = 'none';
+      gridEl.innerHTML = '';
+      summaryEl.textContent = `${pendingFiles.length} file${pendingFiles.length !== 1 ? 's' : ''} ready`;
+    }
+
+    clearBtn.addEventListener('click', () => {
+      pendingFiles = [];
+      convertedBlobs = [];
+      fileInput.value = '';
+      optionsBar.classList.remove('visible');
+      resultsEl.style.display = 'none';
+      gridEl.innerHTML = '';
+    });
+
+    // ── Conversion ──────────────────────────────────────────────────────────
+    function extForMime(mime) {
+      return { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp' }[mime] || 'png';
+    }
+
+    function fmtSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+
+    function baseName(file) {
+      return file.name.replace(/\.[^.]+$/, '');
+    }
+
+    function isHeic(file) {
+      return /\.(heic|heif)$/i.test(file.name) ||
+             file.type === 'image/heic' || file.type === 'image/heif';
+    }
+
+    async function convertFile(file, mime, quality) {
+      let blob;
+
+      if (isHeic(file)) {
+        // Use heic2any for HEIC/HEIF
+        const result = await heic2any({
+          blob: file,
+          toType: mime,
+          quality: mime !== 'image/png' ? quality / 100 : undefined,
+        });
+        // heic2any may return array for multi-frame
+        blob = Array.isArray(result) ? result[0] : result;
+      } else {
+        // Canvas-based conversion for all other formats
+        const url = URL.createObjectURL(file);
+        const img = new Image();
+        await new Promise((res, rej) => {
+          img.onload = res;
+          img.onerror = rej;
+          img.src = url;
+        });
+        const canvas = document.createElement('canvas');
+        canvas.width  = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+
+        // White background for JPEG (no alpha)
+        if (mime === 'image/jpeg') {
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+
+        blob = await new Promise(res =>
+          canvas.toBlob(res, mime, mime !== 'image/png' ? quality / 100 : undefined)
+        );
+      }
+
+      return blob;
+    }
+
+    convertBtn.addEventListener('click', async () => {
+      if (!pendingFiles.length) return;
+
+      const mime    = outFormat.value;
+      const quality = parseInt(qualityEl.value);
+      const ext     = extForMime(mime);
+
+      convertedBlobs = [];
+      gridEl.innerHTML = '';
+      resultsEl.style.display = 'block';
+      zipBtn.style.display = 'none';
+      convertBtn.disabled = true;
+      convertBtn.textContent = 'Converting…';
+
+      // Create placeholder cards first
+      const cards = pendingFiles.map((file, i) => {
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        card.innerHTML = `
+          <div class="card-body">
+            <div class="file-name">${baseName(file)}.${ext}</div>
+            <div class="converting"><span class="spinner"></span>Converting…</div>
+          </div>`;
+        gridEl.appendChild(card);
+        return card;
+      });
+
+      let doneCount = 0;
+
+      await Promise.all(pendingFiles.map(async (file, i) => {
+        const card = cards[i];
+        try {
+          const blob = await convertFile(file, mime, quality);
+          const url  = URL.createObjectURL(blob);
+          const outName = `${baseName(file)}.${ext}`;
+
+          convertedBlobs.push({ name: outName, blob });
+
+          card.innerHTML = `
+            <img class="thumb" src="${url}" alt="">
+            <div class="card-body">
+              <div class="file-name">${outName}</div>
+              <div class="file-meta">${fmtSize(file.size)} → ${fmtSize(blob.size)}</div>
+              <a class="btn" href="${url}" download="${outName}" style="width:100%;box-sizing:border-box;text-align:center">⬇ Download</a>
+            </div>`;
+        } catch (err) {
+          card.innerHTML = `
+            <div class="card-body">
+              <div class="file-name">${file.name}</div>
+              <div class="error-msg">Failed: ${err.message || 'unsupported format'}</div>
+            </div>`;
+        }
+        doneCount++;
+        summaryEl.textContent = `${doneCount} / ${pendingFiles.length} done`;
+      }));
+
+      summaryEl.textContent = `${pendingFiles.length} file${pendingFiles.length !== 1 ? 's' : ''} converted`;
+      convertBtn.disabled = false;
+      convertBtn.textContent = 'Convert all';
+
+      if (convertedBlobs.length > 1) zipBtn.style.display = 'inline-block';
+    });
+
+    // ── ZIP download ────────────────────────────────────────────────────────
+    zipBtn.addEventListener('click', async () => {
+      zipBtn.textContent = 'Zipping…';
+      const zip = new JSZip();
+      for (const { name, blob } of convertedBlobs) {
+        zip.file(name, blob);
+      }
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(zipBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'converted-images.zip';
+      a.click();
+      URL.revokeObjectURL(url);
+      zipBtn.textContent = '⬇ Download all as ZIP';
+    });
+  </script>
+
+  <section class="info-section">
+    <h2>How to convert images — step by step</h2>
+    <ol class="how-to-steps">
+      <li>Click the upload area or drag and drop your image files. You can select multiple files at once. Supported inputs: HEIC, HEIF, JPG, PNG, WEBP, GIF, BMP, TIFF.</li>
+      <li>Choose your output format from the dropdown (PNG, JPEG, WEBP, or GIF). For JPEG or WEBP you can also adjust the quality slider.</li>
+      <li>Click <strong>Convert</strong>. All images are processed in parallel inside your browser — nothing is uploaded to any server.</li>
+      <li>Download each converted image individually, or click <strong>Download all as ZIP</strong> to get everything in one file.</li>
+    </ol>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>What is HEIC and why do I need to convert it?</summary>
+        <div class="faq-body">HEIC (High Efficiency Image Container) is the default photo format on iPhones running iOS 11 and later. It produces smaller files than JPEG, but many apps, websites, and Windows computers don't support it. Converting to PNG or JPEG makes your photos work everywhere.</div>
+      </details>
+      <details>
+        <summary>What formats can I convert to and from?</summary>
+        <div class="faq-body">Input: HEIC, HEIF, JPG, JPEG, PNG, WEBP, GIF, BMP, TIFF. Output: PNG, JPEG, WEBP, GIF. If you need a format not listed, let us know via our contact page.</div>
+      </details>
+      <details>
+        <summary>Do my images get uploaded to a server?</summary>
+        <div class="faq-body">No. All conversion runs locally in your browser using the HTML5 Canvas API and WebAssembly. Your images never leave your device — we cannot see them and we store nothing.</div>
+      </details>
+      <details>
+        <summary>Can I convert multiple images at once?</summary>
+        <div class="faq-body">Yes. Select as many images as you want and they are all converted in parallel. Download them one by one, or use the "Download all as ZIP" button to get everything in one go.</div>
+      </details>
+      <details>
+        <summary>What's the difference between PNG, JPEG, and WEBP?</summary>
+        <div class="faq-body">PNG is lossless — perfect quality but larger file size. Best for screenshots, graphics with text, or images with transparency. JPEG is lossy — smaller files, good for photos. WEBP is a modern format that offers better compression than both — great for web use.</div>
+      </details>
+      <details>
+        <summary>Is this image converter free forever?</summary>
+        <div class="faq-body">Yes, completely free — no signup, no account, no payment, no ads. yhile.com is a free forever tool site.</div>
+      </details>
+    </div>
+
+    <h2>More free tools</h2>
+    <div class="related-grid">
+      <a href="audio-extractor.html" class="related-card"><span class="r-icon">🎵</span><span class="r-title">MP4 to MP3 Extractor</span></a>
+      <a href="word-checker.html" class="related-card"><span class="r-icon">📝</span><span class="r-title">Repeated Words Checker</span></a>
+      <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Snapshot Collage</span></a>
+      <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
+    </div>
+  </section>
+
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      // Remove from DOM after animation finishes (~4.7s)
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>

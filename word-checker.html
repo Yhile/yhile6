@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Repeated Words Checker — Find Duplicate Words in Text | yhile.com</title>
+  <meta name="description" content="Find repeated words in your text — 100% free, no signup, no account, completely private. Paste writing to instantly highlight overused words and check frequency. No login, no data stored, free forever.">
+  <meta name="keywords" content="repeated words checker, duplicate word finder, find repeated words, word frequency counter, overused words checker, word repetition checker, check duplicate words, writing checker, word frequency analyzer, repeated word highlighter, word count tool, word frequency tool, check writing for repetition, find overused words in essay, check essay for repeated words, writing analysis tool, text analyzer, plagiarism helper, writing improvement tool, grammar checker alternative, writing editor online, crutch word finder, stop word remover, word occurrence counter, word usage checker, online writing tool free, writing helper no signup, essay checker free, proofreading tool free, text statistics tool, writing quality checker, 100% free, completely free, free forever, no signup, no account, no login, no registration, totally free, private, no data stored, works in browser, secure, anonymous, free writing tool">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yhile.com/word-checker.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yhile.com/word-checker.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Repeated Words Checker — Find Duplicate Words in Text">
+  <meta property="og:description" content="Paste any text to instantly find and highlight repeated words. Free word frequency checker, no signup.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Repeated Words Checker — Find Duplicate Words Free">
+  <meta name="twitter:description" content="Instantly find and highlight repeated words in your text. Free, no signup.">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Repeated Words Checker",
+    "url": "https://yhile.com/word-checker.html",
+    "description": "Free online tool to find and highlight repeated words in text. Includes word frequency analysis.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://yhile.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Find Repeated Words in Text",
+    "description": "Paste any writing into this free tool to instantly highlight overused words and see word frequency counts.",
+    "totalTime": "PT1M",
+    "tool": [{ "@type": "HowToTool", "name": "yhile.com Repeated Words Checker" }],
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Paste your text", "text": "Paste or type any text into the input box — an essay, blog post, email, or any writing." },
+      { "@type": "HowToStep", "position": 2, "name": "Click Check", "text": "Click the Check button or press Ctrl+Enter. You can also toggle whether common words (the, a, is, etc.) are counted." },
+      { "@type": "HowToStep", "position": 3, "name": "Review results", "text": "Repeated words are shown as clickable tags sorted by frequency. The highlighted text view marks every repeated word in yellow." },
+      { "@type": "HowToStep", "position": 4, "name": "Click a word to isolate", "text": "Click any word tag to highlight only that word throughout the entire text, making it easy to spot patterns." }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does the Repeated Words Checker do?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It finds every word you've used more than once in a piece of text. It shows you the frequency of each repeated word and highlights them in your writing, making it easy to spot overused words." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text stored or uploaded?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. Your text is never sent to any server or stored anywhere." }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as a common word?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Common words (also called stop words) are very frequent function words like the, a, an, and, is, was, to, of, etc. Enabling the 'Ignore common words' toggle removes these from the repeated words count, so you only see content words worth varying." }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is this tool useful for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Writers, students, bloggers, journalists, and anyone who wants to improve their writing by reducing word repetition. It's also useful for checking essays, proofreading, and identifying crutch words." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .tool-page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .tool-page h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .tool-page > p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 14px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+      color: #111;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    textarea:focus { border-color: #000; }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: #222; }
+
+    .ghost-btn {
+      background: none;
+      border: 1px solid #ddd;
+      color: #555;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .ghost-btn:hover { border-color: #999; }
+
+    .options {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: auto;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .options label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Results */
+    #results { margin-top: 32px; display: none; }
+    #results.visible { display: block; }
+
+    .stats {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 14px 20px;
+      min-width: 120px;
+    }
+
+    .stat .num {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat .label {
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    /* Highlighted output */
+    .highlighted-text {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 28px;
+      word-break: break-word;
+    }
+
+    .highlighted-text mark {
+      background: #fde68a;
+      border-radius: 3px;
+      padding: 1px 2px;
+      color: inherit;
+      font-weight: 600;
+    }
+
+    /* Word list */
+    .word-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .word-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f5f5f5;
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .word-tag:hover { background: #ebebeb; }
+    .word-tag.active { background: #fde68a; border-color: #f59e0b; }
+
+    .word-tag .count {
+      background: #000;
+      color: #fff;
+      border-radius: 100px;
+      padding: 1px 7px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .empty {
+      color: #22c55e;
+      font-size: 15px;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="tool-page">
+    <h1>Repeated Words Checker</h1>
+    <p>Paste any text to find words you've used more than once.</p>
+
+    <textarea id="input" placeholder="Paste your text here…"></textarea>
+
+    <div class="toolbar">
+      <button class="btn" id="check-btn">Check</button>
+      <button class="ghost-btn" id="clear-btn">Clear</button>
+      <div class="options">
+        <label>
+          <input type="checkbox" id="ignore-common" checked>
+          Ignore common words
+        </label>
+      </div>
+    </div>
+
+    <div id="results">
+      <div class="stats">
+        <div class="stat">
+          <div class="num" id="stat-total">0</div>
+          <div class="label">Total words</div>
+        </div>
+        <div class="stat">
+          <div class="num" id="stat-unique">0</div>
+          <div class="label">Unique words</div>
+        </div>
+        <div class="stat">
+          <div class="num" id="stat-repeated">0</div>
+          <div class="label">Repeated words</div>
+        </div>
+      </div>
+
+      <div id="repeated-section">
+        <p class="section-title">Repeated words <span id="filter-note"></span></p>
+        <div class="word-list" id="word-list"></div>
+      </div>
+
+      <div id="highlight-section" style="margin-top:28px; display:none">
+        <p class="section-title">Highlighted text</p>
+        <div class="highlighted-text" id="highlighted-text"></div>
+      </div>
+
+      <div class="empty" id="no-repeats" style="display:none">✓ No repeated words found.</div>
+    </div>
+  </div>
+
+  <script>
+    const COMMON = new Set([
+      'the','a','an','and','or','but','in','on','at','to','for','of','with',
+      'by','from','as','is','was','are','were','be','been','being','have',
+      'has','had','do','does','did','will','would','could','should','may',
+      'might','shall','can','need','it','its','i','you','he','she','we',
+      'they','me','him','her','us','them','my','your','his','our','their',
+      'this','that','these','those','what','which','who','how','when','where',
+      'why','all','each','every','both','few','more','most','other','some',
+      'such','no','not','only','same','so','than','too','very','just','about',
+      'also','up','out','if','then','there','s','t','re','ve','ll','d',
+    ]);
+
+    const inputEl       = document.getElementById('input');
+    const checkBtn      = document.getElementById('check-btn');
+    const clearBtn      = document.getElementById('clear-btn');
+    const ignoreCommon  = document.getElementById('ignore-common');
+    const results       = document.getElementById('results');
+    const statTotal     = document.getElementById('stat-total');
+    const statUnique    = document.getElementById('stat-unique');
+    const statRepeated  = document.getElementById('stat-repeated');
+    const wordList      = document.getElementById('word-list');
+    const highlightedText = document.getElementById('highlighted-text');
+    const highlightSection = document.getElementById('highlight-section');
+    const noRepeats     = document.getElementById('no-repeats');
+    const filterNote    = document.getElementById('filter-note');
+
+    let activeTag = null;
+    let lastRepeated = new Set();
+
+    function tokenize(text) {
+      // Split preserving positions for highlighting
+      return [...text.matchAll(/[a-zA-Z']+/g)].map(m => ({
+        word: m[0].toLowerCase().replace(/^'+|'+$/g, ''),
+        raw: m[0],
+        index: m.index
+      }));
+    }
+
+    function check() {
+      const text = inputEl.value.trim();
+      if (!text) return;
+
+      const tokens = tokenize(text);
+      const skipCommon = ignoreCommon.checked;
+
+      // Count frequencies
+      const freq = {};
+      for (const { word } of tokens) {
+        if (!word) continue;
+        if (skipCommon && COMMON.has(word)) continue;
+        freq[word] = (freq[word] || 0) + 1;
+      }
+
+      const repeated = Object.entries(freq)
+        .filter(([, c]) => c > 1)
+        .sort((a, b) => b[1] - a[1]);
+
+      lastRepeated = new Set(repeated.map(([w]) => w));
+
+      // Stats
+      const allWords = tokens.filter(t => t.word).length;
+      const uniqueWords = new Set(tokens.map(t => t.word).filter(Boolean)).size;
+      statTotal.textContent   = allWords;
+      statUnique.textContent  = uniqueWords;
+      statRepeated.textContent = repeated.length;
+      filterNote.textContent = skipCommon ? '(common words ignored)' : '';
+
+      results.classList.add('visible');
+
+      if (repeated.length === 0) {
+        wordList.innerHTML = '';
+        highlightSection.style.display = 'none';
+        noRepeats.style.display = 'block';
+        return;
+      }
+
+      noRepeats.style.display = 'none';
+
+      // Word tags
+      wordList.innerHTML = '';
+      for (const [word, count] of repeated) {
+        const tag = document.createElement('span');
+        tag.className = 'word-tag';
+        tag.dataset.word = word;
+        tag.innerHTML = `${word} <span class="count">${count}</span>`;
+        tag.addEventListener('click', () => toggleHighlight(word, tag));
+        wordList.appendChild(tag);
+      }
+
+      // Build highlighted text
+      renderHighlight(text, tokens, lastRepeated);
+      highlightSection.style.display = 'block';
+      activeTag = null;
+    }
+
+    function renderHighlight(text, tokens, repeatedSet, focusWord = null) {
+      const toMark = focusWord ? new Set([focusWord]) : repeatedSet;
+      let result = '';
+      let lastIdx = 0;
+
+      for (const { word, raw, index } of tokens) {
+        if (!word) continue;
+        if (toMark.has(word)) {
+          result += escapeHtml(text.slice(lastIdx, index));
+          result += `<mark>${escapeHtml(raw)}</mark>`;
+          lastIdx = index + raw.length;
+        }
+      }
+      result += escapeHtml(text.slice(lastIdx));
+      highlightedText.innerHTML = result.replace(/\n/g, '<br>');
+    }
+
+    function toggleHighlight(word, tag) {
+      // Deselect previous
+      if (activeTag) activeTag.classList.remove('active');
+
+      if (activeTag === tag) {
+        // clicking same tag again: show all
+        activeTag = null;
+        renderHighlight(inputEl.value, tokenize(inputEl.value), lastRepeated);
+        return;
+      }
+
+      activeTag = tag;
+      tag.classList.add('active');
+      renderHighlight(inputEl.value, tokenize(inputEl.value), lastRepeated, word);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    checkBtn.addEventListener('click', check);
+
+    inputEl.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) check();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      inputEl.value = '';
+      results.classList.remove('visible');
+      activeTag = null;
+      inputEl.focus();
+    });
+  </script>
+
+  <section class="info-section">
+    <h2>How to find repeated words — step by step</h2>
+    <ol class="how-to-steps">
+      <li>Paste your text — an essay, email, blog post, or any writing — into the input box.</li>
+      <li>Toggle <strong>Ignore common words</strong> on or off. When on, words like "the," "a," "is," and "was" are excluded so you only see content words worth varying.</li>
+      <li>Click <strong>Check</strong> (or press <kbd>Ctrl+Enter</kbd>). The tool instantly counts every word and highlights repeated ones.</li>
+      <li>Click any word tag to isolate it — only that word is highlighted throughout the full text, making it easy to see where you've overused it.</li>
+    </ol>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Is my text stored or sent to a server?</summary>
+        <div class="faq-body">No. Everything runs entirely in your browser. Your text is never uploaded, never stored, and we cannot see it. It disappears the moment you close the page.</div>
+      </details>
+      <details>
+        <summary>What counts as a "common word"?</summary>
+        <div class="faq-body">Common words (also called stop words) are very frequent function words like the, a, an, and, is, was, to, of, at, for, etc. These are usually fine to repeat — toggling them off lets you focus on content words like nouns, verbs, and adjectives that are worth varying.</div>
+      </details>
+      <details>
+        <summary>Who is this tool useful for?</summary>
+        <div class="faq-body">Writers, students, bloggers, journalists, copywriters, and anyone who wants to improve their writing. It's great for spotting crutch words, checking essays for variety, and proofreading any piece of writing before publishing.</div>
+      </details>
+      <details>
+        <summary>Is there a word or character limit?</summary>
+        <div class="faq-body">No limit. The tool handles text of any length entirely in your browser, so you can check a short paragraph or an entire document.</div>
+      </details>
+      <details>
+        <summary>Is this free?</summary>
+        <div class="faq-body">Yes, completely free — no signup, no account, no ads. yhile.com is free forever.</div>
+      </details>
+    </div>
+
+    <h2>More free tools</h2>
+    <div class="related-grid">
+      <a href="audio-extractor.html" class="related-card"><span class="r-icon">🎵</span><span class="r-title">MP4 to MP3 Extractor</span></a>
+      <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
+      <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
+      <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Snapshot Collage</span></a>
+    </div>
+  </section>
+
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      // Remove from DOM after animation finishes (~4.7s)
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>

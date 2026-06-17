@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Privacy Policy — yhile.com</title>
+  <meta name="description" content="Privacy policy for yhile.com. We use Google Analytics to understand site traffic. Your files never leave your browser — we have no server to store them.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yhile.com/privacy-policy.html">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+    .page h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+    .page .meta {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 40px;
+    }
+    .page h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 36px 0 10px;
+    }
+    .page p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 14px;
+    }
+    .page ul {
+      margin: 0 0 14px 20px;
+    }
+    .page ul li {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .page a { color: #000; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: June 17, 2026</p>
+
+    <p>yhile.com is a free collection of browser-based tools. This page explains what data we collect, why, and how your files are handled.</p>
+
+    <h2>Your files stay on your device</h2>
+    <p>Every tool on yhile.com runs entirely inside your browser. When you upload an image, video, or audio file, or paste text into a tool, that data is processed locally using browser APIs (such as the Web Audio API, FileReader API, and WebAssembly). <strong>Nothing you upload or paste is ever sent to a server</strong> — because we don't have one. We have no backend, no database, and no file storage.</p>
+
+    <h2>Google Analytics</h2>
+    <p>We use <strong>Google Analytics</strong> (via gtag.js) to understand how visitors use the site — for example, which tools are most popular and how much traffic we receive. Google Analytics collects:</p>
+    <ul>
+      <li>Pages visited and time spent</li>
+      <li>General location (country/city level, derived from IP address)</li>
+      <li>Browser type and device type</li>
+      <li>How you arrived at the site (search, direct, referral)</li>
+    </ul>
+    <p>This data is collected by Google and processed under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. We do not have access to your individual data — we only see aggregated statistics (e.g. "500 people visited the timer tool this week").</p>
+    <p>Google Analytics uses cookies to track sessions. By using yhile.com you consent to these cookies. You can opt out at any time using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+    <h2>Cookies</h2>
+    <p>We use two types of cookies / local storage:</p>
+    <ul>
+      <li><strong>Google Analytics cookies</strong> — set by Google to measure site traffic (see above).</li>
+      <li><strong>Cookie consent preference</strong> — a small flag stored in your browser's localStorage to remember that you dismissed our cookie banner. This is never sent anywhere.</li>
+    </ul>
+
+    <h2>No accounts, no email, no personal data</h2>
+    <p>yhile.com has no sign-up, no login, and no contact forms that collect personal data. We never ask for your name, email address, or any other identifying information. The only contact method is our email address listed on the <a href="contact.html">contact page</a>, which you use voluntarily.</p>
+
+    <h2>Third-party services</h2>
+    <p>The only third-party service we use is Google Analytics. We do not use any advertising networks, social tracking pixels, affiliate trackers, or other third-party scripts.</p>
+
+    <h2>Children's privacy</h2>
+    <p>yhile.com does not knowingly collect any data from children under 13. The site's tools are general-purpose utilities suitable for all ages.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If we make changes to this policy, we will update the date at the top of this page. Continued use of the site after any changes constitutes acceptance of the updated policy.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about privacy? Email us at <a href="mailto:yhileemail@gmail.com">yhileemail@gmail.com</a>.</p>
+  </div>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>

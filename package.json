@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@ffmpeg/core": "^0.12.4",
+    "@ffmpeg/ffmpeg": "^0.12.6",
+    "@ffmpeg/util": "^0.12.1"
+  }
+}

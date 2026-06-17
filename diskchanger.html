@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Disk Changer — Free Online Disk Image Tool | yhile.com</title>
+  <meta name="description" content="Disk Changer — free online tool to swap and manage disk images in your browser. No signup, no account, no data stored. 100% free, works instantly.">
+  <meta name="keywords" content="disk changer, disk image tool, free disk tool, online disk changer, swap disk images, free forever, no signup, no account, works in browser, 100% free, completely free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yhile.com/diskchanger.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yhile.com/diskchanger.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Disk Changer — Free Online Disk Image Tool | yhile.com">
+  <meta property="og:description" content="Free online tool to swap and manage disk images. No signup, no account, 100% free.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Disk Changer — Free Online Disk Image Tool">
+  <meta name="twitter:description" content="Free online tool to swap and manage disk images. No signup, no account.">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Disk Changer",
+    "url": "https://yhile.com/diskchanger.html",
+    "description": "Free online tool to swap and manage disk images in your browser.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://yhile.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Disk Changer free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free. No signup, no account, no payment required — free forever." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to install anything?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Disk Changer runs entirely in your browser. No software installation required." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .tool-wrapper {
+      height: calc(100vh - 56px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="tool-wrapper">
+    <iframe src="https://yhile.github.io/Diskchanger/" title="Disk Changer" allowfullscreen></iframe>
+  </div>
+
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      // Remove from DOM after animation finishes (~4.7s)
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>

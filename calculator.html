@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free Online Calculator — Scientific Calculator No Signup | yhile.com</title>
+  <meta name="description" content="Free scientific calculator online — addition, subtraction, multiplication, division, square root, exponents, sin, cos, tan, log, pi, and more. 100% free, no signup, no account, no data stored. Works instantly in your browser. Free forever.">
+  <meta name="keywords" content="online calculator, free calculator, scientific calculator, calculator online free, calculator no signup, calculator no account, basic calculator online, math calculator, free scientific calculator, advanced calculator online, calculator with history, sin cos tan calculator, logarithm calculator, square root calculator, exponent calculator, percentage calculator, pi calculator, euler number calculator, trigonometry calculator free, algebra calculator free, arithmetic calculator, calculator that shows work, free calculator no login, web calculator, browser calculator, calculator online no download, instant calculator, fast calculator online, calculator 100% free, calculator free forever, calculator no registration, calculator no email, simple calculator free, calculation tool free, math tool online, number calculator free, calculator works in browser, calculator private calculator no ads, best free online calculator, calculator for students, calculator for school, calculator for math homework, scientific calculator for students free, online math tool, compute online free, calculate online free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yhile.com/calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yhile.com/calculator.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free Online Scientific Calculator — No Signup">
+  <meta property="og:description" content="Free scientific calculator with sin, cos, log, sqrt, history and more. No signup, no account, works in your browser.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Online Scientific Calculator">
+  <meta name="twitter:description" content="Scientific calculator with sin, cos, log, sqrt and calculation history. Free, no signup.">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Online Scientific Calculator",
+    "url": "https://yhile.com/calculator.html",
+    "description": "Free online scientific calculator with trigonometry, logarithms, square roots, and calculation history.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://yhile.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this calculator free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free, no signup, no account, no ads. Free forever." }
+      },
+      {
+        "@type": "Question",
+        "name": "What functions does this calculator support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Basic arithmetic (+, -, ×, ÷), percentages, exponents (xʸ), square roots, sin, cos, tan, inverse trig (sin⁻¹, cos⁻¹, tan⁻¹), log (base 10), natural log (ln), π, e, sign toggle, and parentheses." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use my keyboard?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Type numbers, operators (+, -, *, /), Enter to calculate, Backspace to delete, and Escape to clear." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator save my history?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your calculation history is shown in a panel on the right (or below on mobile). Click any past result to reuse it. History is stored only in your browser session." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .calc-page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .calc-page h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .calc-page > p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 36px;
+    }
+
+    .calc-wrap {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 680px) {
+      .calc-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* Calculator body */
+    .calculator {
+      background: #111;
+      border-radius: 16px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Display */
+    .display {
+      padding: 20px 20px 16px;
+      background: #111;
+    }
+
+    .display .expr {
+      font-size: 13px;
+      color: #666;
+      min-height: 18px;
+      margin-bottom: 6px;
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .display .main-val {
+      font-size: 36px;
+      font-weight: 300;
+      color: #fff;
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    /* Button grid */
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #222;
+    }
+
+    .calc-btn {
+      background: #1a1a1a;
+      border: none;
+      color: #fff;
+      font-size: 17px;
+      font-family: inherit;
+      padding: 18px 0;
+      cursor: pointer;
+      transition: background 0.1s;
+      text-align: center;
+    }
+
+    .calc-btn:hover { background: #2a2a2a; }
+    .calc-btn:active { background: #333; }
+
+    .calc-btn.op   { color: #f90; }
+    .calc-btn.fn   { background: #222; color: #ccc; font-size: 14px; }
+    .calc-btn.fn:hover { background: #2e2e2e; }
+    .calc-btn.eq   { background: #f90; color: #000; font-weight: 700; }
+    .calc-btn.eq:hover { background: #ffa82e; }
+    .calc-btn.clear { background: #333; color: #f55; font-weight: 600; }
+    .calc-btn.clear:hover { background: #3a3a3a; }
+    .calc-btn.span2 { grid-column: span 2; }
+
+    /* History */
+    .history-panel {
+      background: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .history-panel h3 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+      margin-bottom: 12px;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .history-item {
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .history-item:hover { background: #eee; }
+
+    .h-expr { font-size: 12px; color: #999; margin-bottom: 2px; }
+    .h-result { font-size: 16px; font-weight: 600; color: #111; }
+
+    .history-empty {
+      font-size: 13px;
+      color: #bbb;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .clear-history {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 12px;
+      cursor: pointer;
+      margin-top: 8px;
+      padding: 4px 0;
+    }
+    .clear-history:hover { color: #555; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="calc-page">
+    <h1>Calculator</h1>
+    <p>Scientific calculator with history. Keyboard supported — type numbers, operators, Enter and Backspace.</p>
+
+    <div class="calc-wrap">
+      <div class="calculator" id="calc">
+        <div class="display">
+          <div class="expr" id="expr-display"></div>
+          <div class="main-val" id="main-display">0</div>
+        </div>
+        <div class="btn-grid">
+          <!-- Row 1: fn -->
+          <button class="calc-btn fn" data-action="sin">sin</button>
+          <button class="calc-btn fn" data-action="cos">cos</button>
+          <button class="calc-btn fn" data-action="tan">tan</button>
+          <button class="calc-btn fn" data-action="inv">INV</button>
+          <!-- Row 2: fn -->
+          <button class="calc-btn fn" data-action="log">log</button>
+          <button class="calc-btn fn" data-action="ln">ln</button>
+          <button class="calc-btn fn" data-action="sqrt">√</button>
+          <button class="calc-btn fn" data-action="pow">xʸ</button>
+          <!-- Row 3: fn + clear -->
+          <button class="calc-btn fn" data-action="pi">π</button>
+          <button class="calc-btn fn" data-action="e">e</button>
+          <button class="calc-btn fn" data-action="paren">(  )</button>
+          <button class="calc-btn clear" data-action="clear">AC</button>
+          <!-- Row 4 -->
+          <button class="calc-btn fn" data-action="pct">%</button>
+          <button class="calc-btn fn" data-action="sign">+/−</button>
+          <button class="calc-btn fn" data-action="backspace">⌫</button>
+          <button class="calc-btn op" data-action="op" data-val="÷">÷</button>
+          <!-- Row 5 -->
+          <button class="calc-btn" data-action="digit" data-val="7">7</button>
+          <button class="calc-btn" data-action="digit" data-val="8">8</button>
+          <button class="calc-btn" data-action="digit" data-val="9">9</button>
+          <button class="calc-btn op" data-action="op" data-val="×">×</button>
+          <!-- Row 6 -->
+          <button class="calc-btn" data-action="digit" data-val="4">4</button>
+          <button class="calc-btn" data-action="digit" data-val="5">5</button>
+          <button class="calc-btn" data-action="digit" data-val="6">6</button>
+          <button class="calc-btn op" data-action="op" data-val="−">−</button>
+          <!-- Row 7 -->
+          <button class="calc-btn" data-action="digit" data-val="1">1</button>
+          <button class="calc-btn" data-action="digit" data-val="2">2</button>
+          <button class="calc-btn" data-action="digit" data-val="3">3</button>
+          <button class="calc-btn op" data-action="op" data-val="+">+</button>
+          <!-- Row 8 -->
+          <button class="calc-btn span2" data-action="digit" data-val="0">0</button>
+          <button class="calc-btn" data-action="dot">.</button>
+          <button class="calc-btn eq" data-action="equals">=</button>
+        </div>
+      </div>
+
+      <div class="history-panel">
+        <h3>History</h3>
+        <div class="history-list" id="history-list">
+          <div class="history-empty">No calculations yet</div>
+        </div>
+        <button class="clear-history" id="clear-history">Clear history</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let current = '0';
+    let expr    = '';
+    let justCalc = false;
+    let inv      = false;
+    let openParens = 0;
+
+    const mainDisplay = document.getElementById('main-display');
+    const exprDisplay = document.getElementById('expr-display');
+    const historyList = document.getElementById('history-list');
+    const clearHistBtn= document.getElementById('clear-history');
+
+    let history = [];
+
+    function updateDisplay() {
+      mainDisplay.textContent = current;
+      exprDisplay.textContent = expr;
+      mainDisplay.style.fontSize = current.length > 12 ? '22px' : current.length > 9 ? '28px' : '36px';
+    }
+
+    function addToHistory(expression, result) {
+      history.unshift({ expression, result });
+      renderHistory();
+    }
+
+    function renderHistory() {
+      if (history.length === 0) {
+        historyList.innerHTML = '<div class="history-empty">No calculations yet</div>';
+        return;
+      }
+      historyList.innerHTML = history.map((h, i) =>
+        `<div class="history-item" data-idx="${i}">
+          <div class="h-expr">${escHtml(h.expression)}</div>
+          <div class="h-result">${escHtml(String(h.result))}</div>
+        </div>`
+      ).join('');
+      historyList.querySelectorAll('.history-item').forEach(el => {
+        el.addEventListener('click', () => {
+          current = String(history[+el.dataset.idx].result);
+          justCalc = true;
+          expr = '';
+          updateDisplay();
+        });
+      });
+    }
+
+    function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function safeEval(exprStr) {
+      // Replace display chars with JS operators
+      const js = exprStr
+        .replace(/×/g, '*')
+        .replace(/÷/g, '/')
+        .replace(/−/g, '-')
+        .replace(/π/g, `(${Math.PI})`)
+        .replace(/e(?![0-9])/g, `(${Math.E})`);
+      // eslint-disable-next-line no-new-func
+      return Function('"use strict"; return (' + js + ')')();
+    }
+
+    function doSin(x)  { return inv ? Math.asin(x) * 180/Math.PI : Math.sin(x * Math.PI/180); }
+    function doCos(x)  { return inv ? Math.acos(x) * 180/Math.PI : Math.cos(x * Math.PI/180); }
+    function doTan(x)  { return inv ? Math.atan(x) * 180/Math.PI : Math.tan(x * Math.PI/180); }
+
+    function fmt(n) {
+      if (!isFinite(n)) return 'Error';
+      // Avoid floating point noise
+      const s = parseFloat(n.toPrecision(12));
+      return String(s);
+    }
+
+    function handle(action, val) {
+      switch (action) {
+        case 'digit': {
+          if (justCalc) { current = val; expr = ''; justCalc = false; }
+          else current = (current === '0' || current === 'Error') ? val : current + val;
+          break;
+        }
+        case 'dot': {
+          if (justCalc) { current = '0.'; expr = ''; justCalc = false; }
+          else if (!current.includes('.')) current += '.';
+          break;
+        }
+        case 'op': {
+          // Append current to expression then operator
+          if (justCalc) { expr = current + ' ' + val + ' '; }
+          else { expr += current + ' ' + val + ' '; }
+          current = '0';
+          justCalc = false;
+          break;
+        }
+        case 'equals': {
+          if (!justCalc) {
+            const fullExpr = expr + current;
+            try {
+              const result = safeEval(fullExpr);
+              const r = fmt(result);
+              addToHistory(fullExpr, r);
+              expr = fullExpr + ' =';
+              current = r;
+              justCalc = true;
+            } catch {
+              current = 'Error';
+            }
+          }
+          break;
+        }
+        case 'clear': {
+          current = '0'; expr = ''; justCalc = false; openParens = 0;
+          break;
+        }
+        case 'backspace': {
+          if (justCalc) { current = '0'; justCalc = false; }
+          else current = current.length > 1 ? current.slice(0, -1) : '0';
+          break;
+        }
+        case 'sign': {
+          current = current.startsWith('-') ? current.slice(1) : '-' + current;
+          if (current === '-0') current = '0';
+          break;
+        }
+        case 'pct': {
+          const n = parseFloat(current);
+          current = fmt(n / 100);
+          break;
+        }
+        case 'sqrt': {
+          const n = parseFloat(current);
+          const r = fmt(Math.sqrt(n));
+          addToHistory('√(' + current + ')', r);
+          current = r; justCalc = true;
+          break;
+        }
+        case 'sin': {
+          const n = parseFloat(current);
+          const r = fmt(doSin(n));
+          const fn = inv ? 'sin⁻¹' : 'sin';
+          addToHistory(fn + '(' + current + '°)', r);
+          current = r; justCalc = true; inv = false;
+          break;
+        }
+        case 'cos': {
+          const n = parseFloat(current);
+          const r = fmt(doCos(n));
+          const fn = inv ? 'cos⁻¹' : 'cos';
+          addToHistory(fn + '(' + current + '°)', r);
+          current = r; justCalc = true; inv = false;
+          break;
+        }
+        case 'tan': {
+          const n = parseFloat(current);
+          const r = fmt(doTan(n));
+          const fn = inv ? 'tan⁻¹' : 'tan';
+          addToHistory(fn + '(' + current + '°)', r);
+          current = r; justCalc = true; inv = false;
+          break;
+        }
+        case 'log': {
+          const r = fmt(Math.log10(parseFloat(current)));
+          addToHistory('log(' + current + ')', r);
+          current = r; justCalc = true;
+          break;
+        }
+        case 'ln': {
+          const r = fmt(Math.log(parseFloat(current)));
+          addToHistory('ln(' + current + ')', r);
+          current = r; justCalc = true;
+          break;
+        }
+        case 'pow': {
+          expr += current + ' ^ ';
+          current = '0'; justCalc = false;
+          // Override safeEval: handle ^ as **
+          break;
+        }
+        case 'pi': {
+          current = fmt(Math.PI); justCalc = true;
+          break;
+        }
+        case 'e': {
+          current = fmt(Math.E); justCalc = true;
+          break;
+        }
+        case 'paren': {
+          // Toggle open/close paren
+          if (openParens === 0 || current === '0') {
+            expr += '( '; openParens++;
+          } else {
+            expr += current + ' ) ';
+            current = '0'; openParens = Math.max(0, openParens - 1);
+          }
+          break;
+        }
+        case 'inv': {
+          inv = !inv;
+          document.querySelector('[data-action="inv"]').style.background = inv ? '#333' : '';
+          break;
+        }
+      }
+      updateDisplay();
+    }
+
+    // Button clicks
+    document.getElementById('calc').addEventListener('click', e => {
+      const btn = e.target.closest('.calc-btn');
+      if (!btn) return;
+      handle(btn.dataset.action, btn.dataset.val);
+    });
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      const key = e.key;
+      if (key >= '0' && key <= '9') handle('digit', key);
+      else if (key === '.') handle('dot');
+      else if (key === '+') handle('op', '+');
+      else if (key === '-') handle('op', '−');
+      else if (key === '*') handle('op', '×');
+      else if (key === '/') { e.preventDefault(); handle('op', '÷'); }
+      else if (key === 'Enter' || key === '=') { e.preventDefault(); handle('equals'); }
+      else if (key === 'Backspace') handle('backspace');
+      else if (key === 'Escape') handle('clear');
+      else if (key === '%') handle('pct');
+    });
+
+    // safeEval: handle ^ as **
+    const origSafeEval = safeEval;
+    function safeEval(exprStr) {
+      const js = exprStr
+        .replace(/×/g, '*')
+        .replace(/÷/g, '/')
+        .replace(/−/g, '-')
+        .replace(/\^/g, '**')
+        .replace(/π/g, `(${Math.PI})`)
+        .replace(/e(?![0-9])/g, `(${Math.E})`);
+      return Function('"use strict"; return (' + js + ')')();
+    }
+
+    clearHistBtn.addEventListener('click', () => {
+      history = [];
+      renderHistory();
+    });
+
+    updateDisplay();
+  </script>
+
+  <section class="info-section">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>What functions does this calculator support?</summary>
+        <div class="faq-body">Basic arithmetic (add, subtract, multiply, divide), percentages, exponents (xʸ), square roots (√), sin, cos, tan, inverse trig (sin⁻¹, cos⁻¹, tan⁻¹), log (base 10), natural log (ln), π (pi), e (Euler's number), sign toggle, and parentheses.</div>
+      </details>
+      <details>
+        <summary>Can I use my keyboard?</summary>
+        <div class="faq-body">Yes. Type digits 0–9, use +, -, *, / for operators, press Enter or = to calculate, Backspace to delete the last digit, and Escape to clear. The / key is intercepted so it won't trigger browser find.</div>
+      </details>
+      <details>
+        <summary>How do inverse trig functions work?</summary>
+        <div class="faq-body">Click the <strong>INV</strong> button to toggle inverse mode, then click sin, cos, or tan. In inverse mode, sin computes sin⁻¹ (arcsin), cos computes cos⁻¹ (arccos), and tan computes tan⁻¹ (arctan). Results are in degrees.</div>
+      </details>
+      <details>
+        <summary>Is my calculation history saved?</summary>
+        <div class="faq-body">History is shown in the panel next to the calculator. Click any past result to reuse it. History exists only for your current browser session — it clears when you close or refresh the page.</div>
+      </details>
+      <details>
+        <summary>Is this calculator free?</summary>
+        <div class="faq-body">Yes — 100% free, no signup, no account, no ads. yhile.com is free forever.</div>
+      </details>
+    </div>
+
+    <h2>More free tools</h2>
+    <div class="related-grid">
+      <a href="timer.html" class="related-card"><span class="r-icon">⏱</span><span class="r-title">Timer &amp; Stopwatch</span></a>
+      <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
+      <a href="word-checker.html" class="related-card"><span class="r-icon">📝</span><span class="r-title">Repeated Words Checker</span></a>
+      <a href="audio-converter.html" class="related-card"><span class="r-icon">🎧</span><span class="r-title">Audio Converter</span></a>
+    </div>
+  </section>
+
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      // Remove from DOM after animation finishes (~4.7s)
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>

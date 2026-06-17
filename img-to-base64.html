@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Image to Base64 Converter — Free Online, No Signup | yhile.com</title>
+  <meta name="description" content="Convert any image to Base64 online — 100% free, no signup, no upload, completely private. Get the Base64 string or data URL instantly in your browser. Also decode Base64 back to image. No account, no login, no data stored. Free forever.">
+  <meta name="keywords" content="image to base64, img to base64, convert image to base64, base64 image encoder, base64 encode image, image base64 converter, png to base64, jpg to base64, jpeg to base64, webp to base64, gif to base64, svg to base64, base64 to image, decode base64 image, base64 decoder image, base64 image decoder online, base64 data url generator, data url converter, image data url, base64 string from image, convert image to base64 string, base64 encode png free, base64 encode jpg free, base64 image online free, base64 converter no signup, base64 tool free, image encoder free, encode image online free, base64 for html, base64 for css, embed image in html base64, inline image base64, base64 image embed, image to base64 no upload, image to base64 private, base64 converter no account, base64 converter no login, 100% free base64 converter, completely free, free forever, no data stored, works in browser, totally free, base64 image tool, free developer tool, web developer tool free, frontend tool free, base64 string copy, copy base64 image, base64 image preview">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yhile.com/img-to-base64.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yhile.com/img-to-base64.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Image to Base64 Converter — Free, No Signup">
+  <meta property="og:description" content="Convert any image to Base64 or data URL instantly. Also decode Base64 back to image. Free, no upload, no signup.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Image to Base64 Converter — Free Online">
+  <meta name="twitter:description" content="Convert images to Base64 strings or data URLs. Decode Base64 back to image. Free, no signup, no upload.">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image to Base64 Converter",
+    "url": "https://yhile.com/img-to-base64.html",
+    "description": "Free online tool to convert any image to Base64 string or data URL, and decode Base64 back to image. Runs entirely in your browser.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://yhile.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Convert an Image to Base64",
+    "description": "Convert any PNG, JPG, GIF, WEBP or SVG image to a Base64 string or data URL — free, in your browser, no upload.",
+    "totalTime": "PT30S",
+    "tool": [{ "@type": "HowToTool", "name": "yhile.com Image to Base64 Converter" }],
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Upload your image", "text": "Click the upload area or drag and drop any image file — PNG, JPG, JPEG, WEBP, GIF, SVG, BMP, ICO." },
+      { "@type": "HowToStep", "position": 2, "name": "Copy the Base64 string or data URL", "text": "The Base64 encoded string and full data URL appear instantly. Click Copy to copy either one to your clipboard." },
+      { "@type": "HowToStep", "position": 3, "name": "Use in your project", "text": "Paste the data URL directly into HTML <img src>, CSS background-image, or any other field that accepts a data URL." }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Base64 image encoding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Base64 is a way to represent binary data (like an image file) as a plain text string using 64 printable characters. This lets you embed images directly inside HTML, CSS, JSON, or any text-based format — without a separate file or network request." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a data URL?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A data URL is a Base64 string prefixed with the MIME type, like data:image/png;base64,iVBORw0K... You can use it directly as the src of an <img> tag or as a CSS background-image." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my image uploaded to a server?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs locally in your browser using the FileReader API. Your image never leaves your device." }
+      },
+      {
+        "@type": "Question",
+        "name": "What image formats are supported?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PNG, JPG/JPEG, WEBP, GIF, SVG, BMP, ICO, and any other format your browser can display." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I decode Base64 back to an image?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Switch to the Decode tab, paste a Base64 string or data URL, and the image is previewed instantly. You can then download it as a PNG." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .tool-page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .tool-page h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .tool-page > p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #eee;
+      margin-bottom: 28px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 24px;
+      font-size: 15px;
+      font-family: inherit;
+      font-weight: 500;
+      color: #888;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn.active { color: #000; border-bottom-color: #000; }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* Drop zone */
+    .drop-zone {
+      border: 2px dashed #ddd;
+      border-radius: 12px;
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      margin-bottom: 24px;
+    }
+    .drop-zone:hover, .drop-zone.drag-over { border-color: #000; background: #fafafa; }
+    .drop-zone .dz-icon { font-size: 36px; margin-bottom: 10px; }
+    .drop-zone .dz-label { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .drop-zone .dz-sub { font-size: 13px; color: #888; }
+    #file-input { display: none; }
+
+    /* Preview */
+    .preview-wrap {
+      display: none;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .preview-wrap.visible { display: block; }
+    .preview-wrap img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+    .preview-meta {
+      font-size: 13px;
+      color: #888;
+      margin-top: 8px;
+    }
+
+    /* Output blocks */
+    .output-block {
+      display: none;
+      margin-bottom: 20px;
+    }
+    .output-block.visible { display: block; }
+
+    .output-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copy-btn {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 5px 14px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .copy-btn:hover { background: #222; }
+    .copy-btn.copied { background: #22c55e; }
+
+    .output-textarea {
+      width: 100%;
+      padding: 14px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      resize: vertical;
+      outline: none;
+      color: #333;
+      background: #fafafa;
+      line-height: 1.5;
+      min-height: 100px;
+    }
+    .output-textarea:focus { border-color: #000; }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .stat-chip {
+      background: #f5f5f5;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+    .stat-chip span { font-weight: 700; }
+
+    /* Decode panel */
+    .decode-input {
+      width: 100%;
+      padding: 14px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      resize: vertical;
+      outline: none;
+      min-height: 120px;
+      background: #fafafa;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .decode-input:focus { border-color: #000; }
+
+    .btn {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 11px 26px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: #222; }
+
+    .ghost-btn {
+      background: none;
+      border: 1px solid #ddd;
+      color: #555;
+      padding: 10px 20px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .ghost-btn:hover { border-color: #999; }
+
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+
+    .decode-preview {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .decode-preview.visible { display: block; }
+    .decode-preview img {
+      max-width: 100%;
+      max-height: 280px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      margin-bottom: 14px;
+    }
+
+    .error-msg {
+      display: none;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+    .error-msg.visible { display: block; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="tool-page">
+    <h1>Image to Base64</h1>
+    <p>Convert any image to a Base64 string or data URL — instantly, in your browser. Nothing is uploaded.</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="encode">Encode — Image → Base64</button>
+      <button class="tab-btn" data-tab="decode">Decode — Base64 → Image</button>
+    </div>
+
+    <!-- ENCODE PANEL -->
+    <div class="panel active" id="panel-encode">
+      <div class="drop-zone" id="drop-zone">
+        <div class="dz-icon">🖼️</div>
+        <div class="dz-label">Drop an image here</div>
+        <div class="dz-sub">or click to browse — PNG, JPG, WEBP, GIF, SVG, BMP, ICO…</div>
+        <input type="file" id="file-input" accept="image/*">
+      </div>
+
+      <div class="preview-wrap" id="preview-wrap">
+        <img id="preview-img" src="" alt="Preview">
+        <div class="preview-meta" id="preview-meta"></div>
+      </div>
+
+      <div class="stats-row" id="stats-row" style="display:none">
+        <div class="stat-chip">Original: <span id="stat-orig">—</span></div>
+        <div class="stat-chip">Base64 size: <span id="stat-b64">—</span></div>
+        <div class="stat-chip">Overhead: <span id="stat-overhead">—</span></div>
+      </div>
+
+      <div class="output-block" id="out-dataurl">
+        <div class="output-label">
+          Data URL <small style="font-weight:400;text-transform:none;letter-spacing:0">(use directly in HTML/CSS)</small>
+          <button class="copy-btn" id="copy-dataurl">Copy</button>
+        </div>
+        <textarea class="output-textarea" id="dataurl-val" readonly rows="4"></textarea>
+      </div>
+
+      <div class="output-block" id="out-b64">
+        <div class="output-label">
+          Base64 string only
+          <button class="copy-btn" id="copy-b64">Copy</button>
+        </div>
+        <textarea class="output-textarea" id="b64-val" readonly rows="4"></textarea>
+      </div>
+
+      <div class="output-block" id="out-html">
+        <div class="output-label">
+          HTML &lt;img&gt; tag
+          <button class="copy-btn" id="copy-html">Copy</button>
+        </div>
+        <textarea class="output-textarea" id="html-val" readonly rows="2"></textarea>
+      </div>
+
+      <div class="output-block" id="out-css">
+        <div class="output-label">
+          CSS background-image
+          <button class="copy-btn" id="copy-css">Copy</button>
+        </div>
+        <textarea class="output-textarea" id="css-val" readonly rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- DECODE PANEL -->
+    <div class="panel" id="panel-decode">
+      <p style="color:#666;font-size:14px;margin-bottom:12px">Paste a Base64 string or full data URL below to preview and download the image.</p>
+      <textarea class="decode-input" id="decode-input" placeholder="data:image/png;base64,iVBORw0KGgo… or just the base64 string"></textarea>
+      <div class="btn-row">
+        <button class="btn" id="decode-btn">Decode</button>
+        <button class="ghost-btn" id="decode-clear">Clear</button>
+      </div>
+      <div class="error-msg" id="decode-error"></div>
+      <div class="decode-preview" id="decode-preview">
+        <img id="decoded-img" src="" alt="Decoded image">
+        <br>
+        <button class="btn" id="decode-download">Download PNG</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ── ENCODE ──────────────────────────────────────────────────────────
+    const dropZone   = document.getElementById('drop-zone');
+    const fileInput  = document.getElementById('file-input');
+    const previewWrap= document.getElementById('preview-wrap');
+    const previewImg = document.getElementById('preview-img');
+    const previewMeta= document.getElementById('preview-meta');
+    const statsRow   = document.getElementById('stats-row');
+
+    const outDataUrl = document.getElementById('out-dataurl');
+    const outB64     = document.getElementById('out-b64');
+    const outHtml    = document.getElementById('out-html');
+    const outCss     = document.getElementById('out-css');
+
+    const dataUrlVal = document.getElementById('dataurl-val');
+    const b64Val     = document.getElementById('b64-val');
+    const htmlVal    = document.getElementById('html-val');
+    const cssVal     = document.getElementById('css-val');
+
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault(); dropZone.classList.remove('drag-over');
+      if (e.dataTransfer.files[0]) encodeFile(e.dataTransfer.files[0]);
+    });
+    fileInput.addEventListener('change', () => { if (fileInput.files[0]) encodeFile(fileInput.files[0]); });
+
+    function formatBytes(b) {
+      if (b < 1024) return b + ' B';
+      if (b < 1048576) return (b / 1024).toFixed(1) + ' KB';
+      return (b / 1048576).toFixed(2) + ' MB';
+    }
+
+    function encodeFile(file) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const dataUrl = e.target.result;
+        const b64 = dataUrl.split(',')[1];
+        const mime = file.type || 'image/png';
+
+        // Preview
+        previewImg.src = dataUrl;
+        previewMeta.textContent = file.name + ' · ' + formatBytes(file.size) + ' · ' + mime;
+        previewWrap.classList.add('visible');
+
+        // Stats
+        document.getElementById('stat-orig').textContent = formatBytes(file.size);
+        document.getElementById('stat-b64').textContent = formatBytes(b64.length);
+        document.getElementById('stat-overhead').textContent = '+' + Math.round((b64.length / file.size - 1) * 100) + '%';
+        statsRow.style.display = 'flex';
+
+        // Outputs
+        dataUrlVal.value = dataUrl;
+        b64Val.value = b64;
+        htmlVal.value = `<img src="${dataUrl}" alt="">`;
+        cssVal.value = `background-image: url('${dataUrl}');`;
+
+        [outDataUrl, outB64, outHtml, outCss].forEach(el => el.classList.add('visible'));
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Copy buttons
+    function makeCopyBtn(btnId, sourceId) {
+      const btn = document.getElementById(btnId);
+      btn.addEventListener('click', () => {
+        const val = document.getElementById(sourceId).value;
+        navigator.clipboard.writeText(val).then(() => {
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      });
+    }
+
+    makeCopyBtn('copy-dataurl', 'dataurl-val');
+    makeCopyBtn('copy-b64',     'b64-val');
+    makeCopyBtn('copy-html',    'html-val');
+    makeCopyBtn('copy-css',     'css-val');
+
+    // ── DECODE ──────────────────────────────────────────────────────────
+    const decodeInput   = document.getElementById('decode-input');
+    const decodeBtn     = document.getElementById('decode-btn');
+    const decodeClear   = document.getElementById('decode-clear');
+    const decodeError   = document.getElementById('decode-error');
+    const decodePreview = document.getElementById('decode-preview');
+    const decodedImg    = document.getElementById('decoded-img');
+    const decodeDownload= document.getElementById('decode-download');
+
+    decodeBtn.addEventListener('click', () => {
+      decodeError.classList.remove('visible');
+      decodePreview.classList.remove('visible');
+
+      let raw = decodeInput.value.trim();
+      if (!raw) { showDecodeError('Paste a Base64 string or data URL first.'); return; }
+
+      // If it's a bare base64 string (no data: prefix), add a generic prefix
+      let dataUrl = raw;
+      if (!raw.startsWith('data:')) {
+        dataUrl = 'data:image/png;base64,' + raw.replace(/\s/g, '');
+      }
+
+      const img = new Image();
+      img.onload = () => {
+        decodedImg.src = dataUrl;
+        decodePreview.classList.add('visible');
+      };
+      img.onerror = () => showDecodeError('Invalid Base64 or unsupported image format.');
+      img.src = dataUrl;
+    });
+
+    decodeDownload.addEventListener('click', () => {
+      const src = decodedImg.src;
+      // Render to canvas to get PNG regardless of input type
+      const canvas = document.createElement('canvas');
+      const img = new Image();
+      img.onload = () => {
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = 'decoded-image.png';
+        a.click();
+      };
+      img.src = src;
+    });
+
+    decodeClear.addEventListener('click', () => {
+      decodeInput.value = '';
+      decodeError.classList.remove('visible');
+      decodePreview.classList.remove('visible');
+    });
+
+    function showDecodeError(msg) {
+      decodeError.textContent = msg;
+      decodeError.classList.add('visible');
+    }
+  </script>
+
+  <section class="info-section">
+    <h2>How to convert an image to Base64</h2>
+    <ol class="how-to-steps">
+      <li>Click the upload area or drag and drop any image — PNG, JPG, WEBP, GIF, SVG, BMP, ICO. The conversion happens instantly the moment the file is selected.</li>
+      <li>You'll see four outputs: <strong>Data URL</strong> (use directly in HTML/CSS), <strong>Base64 string</strong> (the encoded data only), a ready-to-paste <strong>&lt;img&gt; tag</strong>, and a <strong>CSS background-image</strong> rule.</li>
+      <li>Click <strong>Copy</strong> next to whichever output you need and paste it into your code.</li>
+      <li>To go the other way, switch to the <strong>Decode</strong> tab, paste a Base64 string or data URL, and click <strong>Decode</strong> to preview and download the image.</li>
+    </ol>
+
+    <h2>What is Base64 image encoding?</h2>
+    <p style="font-size:15px;color:#444;line-height:1.75;margin-bottom:24px">
+      Base64 encoding converts binary data (like an image file) into a string of 64 printable ASCII characters. This lets you embed an image directly inside HTML, CSS, JSON, or any text-based file — no separate image file or network request needed. The tradeoff is about 33% larger file size compared to the original binary.
+    </p>
+    <p style="font-size:15px;color:#444;line-height:1.75;margin-bottom:32px">
+      A <strong>data URL</strong> is a Base64 string prefixed with the MIME type: <code style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:13px">data:image/png;base64,iVBORw0K…</code>. You can use this directly as the <code style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:13px">src</code> of an <code style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:13px">&lt;img&gt;</code> tag or in a CSS <code style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:13px">background-image</code> property.
+    </p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Is my image uploaded to a server?</summary>
+        <div class="faq-body">No. The conversion uses the browser's built-in FileReader API entirely locally. Your image never leaves your device and nothing is stored or transmitted.</div>
+      </details>
+      <details>
+        <summary>What image formats are supported?</summary>
+        <div class="faq-body">Any format your browser can display — PNG, JPG/JPEG, WEBP, GIF, SVG, BMP, ICO, AVIF, and more. If your browser can show it, this tool can encode it.</div>
+      </details>
+      <details>
+        <summary>Why is the Base64 output larger than the original file?</summary>
+        <div class="faq-body">Base64 encoding represents every 3 bytes of binary data as 4 ASCII characters, resulting in roughly 33% more data. This is a fixed overhead of the encoding scheme.</div>
+      </details>
+      <details>
+        <summary>When should I use Base64 images?</summary>
+        <div class="faq-body">Best for small icons, logos, and sprites embedded in HTML emails, inline CSS, or JavaScript. Avoids extra HTTP requests. Not recommended for large images — the file size overhead makes pages slower.</div>
+      </details>
+      <details>
+        <summary>Can I decode a Base64 string back to an image?</summary>
+        <div class="faq-body">Yes. Switch to the Decode tab, paste any Base64 string or full data URL, and click Decode. A preview appears and you can download the result as a PNG.</div>
+      </details>
+      <details>
+        <summary>Is this tool free?</summary>
+        <div class="faq-body">Yes — 100% free, no signup, no account, no ads. yhile.com is free forever.</div>
+      </details>
+    </div>
+
+    <h2>More free tools</h2>
+    <div class="related-grid">
+      <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
+      <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
+      <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Photo Collage</span></a>
+      <a href="audio-converter.html" class="related-card"><span class="r-icon">🎧</span><span class="r-title">Audio Converter</span></a>
+    </div>
+  </section>
+
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      // Remove from DOM after animation finishes (~4.7s)
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>

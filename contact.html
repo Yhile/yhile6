@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact — yhile.com</title>
+  <meta name="description" content="Contact yhile.com — suggest a tool, report a bug, or say hello.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yhile.com/contact.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yhile.com/contact.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Contact — yhile.com">
+  <meta property="og:description" content="Get in touch with yhile.com. Suggest a tool, report a bug, or say hello.">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .page h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+
+    .page p {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.75;
+    }
+
+    .page a {
+      color: #111;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <h1>Contact</h1>
+    <p>Reach us at <a href="mailto:yhileemail@gmail.com">yhileemail@gmail.com</a></p>
+  </div>
+
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      // Remove from DOM after animation finishes (~4.7s)
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>

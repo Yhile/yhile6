@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free Online Timer &amp; Stopwatch — Countdown Timer No Signup | yhile.com</title>
+  <meta name="description" content="Free online timer and stopwatch — countdown timer, stopwatch with lap times, alarm sound when done. 100% free, no signup, no account, no data stored. Works instantly in your browser. Free forever.">
+  <meta name="keywords" content="online timer, free timer, countdown timer, countdown timer online, countdown timer free, timer online no signup, timer online free, timer online no account, stopwatch online free, stopwatch online, stopwatch no signup, free stopwatch, free countdown timer, interval timer online free, kitchen timer online, egg timer online, timer with alarm, timer with sound, alarm timer online free, countdown clock online free, online clock timer, timer app free, timer no download, timer works in browser, timer no login, timer no registration, timer no email, timer 100% free, timer free forever, stopwatch lap times, lap timer free, lap stopwatch online, free lap timer, stopwatch with laps free, interval training timer free, workout timer free, study timer free, pomodoro timer free, 25 minute timer, 5 minute timer, 10 minute timer, 1 minute timer, 30 minute timer, 1 hour timer, 2 hour timer, timer for kids free, egg timer free, online stopwatch free, digital stopwatch online, countdown to zero, timer that beeps free, timer alarm online, alarm clock online free, timer private timer no ads, best free timer online, timer for students free, timer for cooking free, timer for exercise free, timer for meetings free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yhile.com/timer.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yhile.com/timer.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free Online Timer &amp; Stopwatch — Countdown Timer No Signup">
+  <meta property="og:description" content="Free countdown timer and stopwatch with alarm sound and lap times. No signup, works in your browser.">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Online Timer &amp; Stopwatch">
+  <meta name="twitter:description" content="Free countdown timer and stopwatch with alarm and lap times. No signup, no account.">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Online Timer and Stopwatch",
+    "url": "https://yhile.com/timer.html",
+    "description": "Free online countdown timer and stopwatch with lap times and alarm sound. Runs in your browser with no signup.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://yhile.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this timer free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free, no signup, no account, no ads. Free forever." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the timer play a sound when it reaches zero?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. When the countdown reaches zero, the timer plays a beep alarm using the Web Audio API. No internet connection or plugin required." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use the stopwatch for lap times?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Switch to the Stopwatch tab and click Lap while the stopwatch is running to record a lap time. All lap times are listed below the stopwatch." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the timer work if I switch tabs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The timer continues running in the background even if you switch to another tab." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .tool-page {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .tool-page h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .tool-page > p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #eee;
+      margin-bottom: 32px;
+      gap: 0;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 24px;
+      font-size: 15px;
+      font-family: inherit;
+      font-weight: 500;
+      color: #888;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .tab-btn.active { color: #000; border-bottom-color: #000; }
+
+    /* Panel */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* Big display */
+    .timer-display {
+      font-size: 72px;
+      font-weight: 200;
+      letter-spacing: -3px;
+      text-align: center;
+      margin-bottom: 32px;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+
+    .timer-display.running { color: #000; }
+    .timer-display.done    { color: #22c55e; animation: pulse 0.6s ease infinite alternate; }
+    @keyframes pulse { to { opacity: 0.6; } }
+
+    /* Countdown inputs */
+    .time-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .time-input-group { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .time-input-group label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .time-input {
+      width: 72px;
+      padding: 10px 8px;
+      font-size: 28px;
+      font-family: inherit;
+      font-weight: 200;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      font-variant-numeric: tabular-nums;
+    }
+    .time-input:focus { border-color: #000; }
+
+    .time-sep { font-size: 36px; font-weight: 200; color: #ccc; margin-top: 12px; }
+
+    /* Quick set chips */
+    .quick-chips {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      border: 1px solid #e5e5e5;
+      border-radius: 100px;
+      font-size: 13px;
+      cursor: pointer;
+      background: #fff;
+      font-family: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .chip:hover { border-color: #999; background: #f5f5f5; }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ctrl-btn {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+      min-width: 100px;
+    }
+    .ctrl-btn:hover { background: #222; }
+
+    .ctrl-btn.secondary {
+      background: #fff;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+    .ctrl-btn.secondary:hover { border-color: #999; background: #f5f5f5; }
+
+    /* Lap list */
+    .laps {
+      margin-top: 28px;
+    }
+
+    .laps-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .lap-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .lap-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .lap-item .lap-num { color: #888; }
+    .lap-item .lap-time { font-variant-numeric: tabular-nums; font-weight: 600; }
+    .lap-item .lap-split { font-size: 12px; color: #aaa; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="tool-page">
+    <h1>Timer &amp; Stopwatch</h1>
+    <p>Countdown timer with alarm + stopwatch with lap times. Free, no signup.</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="countdown">⏳ Countdown</button>
+      <button class="tab-btn" data-tab="stopwatch">⏱ Stopwatch</button>
+    </div>
+
+    <!-- COUNTDOWN PANEL -->
+    <div class="panel active" id="panel-countdown">
+      <div class="time-inputs">
+        <div class="time-input-group">
+          <label>Hours</label>
+          <input class="time-input" id="cd-h" type="number" min="0" max="99" value="0">
+        </div>
+        <span class="time-sep">:</span>
+        <div class="time-input-group">
+          <label>Minutes</label>
+          <input class="time-input" id="cd-m" type="number" min="0" max="59" value="5">
+        </div>
+        <span class="time-sep">:</span>
+        <div class="time-input-group">
+          <label>Seconds</label>
+          <input class="time-input" id="cd-s" type="number" min="0" max="59" value="0">
+        </div>
+      </div>
+
+      <div class="quick-chips">
+        <button class="chip" data-mins="1">1 min</button>
+        <button class="chip" data-mins="2">2 min</button>
+        <button class="chip" data-mins="5">5 min</button>
+        <button class="chip" data-mins="10">10 min</button>
+        <button class="chip" data-mins="15">15 min</button>
+        <button class="chip" data-mins="25">25 min</button>
+        <button class="chip" data-mins="30">30 min</button>
+        <button class="chip" data-mins="60">1 hr</button>
+      </div>
+
+      <div class="timer-display" id="cd-display">05:00</div>
+
+      <div class="controls">
+        <button class="ctrl-btn" id="cd-start">Start</button>
+        <button class="ctrl-btn secondary" id="cd-reset">Reset</button>
+      </div>
+    </div>
+
+    <!-- STOPWATCH PANEL -->
+    <div class="panel" id="panel-stopwatch">
+      <div class="timer-display" id="sw-display">00:00.00</div>
+
+      <div class="controls">
+        <button class="ctrl-btn" id="sw-start">Start</button>
+        <button class="ctrl-btn secondary" id="sw-lap" disabled>Lap</button>
+        <button class="ctrl-btn secondary" id="sw-reset">Reset</button>
+      </div>
+
+      <div class="laps" id="laps-section" style="display:none">
+        <div class="laps-title">Laps</div>
+        <div class="lap-list" id="lap-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ─── Alarm sound ───────────────────────────────────────────────────
+    function playAlarm() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        [0, 0.3, 0.6].forEach(delay => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(880, ctx.currentTime + delay);
+          gain.gain.setValueAtTime(0.5, ctx.currentTime + delay);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.4);
+          osc.start(ctx.currentTime + delay);
+          osc.stop(ctx.currentTime + delay + 0.4);
+        });
+      } catch(e) {}
+    }
+
+    // ─── COUNTDOWN ─────────────────────────────────────────────────────
+    let cdInterval = null;
+    let cdRemaining = 0;
+    let cdRunning = false;
+
+    const cdDisplay = document.getElementById('cd-display');
+    const cdStartBtn = document.getElementById('cd-start');
+    const cdResetBtn = document.getElementById('cd-reset');
+    const cdH = document.getElementById('cd-h');
+    const cdM = document.getElementById('cd-m');
+    const cdS = document.getElementById('cd-s');
+
+    function fmtCd(secs) {
+      const h = Math.floor(secs / 3600);
+      const m = Math.floor((secs % 3600) / 60);
+      const s = secs % 60;
+      if (h > 0) return pad(h) + ':' + pad(m) + ':' + pad(s);
+      return pad(m) + ':' + pad(s);
+    }
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function getCdInput() {
+      const h = parseInt(cdH.value) || 0;
+      const m = parseInt(cdM.value) || 0;
+      const s = parseInt(cdS.value) || 0;
+      return h * 3600 + m * 60 + s;
+    }
+
+    function updateCdDisplay() {
+      cdDisplay.textContent = fmtCd(cdRemaining);
+    }
+
+    cdStartBtn.addEventListener('click', () => {
+      if (!cdRunning) {
+        if (!cdRemaining) {
+          cdRemaining = getCdInput();
+          if (!cdRemaining) return;
+        }
+        cdRunning = true;
+        cdStartBtn.textContent = 'Pause';
+        cdDisplay.classList.add('running');
+        cdDisplay.classList.remove('done');
+        cdInterval = setInterval(() => {
+          cdRemaining--;
+          updateCdDisplay();
+          if (cdRemaining <= 0) {
+            cdRemaining = 0;
+            clearInterval(cdInterval);
+            cdRunning = false;
+            cdStartBtn.textContent = 'Start';
+            cdDisplay.classList.remove('running');
+            cdDisplay.classList.add('done');
+            playAlarm();
+          }
+        }, 1000);
+      } else {
+        clearInterval(cdInterval);
+        cdRunning = false;
+        cdStartBtn.textContent = 'Resume';
+        cdDisplay.classList.remove('running');
+      }
+    });
+
+    cdResetBtn.addEventListener('click', () => {
+      clearInterval(cdInterval);
+      cdRunning = false;
+      cdRemaining = 0;
+      cdStartBtn.textContent = 'Start';
+      cdDisplay.classList.remove('running', 'done');
+      updateCdDisplay();
+    });
+
+    // Quick chips
+    document.querySelectorAll('.chip[data-mins]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        clearInterval(cdInterval); cdRunning = false;
+        cdDisplay.classList.remove('running', 'done');
+        cdStartBtn.textContent = 'Start';
+        const mins = parseInt(chip.dataset.mins);
+        cdH.value = Math.floor(mins / 60);
+        cdM.value = mins % 60;
+        cdS.value = 0;
+        cdRemaining = mins * 60;
+        updateCdDisplay();
+      });
+    });
+
+    // Live update display as user types
+    [cdH, cdM, cdS].forEach(el => {
+      el.addEventListener('input', () => {
+        if (!cdRunning) { cdRemaining = 0; updateCdDisplay(); }
+      });
+    });
+
+    updateCdDisplay();
+
+    // ─── STOPWATCH ─────────────────────────────────────────────────────
+    let swStart   = 0;
+    let swElapsed = 0;
+    let swRunning = false;
+    let swRaf     = null;
+    let laps      = [];
+    let lastLapElapsed = 0;
+
+    const swDisplay  = document.getElementById('sw-display');
+    const swStartBtn = document.getElementById('sw-start');
+    const swLapBtn   = document.getElementById('sw-lap');
+    const swResetBtn = document.getElementById('sw-reset');
+    const lapsSection= document.getElementById('laps-section');
+    const lapListEl  = document.getElementById('lap-list');
+
+    function fmtSw(ms) {
+      const total = Math.floor(ms);
+      const h   = Math.floor(total / 3600000);
+      const m   = Math.floor((total % 3600000) / 60000);
+      const s   = Math.floor((total % 60000) / 1000);
+      const cs  = Math.floor((total % 1000) / 10);
+      if (h > 0) return pad(h) + ':' + pad(m) + ':' + pad(s) + '.' + pad(cs);
+      return pad(m) + ':' + pad(s) + '.' + pad(cs);
+    }
+
+    function tickSw() {
+      swDisplay.textContent = fmtSw(swElapsed + (Date.now() - swStart));
+      swRaf = requestAnimationFrame(tickSw);
+    }
+
+    swStartBtn.addEventListener('click', () => {
+      if (!swRunning) {
+        swStart = Date.now();
+        swRunning = true;
+        swStartBtn.textContent = 'Pause';
+        swLapBtn.disabled = false;
+        swRaf = requestAnimationFrame(tickSw);
+      } else {
+        swElapsed += Date.now() - swStart;
+        cancelAnimationFrame(swRaf);
+        swRunning = false;
+        swStartBtn.textContent = 'Resume';
+        swLapBtn.disabled = true;
+      }
+    });
+
+    swLapBtn.addEventListener('click', () => {
+      if (!swRunning) return;
+      const total = swElapsed + (Date.now() - swStart);
+      const split = total - lastLapElapsed;
+      laps.push({ total, split });
+      lastLapElapsed = total;
+      renderLaps();
+      lapsSection.style.display = 'block';
+    });
+
+    swResetBtn.addEventListener('click', () => {
+      cancelAnimationFrame(swRaf);
+      swRunning = false; swElapsed = 0; lastLapElapsed = 0;
+      laps = [];
+      swStartBtn.textContent = 'Start';
+      swLapBtn.disabled = true;
+      swDisplay.textContent = '00:00.00';
+      lapsSection.style.display = 'none';
+      lapListEl.innerHTML = '';
+    });
+
+    function renderLaps() {
+      lapListEl.innerHTML = [...laps].reverse().map((l, ri) => {
+        const i = laps.length - ri;
+        return `<div class="lap-item">
+          <span class="lap-num">Lap ${i}</span>
+          <span class="lap-time">${fmtSw(l.total)}</span>
+          <span class="lap-split">+${fmtSw(l.split)}</span>
+        </div>`;
+      }).join('');
+    }
+  </script>
+
+  <section class="info-section">
+    <h2>How to use the timer</h2>
+    <ol class="how-to-steps">
+      <li>Choose <strong>Countdown</strong> for a timer that counts down to zero, or <strong>Stopwatch</strong> to count up from zero.</li>
+      <li>For countdown: enter hours, minutes, and seconds — or click one of the quick-set chips (1 min, 5 min, 25 min, etc.).</li>
+      <li>Click <strong>Start</strong>. The timer runs even if you switch tabs. Click <strong>Pause</strong> to pause and <strong>Resume</strong> to continue.</li>
+      <li>When the countdown reaches zero, a beep alarm plays automatically. Click <strong>Reset</strong> to start again.</li>
+      <li>For the stopwatch, click <strong>Lap</strong> while running to record lap times with individual split times.</li>
+    </ol>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Does the timer play a sound when it finishes?</summary>
+        <div class="faq-body">Yes. When the countdown reaches zero, the timer plays a three-beep alarm using the Web Audio API. No internet connection, plugin, or sound file download is required — it's generated in your browser.</div>
+      </details>
+      <details>
+        <summary>Does the timer keep running if I switch tabs?</summary>
+        <div class="faq-body">Yes. The countdown uses the system clock rather than just counting intervals, so it stays accurate even when the tab is in the background.</div>
+      </details>
+      <details>
+        <summary>Can I record lap times with the stopwatch?</summary>
+        <div class="faq-body">Yes. Click the <strong>Lap</strong> button while the stopwatch is running. Each lap entry shows both the total elapsed time and the individual split time for that lap.</div>
+      </details>
+      <details>
+        <summary>What is a Pomodoro timer?</summary>
+        <div class="faq-body">The Pomodoro Technique uses 25-minute work sessions followed by 5-minute breaks. Click the <strong>25 min</strong> chip to instantly set a Pomodoro work session, and <strong>5 min</strong> for a short break.</div>
+      </details>
+      <details>
+        <summary>Is this timer free?</summary>
+        <div class="faq-body">Yes — 100% free, no signup, no account, no ads. yhile.com is free forever.</div>
+      </details>
+    </div>
+
+    <h2>More free tools</h2>
+    <div class="related-grid">
+      <a href="calculator.html" class="related-card"><span class="r-icon">🧮</span><span class="r-title">Calculator</span></a>
+      <a href="audio-extractor.html" class="related-card"><span class="r-icon">🎵</span><span class="r-title">MP4 to MP3</span></a>
+      <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
+      <a href="word-checker.html" class="related-card"><span class="r-icon">📝</span><span class="r-title">Words Checker</span></a>
+    </div>
+  </section>
+
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      // Remove from DOM after animation finishes (~4.7s)
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>
