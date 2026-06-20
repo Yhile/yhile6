@@ -1,0 +1,21 @@
+# yhile.com
+
+yhile.com is a free collection of browser-based web tools.
+Files never leave the user's device. No signup, no ads, 
+no server uploads. Free forever.
+
+## Tools
+- MP4 to MP3 converter
+- HEIC image converter
+- Audio converter
+- Photo collage maker
+- Base64 encoder
+- Image converter
+- Decimal/Binary/Hex converter
+- Repeated words checker
+- Calculator
+- Timer & Stopwatch
+
+## About
+Solo bootstrapped project. Privacy-focused. 
+All processing happens client-side in the browser.
