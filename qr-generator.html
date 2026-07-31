@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free QR Code Generator — Create QR Codes Online | yhile.com</title>
+  <meta name="description" content="Generate QR codes free online — for any URL, text, email, phone number or Wi-Fi. Download as PNG. No signup, no account, no data stored. Runs in your browser. Free forever.">
+  <meta name="keywords" content="qr code generator, free qr code generator, qr code maker, qr code creator, qr code online, create qr code free, qr code generator no signup, qr code generator free download, qr code for url, qr code for website, qr code for text, qr code for email, qr code for wifi, qr code png download, qr code generator no account, free qr code maker online, instant qr code, qr code tool free, qr code generator 2024, qr code generator 2025, qr code generator 2026">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/qr-generator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/qr-generator.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free QR Code Generator — Create QR Codes Online">
+  <meta property="og:description" content="Generate QR codes for any URL or text. Download as PNG. Free, no signup.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free QR Code Generator Online">
+  <meta name="twitter:description" content="Generate QR codes for any URL or text. Free, no signup, download as PNG.">
+
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free QR Code Generator",
+    "url": "https://www.yhile.com/qr-generator.html",
+    "description": "Free online QR code generator. Create QR codes for URLs, text, email, and more. Download as PNG. Runs in your browser.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://www.yhile.com/" }
+  }
+  </script>
+
+  <style>
+    .tool-page {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .tool-page h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+    .tool-page > p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 14px;
+      font-size: 15px;
+      font-family: inherit;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      resize: vertical;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+    textarea:focus { border-color: #000; }
+
+    .options-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .options-row label {
+      font-size: 13px;
+      color: #555;
+    }
+
+    .size-select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .fg-wrap, .bg-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #555;
+    }
+    .fg-wrap input[type="color"],
+    .bg-wrap input[type="color"] {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 2px;
+      cursor: pointer;
+      background: none;
+    }
+
+    .gen-btn {
+      width: 100%;
+      padding: 13px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      margin-bottom: 32px;
+      transition: background 0.15s;
+    }
+    .gen-btn:hover { background: #333; }
+
+    .qr-output {
+      display: none;
+      text-align: center;
+    }
+    .qr-output.show { display: block; }
+
+    #qr-canvas-wrap {
+      display: inline-block;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+
+    #qr-canvas-wrap canvas {
+      display: block;
+    }
+
+    .dl-btn {
+      display: inline-block;
+      padding: 11px 28px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .dl-btn:hover { background: #333; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="tool-page">
+    <h1>QR Code Generator</h1>
+    <p>Enter any URL or text and generate a QR code instantly. Download as PNG.</p>
+
+    <textarea id="qr-input" placeholder="https://example.com or any text..."></textarea>
+
+    <div class="options-row">
+      <label>Size:
+        <select class="size-select" id="qr-size">
+          <option value="128">Small (128px)</option>
+          <option value="256" selected>Medium (256px)</option>
+          <option value="512">Large (512px)</option>
+        </select>
+      </label>
+      <div class="fg-wrap">
+        <input type="color" id="fg-color" value="#000000"> Dark
+      </div>
+      <div class="bg-wrap">
+        <input type="color" id="bg-color" value="#ffffff"> Light
+      </div>
+    </div>
+
+    <button class="gen-btn" onclick="generateQR()">Generate QR Code</button>
+
+    <div class="qr-output" id="qr-output">
+      <div id="qr-canvas-wrap">
+        <canvas id="qr-canvas"></canvas>
+      </div>
+      <br>
+      <button class="dl-btn" onclick="downloadQR()">⬇ Download PNG</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieOk()">Got it</button>
+      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieOk(){
+      localStorage.setItem('cookie_ok','1');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_ok')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+
+  <!-- QR library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    var qrInstance = null;
+
+    function generateQR() {
+      var text = document.getElementById('qr-input').value.trim();
+      if (!text) {
+        document.getElementById('qr-input').focus();
+        return;
+      }
+      var size = parseInt(document.getElementById('qr-size').value);
+      var fg   = document.getElementById('fg-color').value;
+      var bg   = document.getElementById('bg-color').value;
+
+      var wrap = document.getElementById('qr-canvas-wrap');
+      wrap.innerHTML = '';
+
+      qrInstance = new QRCode(wrap, {
+        text: text,
+        width: size,
+        height: size,
+        colorDark: fg,
+        colorLight: bg,
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      document.getElementById('qr-output').classList.add('show');
+    }
+
+    function downloadQR() {
+      var canvas = document.querySelector('#qr-canvas-wrap canvas');
+      if (!canvas) {
+        // QRCode may render as img — convert to canvas
+        var img = document.querySelector('#qr-canvas-wrap img');
+        if (!img) return;
+        var c = document.createElement('canvas');
+        c.width = img.naturalWidth;
+        c.height = img.naturalHeight;
+        c.getContext('2d').drawImage(img, 0, 0);
+        canvas = c;
+      }
+      var link = document.createElement('a');
+      link.download = 'qrcode.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    document.getElementById('qr-input').addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); generateQR(); }
+    });
+  </script>
+</body>
+</html>
