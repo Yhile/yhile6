@@ -56,7 +56,7 @@
     "tool": [{ "@type": "HowToTool", "name": "yhile.com Snapshot Collage Maker" }],
     "step": [
       { "@type": "HowToStep", "position": 1, "name": "Upload your photos", "text": "Click the upload area or drag and drop your photos. You can add multiple images at once." },
-      { "@type": "HowToStep", "position": 2, "name": "Choose layout and style", "text": "Select Grid or Scatter layout. Pick a style: Classic, Flat, Worn, Framed, Torn edge, Film strip, Neon glow, or Mix & Match." },
+      { "@type": "HowToStep", "position": 2, "name": "Choose layout and style", "text": "Select Grid, Scatter, or Masonry layout. Pick a style: Classic, Flat, Worn, Framed, Torn edge, Film strip, Neon glow, or Mix & Match." },
       { "@type": "HowToStep", "position": 3, "name": "Set aspect ratio", "text": "Choose an aspect ratio — Auto, 1:1 (square), 16:9 (widescreen), 9:16 (phone/portrait), 4:3, or 4:5 (Instagram)." },
       { "@type": "HowToStep", "position": 4, "name": "Generate and download", "text": "Click Make Collage. Your collage is created inside your browser. Then download it or share it directly on your phone." }
     ]
@@ -80,7 +80,7 @@
       {
         "@type": "Question",
         "name": "What styles are available?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Classic (white border with drop shadow), Flat (no shadow, clean), Worn (vintage aged look), Framed (dark mat border), Torn edge (deckled paper edge), Film strip (sprocket holes), Neon glow (glowing outline), and Mix & Match, which randomly assigns a different style to each photo. You can choose Grid layout (photos in a neat row) or Scatter (randomly placed, rotated photos)." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Classic (white border with drop shadow), Flat (no shadow, clean), Worn (vintage aged look), Framed (dark mat border), Torn edge (deckled paper edge), Film strip (sprocket holes), Neon glow (glowing outline), and Mix & Match, which randomly assigns a different style to each photo. You can choose Grid layout (photos in a neat row), Scatter (randomly placed, rotated photos), or Masonry (Pinterest-style packed columns)." }
       },
       {
         "@type": "Question",
@@ -353,6 +353,7 @@
         <select id="layout">
           <option value="grid">Grid</option>
           <option value="scatter">Scatter</option>
+          <option value="masonry">Masonry</option>
         </select>
       </div>
 
@@ -595,8 +596,8 @@
     }
 
     // ─── Shared polaroid-ish bounding-box proportions ──────────────────────────
-    // Every style shares the same outer proportions so grid/scatter sizing math
-    // stays consistent no matter which style (or Mix & Match) is drawn.
+    // Every style shares the same outer proportions so grid/scatter/masonry
+    // sizing math stays consistent no matter which style (or Mix & Match) is drawn.
     const SIDE   = 0.075;  // 7.5% side margin each side
     const TOP    = 0.07;   // 7% top
     const BOTTOM = 0.22;   // 22% bottom (caption / mat area)
@@ -863,7 +864,74 @@
       return mainCanvas;
     }
 
+    // ─── Masonry layout ─────────────────────────────────────────────────────
+    // Greedy shortest-column packing (classic Pinterest-style algorithm) so
+    // photos of any aspect ratio tile cleanly with no leftover gaps and,
+    // unlike scatter, never overlap or run off the canvas.
+    function buildMasonry(canvasW, margin, useRotation, pStyle, caption) {
+      const colCount = Math.max(2, Math.round(Math.sqrt(images.length * 1.1)));
+      const colWidth = (canvasW - (colCount + 1) * margin) / colCount;
+      const colHeights = new Array(colCount).fill(margin);
+      const colX = i => margin + i * (colWidth + margin);
+
+      const placements = [];
+      for (const entry of images) {
+        const ar = entry.img.width / entry.img.height;
+        const photoW = colWidth / (1 + 2 * SIDE);
+        const photoH = photoW / ar;
+        const polW = photoW * (1 + 2 * SIDE);
+        const polH = photoH * (1 + TOP + BOTTOM);
+
+        let col = 0;
+        for (let i = 1; i < colCount; i++) if (colHeights[i] < colHeights[col]) col = i;
+
+        placements.push({ entry, x: colX(col), y: colHeights[col], polW, polH, photoW, photoH });
+        colHeights[col] += polH + margin;
+      }
+
+      const totalH = Math.max(...colHeights);
+      const mainCanvas = document.createElement('canvas');
+      mainCanvas.width = canvasW;
+      mainCanvas.height = Math.round(totalH);
+      const ctx = mainCanvas.getContext('2d');
+
+      ctx.fillStyle = bgColorEl.value;
+      ctx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+
+      for (const p of placements) {
+        const entryStyle = styleForEntry(pStyle);
+        const pol = makePolaroidCanvas(p.entry.img, Math.round(p.photoW), Math.round(p.photoH), entryStyle, caption, p.entry.name);
+        const angle = useRotation ? (Math.random() - 0.5) * (Math.PI / 60) : 0; // slight tilt only
+
+        ctx.save();
+        ctx.translate(p.x + p.polW / 2, p.y + p.polH / 2);
+        ctx.rotate(angle);
+
+        if (shadowNeeded(entryStyle)) {
+          ctx.shadowColor   = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur    = 12;
+          ctx.shadowOffsetX = 3;
+          ctx.shadowOffsetY = 5;
+        }
+
+        ctx.drawImage(pol, -p.polW / 2, -p.polH / 2, p.polW, p.polH);
+        ctx.restore();
+      }
+
+      return mainCanvas;
+    }
+
     // ─── Scatter layout ───────────────────────────────────────────────────────
+    // Every photo's rotated bounding box is clamped fully inside the canvas
+    // before it's drawn — nothing can hang off an edge and get cropped
+    // anymore — and a handful of candidate positions are tried per photo so
+    // heavy overlap is reduced instead of pure random placement.
+    function getRotatedHalfExtents(w, h, angle) {
+      const cos = Math.abs(Math.cos(angle));
+      const sin = Math.abs(Math.sin(angle));
+      return { hw: (w * cos + h * sin) / 2, hh: (w * sin + h * cos) / 2 };
+    }
+
     function buildScatter(canvasW, canvasH, useRotation, pStyle, caption) {
       const n = images.length;
       const cols = Math.max(2, Math.ceil(Math.sqrt(n * 1.5)));
@@ -878,6 +946,7 @@
       ctx.fillRect(0, 0, canvasW, canvasH);
 
       const shuffled = [...images].sort(() => Math.random() - 0.5);
+      const placed = []; // {cx, cy, hw, hh} — used for light overlap avoidance
 
       for (const entry of shuffled) {
         const ar     = entry.img.width / entry.img.height;
@@ -889,13 +958,37 @@
         const entryStyle = styleForEntry(pStyle);
         const pol = makePolaroidCanvas(entry.img, Math.round(photoW), Math.round(photoH), entryStyle, caption, entry.name);
 
-        const cx = Math.random() * canvasW;
-        const cy = Math.random() * canvasH;
-        const angle = useRotation ? (Math.random() - 0.5) * (Math.PI / 4) : 0; // ±45°
+        let best = null;
+        for (let attempt = 0; attempt < 25; attempt++) {
+          const angle = useRotation ? (Math.random() - 0.5) * (Math.PI / 4) : 0; // ±45°
+          const { hw, hh } = getRotatedHalfExtents(polW, polH, angle);
+
+          // if a single photo is bigger than the canvas, shrink the clamp
+          // extents so it still gets placed (centered) rather than failing
+          const clampHw = Math.min(hw, canvasW / 2);
+          const clampHh = Math.min(hh, canvasH / 2);
+
+          const cx = clampHw + Math.random() * Math.max(1, canvasW - clampHw * 2);
+          const cy = clampHh + Math.random() * Math.max(1, canvasH - clampHh * 2);
+
+          let overlap = 0;
+          for (const p of placed) {
+            const dist = Math.hypot(cx - p.cx, cy - p.cy);
+            const minDist = (hw + hh) / 2 * 0.55 + (p.hw + p.hh) / 2 * 0.55;
+            overlap += Math.max(0, minDist - dist);
+          }
+
+          if (!best || overlap < best.overlap) {
+            best = { cx, cy, angle, hw, hh, overlap };
+            if (overlap === 0) break;
+          }
+        }
+
+        placed.push({ cx: best.cx, cy: best.cy, hw: best.hw, hh: best.hh });
 
         ctx.save();
-        ctx.translate(cx, cy);
-        ctx.rotate(angle);
+        ctx.translate(best.cx, best.cy);
+        ctx.rotate(best.angle);
 
         if (shadowNeeded(entryStyle)) {
           ctx.shadowColor   = 'rgba(0,0,0,0.4)';
@@ -964,6 +1057,8 @@
           if (layout === 'scatter') {
             const scatterH = targetH || Math.round(canvasW * 0.75);
             result = buildScatter(canvasW, scatterH, useRot, pStyle, caption);
+          } else if (layout === 'masonry') {
+            result = buildMasonry(canvasW, margin, useRot, pStyle, caption);
           } else {
             result = buildGrid(canvasW, margin, useRot, pStyle, caption);
           }
@@ -1024,7 +1119,7 @@
     <h2>How to make a photo collage — step by step</h2>
     <ol class="how-to-steps">
       <li>Click the upload area or drag and drop your photos. Select multiple images at once — JPG, PNG, HEIC, WEBP, and more are all supported.</li>
-      <li>Choose a <strong>Layout</strong>: Grid places photos in a neat horizontal strip; Scatter places them randomly with slight rotations for a natural look.</li>
+      <li>Choose a <strong>Layout</strong>: Grid places photos in a neat horizontal strip; Scatter places them randomly with slight rotations for a natural look; Masonry packs them into tight, gapless columns like a Pinterest board.</li>
       <li>Choose a <strong>Style</strong>: Classic (white border + shadow), Flat, Worn (vintage), Framed, Torn edge, Film strip, Neon glow, or Mix &amp; Match — which puts a different random style on every photo.</li>
       <li>Pick an <strong>Aspect Ratio</strong>: Auto fits your photos; 1:1 for Instagram square; 16:9 for YouTube thumbnails; 9:16 for phone wallpapers and Stories; 4:3 or 4:5 for portraits.</li>
       <li>Click <strong>Make Collage</strong>. Everything is processed in your browser — no upload. Then download it, or on your phone, share it straight to Photos or any app.</li>
@@ -1042,7 +1137,7 @@
       </details>
       <details>
         <summary>What are the different styles?</summary>
-        <div class="faq-body">Classic gives each photo a white border with a soft drop shadow. Flat removes the shadow for a clean look. Worn adds vintage aging. Framed uses a dark mat border. Torn edge gives a deckled paper look. Film strip adds sprocket holes. Neon glow adds a glowing colored outline. Mix &amp; Match randomly assigns a different style to each photo. Grid layout places photos in a clean row; Scatter places them at random angles for a natural, laid-out feel.</div>
+        <div class="faq-body">Classic gives each photo a white border with a soft drop shadow. Flat removes the shadow for a clean look. Worn adds vintage aging. Framed uses a dark mat border. Torn edge gives a deckled paper look. Film strip adds sprocket holes. Neon glow adds a glowing colored outline. Mix &amp; Match randomly assigns a different style to each photo. Grid layout places photos in a clean row; Scatter places them at random angles for a natural, laid-out feel; Masonry packs them into tight columns with no gaps.</div>
       </details>
       <details>
         <summary>Will my collage have a watermark?</summary>
