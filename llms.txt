@@ -1,21 +1,28 @@
 # yhile.com
 
-yhile.com is a free collection of browser-based web tools.
-Files never leave the user's device. No signup, no ads, 
-no server uploads. Free forever.
+> Free, 100% client-side browser tools. No signup, no account, no data upload — every tool runs entirely in the user's browser and nothing is ever sent to a server.
+
+yhile.com is a solo-built collection of free web utilities covering file conversion, audio, images, text, and productivity. All processing happens locally in-browser (Canvas API, WebAssembly/ffmpeg.wasm); no files or text are ever uploaded or stored. No ads, no paywalls, no premium tier — free forever.
 
 ## Tools
-- MP4 to MP3 converter
-- HEIC image converter
-- Audio converter
-- Photo collage maker
-- Base64 encoder
-- Image converter
-- Decimal/Binary/Hex converter
-- Repeated words checker
-- Calculator
-- Timer & Stopwatch
 
-## About
-Solo bootstrapped project. Privacy-focused. 
-All processing happens client-side in the browser.
+- [Audio Extractor (MP4 to MP3)](https://www.yhile.com/audio-extractor.html): Extract audio from any MP4 video and download it as MP3, entirely in-browser.
+- [Audio Converter](https://www.yhile.com/audio-converter.html): Convert between MP3, WAV, OGG, FLAC, M4A, AAC, OPUS, AIFF, WEBM and more.
+- [Image Converter](https://www.yhile.com/img-converter.html): Batch convert HEIC, PNG, JPEG, WEBP, GIF and more; download as ZIP.
+- [Image to Base64](https://www.yhile.com/img-to-base64.html): Convert an image to a Base64 string or data URL, and decode Base64 back to an image.
+- [Snapshot Collage Maker](https://www.yhile.com/snapshot.html): Create grid or scatter photo collages with classic or vintage styles and custom aspect ratios.
+- [Base Converter](https://www.yhile.com/base-converter.html): Convert decimal, binary, hex, and text between each other live and bidirectionally.
+- [Repeated Words Checker](https://www.yhile.com/word-checker.html): Paste text to find and highlight overused/repeated words, with word frequency counts.
+- [Calculator](https://www.yhile.com/calculator.html): Scientific calculator with trig, log, sqrt, pi, and calculation history.
+- [Timer & Stopwatch](https://www.yhile.com/timer.html): Countdown timer with alarm plus a stopwatch with lap times.
+- [Disk Changer](https://www.yhile.com/diskchanger.html): Swap and manage Minecraft Bedrock music disk images.
+
+## Site
+
+- [Tools index](https://www.yhile.com/tools.html): Full list of all available tools.
+- [About](https://www.yhile.com/about.html): Background on yhile.com and its no-signup, no-data-stored approach.
+- [Contact](https://www.yhile.com/contact.html): Suggest a tool, report a bug, or get in touch.
+
+## Optional
+
+- [Privacy Policy](https://www.yhile.com/privacy-policy.html): Details on the site's no-data-storage practices and Google Analytics use.
