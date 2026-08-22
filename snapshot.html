@@ -56,9 +56,9 @@
     "tool": [{ "@type": "HowToTool", "name": "yhile.com Snapshot Collage Maker" }],
     "step": [
       { "@type": "HowToStep", "position": 1, "name": "Upload your photos", "text": "Click the upload area or drag and drop your photos. You can add multiple images at once." },
-      { "@type": "HowToStep", "position": 2, "name": "Choose layout and style", "text": "Select Grid or Scatter layout. Pick a style: Classic, Flat, or Worn (vintage look)." },
+      { "@type": "HowToStep", "position": 2, "name": "Choose layout and style", "text": "Select Grid or Scatter layout. Pick a style: Classic, Flat, Worn, Framed, Torn edge, Film strip, Neon glow, or Mix & Match." },
       { "@type": "HowToStep", "position": 3, "name": "Set aspect ratio", "text": "Choose an aspect ratio — Auto, 1:1 (square), 16:9 (widescreen), 9:16 (phone/portrait), 4:3, or 4:5 (Instagram)." },
-      { "@type": "HowToStep", "position": 4, "name": "Generate and download", "text": "Click Make Collage. Your collage is created inside your browser. Click Download PNG to save it." }
+      { "@type": "HowToStep", "position": 4, "name": "Generate and download", "text": "Click Make Collage. Your collage is created inside your browser. Then download it or share it directly on your phone." }
     ]
   }
   </script>
@@ -80,12 +80,12 @@
       {
         "@type": "Question",
         "name": "What styles are available?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Classic (white border with drop shadow), Flat (no shadow, clean), and Worn (vintage look with aged edges). You can choose Grid layout (photos in a neat row) or Scatter (randomly placed, rotated photos)." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Classic (white border with drop shadow), Flat (no shadow, clean), Worn (vintage aged look), Framed (dark mat border), Torn edge (deckled paper edge), Film strip (sprocket holes), Neon glow (glowing outline), and Mix & Match, which randomly assigns a different style to each photo. You can choose Grid layout (photos in a neat row) or Scatter (randomly placed, rotated photos)." }
       },
       {
         "@type": "Question",
         "name": "Is there a limit on how many photos I can add?",
-        "acceptedAnswer": { "@type": "Answer", "text": "There is no hard limit. For best results, 3–8 photos work well. Very large numbers of high-resolution photos may be slow on some devices." }
+        "acceptedAnswer": { "@type": "Answer", "text": "You can add up to 60 photos. For best results, 3–8 photos work well. Very large numbers of high-resolution photos may be slower on some phones, though photos are automatically resized in the browser to keep things smooth." }
       },
       {
         "@type": "Question",
@@ -139,7 +139,7 @@
       display: none;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 28px;
+      margin-bottom: 12px;
     }
     #preview-strip.visible { display: flex; }
 
@@ -333,21 +333,20 @@
     <!-- Upload -->
     <div class="drop-zone" id="drop-zone">
       <div class="icon">📷</div>
-      <p>Drop photos here</p>
-      <span>or click to choose</span>
+      <p id="drop-zone-text">Drop photos here</p>
+      <span>or click to choose — works great on your phone too</span>
       <input type="file" id="file-input" multiple accept="image/*">
     </div>
 
     <!-- Preview strip -->
     <div id="preview-strip"></div>
+    <div class="action-row" id="preview-actions" style="display:none; margin-bottom:24px;">
+      <p class="msg" id="photo-count-msg" style="margin:0"></p>
+      <button class="ghost-btn" id="clear-all-btn">Clear all</button>
+    </div>
 
     <!-- Controls -->
     <div class="controls" id="controls" style="display:none">
-
-      <div class="control-group">
-        <label>Background</label>
-        <input type="color" id="bg-color" value="#1a1a1a">
-      </div>
 
       <div class="control-group">
         <label>Layout</label>
@@ -358,11 +357,16 @@
       </div>
 
       <div class="control-group">
-        <label>Canvas size</label>
-        <select id="canvas-size">
-          <option value="900">Small (900px)</option>
-          <option value="1400" selected>Medium (1400px)</option>
-          <option value="2000">Large (2000px)</option>
+        <label>Style</label>
+        <select id="style">
+          <option value="classic">Classic (shadow)</option>
+          <option value="flat">Flat</option>
+          <option value="worn">Worn &amp; vintage</option>
+          <option value="framed">Framed</option>
+          <option value="torn">Torn edge</option>
+          <option value="filmstrip">Film strip</option>
+          <option value="neon">Neon glow</option>
+          <option value="mix">Mix &amp; match (random per photo)</option>
         </select>
       </div>
 
@@ -380,12 +384,17 @@
       </div>
 
       <div class="control-group">
-        <label>Style</label>
-        <select id="style">
-          <option value="classic">Classic (shadow)</option>
-          <option value="flat">Flat</option>
-          <option value="worn">Worn &amp; vintage</option>
+        <label>Output size</label>
+        <select id="canvas-size">
+          <option value="900">Small (900px) — fastest</option>
+          <option value="1400" selected>Medium (1400px)</option>
+          <option value="2000">Large (2000px) — slower on phones</option>
         </select>
+      </div>
+
+      <div class="control-group">
+        <label>Background</label>
+        <input type="color" id="bg-color" value="#1a1a1a">
       </div>
 
       <div class="control-group">
@@ -408,7 +417,7 @@
     <!-- Output -->
     <div id="output-wrap">
       <canvas id="output-canvas"></canvas>
-      <div style="display:flex;gap:10px">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
         <a class="btn" id="download-btn" download="collage.png">⬇ Download PNG</a>
         <button class="ghost-btn" id="redo-btn">Redo</button>
       </div>
@@ -418,20 +427,31 @@
 
   <script>
     // ─── State ───────────────────────────────────────────────────────────────
-    let images = []; // { img, name, url }
+    let images = []; // { img (Image or downscaled canvas), name, url (preview src), key }
+    let isLoading = false;
+    let currentBlob = null;
+    let currentBlobUrl = null;
+
+    const CONCRETE_STYLES = ['classic', 'flat', 'worn', 'framed', 'torn', 'filmstrip', 'neon'];
+    const MAX_SOURCE_DIM  = 2200; // photos are downscaled to this on load — keeps memory sane on phones
+    const MAX_PHOTOS      = 60;
 
     // ─── DOM refs ─────────────────────────────────────────────────────────────
-    const dropZone     = document.getElementById('drop-zone');
-    const fileInput    = document.getElementById('file-input');
-    const previewStrip = document.getElementById('preview-strip');
-    const controlsEl   = document.getElementById('controls');
-    const actionRowEl  = document.getElementById('action-row');
-    const makeBtn      = document.getElementById('make-btn');
-    const outputWrap   = document.getElementById('output-wrap');
-    const outputCanvas = document.getElementById('output-canvas');
-    const downloadBtn  = document.getElementById('download-btn');
-    const redoBtn      = document.getElementById('redo-btn');
-    const outputMsg    = document.getElementById('output-msg');
+    const dropZone       = document.getElementById('drop-zone');
+    const dropZoneText   = document.getElementById('drop-zone-text');
+    const fileInput      = document.getElementById('file-input');
+    const previewStrip   = document.getElementById('preview-strip');
+    const previewActions = document.getElementById('preview-actions');
+    const photoCountMsg  = document.getElementById('photo-count-msg');
+    const clearAllBtn    = document.getElementById('clear-all-btn');
+    const controlsEl     = document.getElementById('controls');
+    const actionRowEl    = document.getElementById('action-row');
+    const makeBtn         = document.getElementById('make-btn');
+    const outputWrap      = document.getElementById('output-wrap');
+    const outputCanvas    = document.getElementById('output-canvas');
+    const downloadBtn     = document.getElementById('download-btn');
+    const redoBtn         = document.getElementById('redo-btn');
+    const outputMsg       = document.getElementById('output-msg');
 
     const bgColorEl    = document.getElementById('bg-color');
     const layoutEl     = document.getElementById('layout');
@@ -440,6 +460,12 @@
     const styleEl      = document.getElementById('style');
     const randomRotEl  = document.getElementById('random-rot');
     const captionEl    = document.getElementById('show-caption');
+
+    // On mobile with Web Share support, saving via the share sheet is far more
+    // reliable than an anchor "download" attribute (iOS Safari in particular
+    // mostly ignores it), so the button adapts to whichever works best.
+    const canShareFiles = typeof navigator.share === 'function' && typeof navigator.canShare === 'function';
+    downloadBtn.textContent = canShareFiles ? '⬇ Share / Save' : '⬇ Download PNG';
 
     // ─── Upload handling ──────────────────────────────────────────────────────
     dropZone.addEventListener('click', () => fileInput.click());
@@ -451,23 +477,82 @@
       loadFiles(e.dataTransfer.files);
     });
     fileInput.addEventListener('change', e => loadFiles(e.target.files));
+    clearAllBtn.addEventListener('click', () => {
+      images = [];
+      renderPreviews();
+    });
 
-    async function loadFiles(files) {
+    // Fixes applied here:
+    //  - a single bad/unsupported file no longer aborts the whole batch (try/catch per file)
+    //  - the <input> value is cleared after every read, so picking the exact same
+    //    file(s) again actually fires a new "change" event next time
+    //  - a re-entrancy guard + per-file de-dupe key stop the same photo being
+    //    added twice if an event fires more than once (this was the cause of
+    //    repeated photos showing up in the collage)
+    //  - large phone photos are downscaled right after decoding, so a batch of
+    //    12MP+ photos doesn't blow past mobile Safari/Chrome's memory limits
+    async function loadFiles(fileList) {
+      if (isLoading) return;
+      isLoading = true;
+      dropZoneText.textContent = 'Loading photos…';
+
+      const files = Array.from(fileList || []);
+      let failCount = 0;
+      let skippedForLimit = 0;
+
       for (const f of files) {
         if (!f.type.startsWith('image/')) continue;
-        const url = URL.createObjectURL(f);
-        const img = new Image();
-        img.src = url;
-        await img.decode();
-        images.push({ img, name: f.name.replace(/\.[^.]+$/, ''), url });
+        if (images.length >= MAX_PHOTOS) { skippedForLimit++; continue; }
+
+        const key = `${f.name}_${f.size}_${f.lastModified}`;
+        if (images.some(e => e.key === key)) continue; // already added, skip duplicate
+
+        try {
+          const url = URL.createObjectURL(f);
+          const rawImg = new Image();
+          rawImg.src = url;
+          await rawImg.decode();
+
+          const longest = Math.max(rawImg.width, rawImg.height);
+          let drawSource = rawImg;
+          let previewUrl = url;
+
+          if (longest > MAX_SOURCE_DIM) {
+            const scale = MAX_SOURCE_DIM / longest;
+            const sc = document.createElement('canvas');
+            sc.width  = Math.max(1, Math.round(rawImg.width * scale));
+            sc.height = Math.max(1, Math.round(rawImg.height * scale));
+            sc.getContext('2d').drawImage(rawImg, 0, 0, sc.width, sc.height);
+            drawSource = sc;
+            previewUrl = sc.toDataURL('image/jpeg', 0.85);
+            URL.revokeObjectURL(url);
+          }
+
+          images.push({ img: drawSource, name: f.name.replace(/\.[^.]+$/, ''), url: previewUrl, key });
+        } catch (err) {
+          failCount++;
+          console.warn('Could not load image:', f.name, err);
+        }
       }
+
       renderPreviews();
+      fileInput.value = ''; // allow re-selecting the same file(s) later
+      dropZoneText.textContent = 'Drop photos here';
+      isLoading = false;
+
+      if (failCount) {
+        alert(`${failCount} photo${failCount > 1 ? 's' : ''} couldn't be loaded (unsupported format?) — the rest were added fine.`);
+      }
+      if (skippedForLimit) {
+        alert(`You can add up to ${MAX_PHOTOS} photos — ${skippedForLimit} extra photo${skippedForLimit > 1 ? 's were' : ' was'} skipped.`);
+      }
     }
 
     function renderPreviews() {
       previewStrip.innerHTML = '';
       if (!images.length) {
         previewStrip.classList.remove('visible');
+        previewActions.style.display = 'none';
         controlsEl.style.display = 'none';
         actionRowEl.style.display = 'none';
         return;
@@ -478,8 +563,11 @@
         thumb.className = 'preview-thumb';
         const imgEl = document.createElement('img');
         imgEl.src = entry.url;
+        imgEl.alt = entry.name;
         const removeBtn = document.createElement('button');
         removeBtn.className = 'remove';
+        removeBtn.type = 'button';
+        removeBtn.setAttribute('aria-label', 'Remove photo');
         removeBtn.textContent = '×';
         removeBtn.addEventListener('click', e => {
           e.stopPropagation();
@@ -498,18 +586,60 @@
       addMore.addEventListener('click', () => fileInput.click());
       previewStrip.appendChild(addMore);
 
+      photoCountMsg.textContent = `${images.length} photo${images.length > 1 ? 's' : ''} added`;
       previewStrip.classList.add('visible');
+      previewActions.style.display = 'flex';
       controlsEl.style.display = 'grid';
       actionRowEl.style.display = 'flex';
       outputWrap.classList.remove('visible');
     }
 
-    // ─── Polaroid rendering ───────────────────────────────────────────────────
-    // Authentic polaroid proportions
+    // ─── Shared polaroid-ish bounding-box proportions ──────────────────────────
+    // Every style shares the same outer proportions so grid/scatter sizing math
+    // stays consistent no matter which style (or Mix & Match) is drawn.
     const SIDE   = 0.075;  // 7.5% side margin each side
     const TOP    = 0.07;   // 7% top
-    const BOTTOM = 0.22;   // 22% bottom (the wide classic border)
+    const BOTTOM = 0.22;   // 22% bottom (caption / mat area)
 
+    function irregularRectPath(ctx, x, y, w, h, jag) {
+      const pts = [];
+      const seg = 10;
+      function addEdge(x0, y0, x1, y1) {
+        for (let i = 0; i <= seg; i++) {
+          const t = i / seg;
+          let px = x0 + (x1 - x0) * t;
+          let py = y0 + (y1 - y0) * t;
+          if (i > 0 && i < seg) {
+            const dx = x1 - x0, dy = y1 - y0;
+            const len = Math.hypot(dx, dy) || 1;
+            const nx = -dy / len, ny = dx / len;
+            const offset = (Math.random() - 0.5) * jag;
+            px += nx * offset;
+            py += ny * offset;
+          }
+          pts.push([px, py]);
+        }
+      }
+      addEdge(x, y, x + w, y);
+      addEdge(x + w, y, x + w, y + h);
+      addEdge(x + w, y + h, x, y + h);
+      addEdge(x, y + h, x, y);
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+      ctx.closePath();
+    }
+
+    function drawCaption(cx, totalW, totalH, bh, color, name) {
+      cx.fillStyle = color;
+      const fontSize = Math.max(10, Math.round(bh * 0.28));
+      cx.font = `italic ${fontSize}px Georgia, serif`;
+      cx.textAlign = 'center';
+      cx.textBaseline = 'middle';
+      cx.fillText(name, totalW / 2, totalH - bh / 2, totalW - 20);
+    }
+
+    // ─── Frame rendering, one canvas per photo ─────────────────────────────────
     function makePolaroidCanvas(img, photoW, photoH, pStyle, caption, name) {
       const sw = SIDE * photoW;
       const th = TOP  * photoH;
@@ -523,53 +653,146 @@
       c.height = totalH;
       const cx = c.getContext('2d');
 
-      // Base white
-      if (pStyle === 'worn') {
-        cx.fillStyle = '#f5efe0';
-      } else {
-        cx.fillStyle = '#ffffff';
-      }
-      cx.fillRect(0, 0, totalW, totalH);
+      switch (pStyle) {
 
-      // Vintage grain/texture for worn style
-      if (pStyle === 'worn') {
-        cx.save();
-        for (let i = 0; i < 600; i++) {
-          cx.fillStyle = `rgba(0,0,0,${Math.random() * 0.04})`;
-          cx.fillRect(Math.random() * totalW, Math.random() * totalH, 1, 1);
+        case 'worn': {
+          cx.fillStyle = '#f5efe0';
+          cx.fillRect(0, 0, totalW, totalH);
+          cx.save();
+          for (let i = 0; i < 600; i++) {
+            cx.fillStyle = `rgba(0,0,0,${Math.random() * 0.04})`;
+            cx.fillRect(Math.random() * totalW, Math.random() * totalH, 1, 1);
+          }
+          cx.restore();
+          cx.drawImage(img, sw, th, photoW, photoH);
+          insetShadow(cx, sw, th, photoW, photoH);
+          if (caption && name) drawCaption(cx, totalW, totalH, bh, '#555', name);
+          break;
         }
-        cx.restore();
-      }
 
-      // Draw photo
-      cx.drawImage(img, sw, th, photoW, photoH);
+        case 'flat': {
+          cx.fillStyle = '#ffffff';
+          cx.fillRect(0, 0, totalW, totalH);
+          cx.drawImage(img, sw, th, photoW, photoH);
+          if (caption && name) drawCaption(cx, totalW, totalH, bh, '#333', name);
+          break;
+        }
 
-      // Subtle inner shadow on photo edges
-      if (pStyle === 'classic' || pStyle === 'worn') {
-        const g = cx.createLinearGradient(sw, th, sw, th + 12);
-        g.addColorStop(0, 'rgba(0,0,0,0.15)');
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        cx.fillStyle = g;
-        cx.fillRect(sw, th, photoW, 12);
+        case 'framed': {
+          // Dark mat with a thin light keyline around the photo
+          cx.fillStyle = '#161616';
+          cx.fillRect(0, 0, totalW, totalH);
+          const gap = Math.max(2, Math.round(photoW * 0.01));
+          cx.fillStyle = '#f4f4f4';
+          cx.fillRect(sw - gap, th - gap, photoW + gap * 2, photoH + gap * 2);
+          cx.drawImage(img, sw, th, photoW, photoH);
+          if (caption && name) drawCaption(cx, totalW, totalH, bh, '#eee', name);
+          break;
+        }
 
-        const gl = cx.createLinearGradient(sw, th, sw + 12, th);
-        gl.addColorStop(0, 'rgba(0,0,0,0.1)');
-        gl.addColorStop(1, 'rgba(0,0,0,0)');
-        cx.fillStyle = gl;
-        cx.fillRect(sw, th, 12, photoH);
-      }
+        case 'torn': {
+          cx.save();
+          irregularRectPath(cx, 0, 0, totalW, totalH, Math.max(3, photoW * 0.012));
+          cx.clip();
+          cx.fillStyle = '#fffdf8';
+          cx.fillRect(0, 0, totalW, totalH);
+          cx.drawImage(img, sw, th, photoW, photoH);
+          cx.restore();
+          // faint edge shadow so the torn silhouette reads clearly
+          cx.save();
+          irregularRectPath(cx, 0, 0, totalW, totalH, 1);
+          cx.lineWidth = 2;
+          cx.strokeStyle = 'rgba(0,0,0,0.08)';
+          cx.stroke();
+          cx.restore();
+          if (caption && name) drawCaption(cx, totalW, totalH, bh, '#333', name);
+          break;
+        }
 
-      // Caption in bottom border
-      if (caption && name) {
-        cx.fillStyle = pStyle === 'worn' ? '#555' : '#333';
-        const fontSize = Math.max(10, Math.round(bh * 0.28));
-        cx.font = `italic ${fontSize}px Georgia, serif`;
-        cx.textAlign = 'center';
-        cx.textBaseline = 'middle';
-        cx.fillText(name, totalW / 2, totalH - bh / 2, totalW - sw * 2);
+        case 'filmstrip': {
+          cx.fillStyle = '#0b0b0b';
+          cx.fillRect(0, 0, totalW, totalH);
+          cx.drawImage(img, sw, th, photoW, photoH);
+          // sprocket holes along top and bottom strips
+          const holeCount = Math.max(4, Math.round(totalW / (photoW * 0.09)));
+          const holeW = th * 0.32, holeH = th * 0.5;
+          for (let i = 0; i < holeCount; i++) {
+            const hx = (i + 0.5) * (totalW / holeCount) - holeW / 2;
+            roundRectHole(cx, hx, th * 0.25, holeW, holeH);
+            roundRectHole(cx, hx, totalH - bh + bh * 0.25, holeW, holeH);
+          }
+          if (caption && name) drawCaption(cx, totalW, totalH, bh, '#eee', name);
+          break;
+        }
+
+        case 'neon': {
+          cx.fillStyle = '#08060f';
+          cx.fillRect(0, 0, totalW, totalH);
+          cx.drawImage(img, sw, th, photoW, photoH);
+          const glowColors = ['#ff2fd0', '#2fe8ff', '#b6ff2f', '#ffb62f'];
+          const glow = glowColors[Math.floor(Math.random() * glowColors.length)];
+          cx.save();
+          cx.strokeStyle = glow;
+          cx.lineWidth = Math.max(2, photoW * 0.01);
+          cx.shadowColor = glow;
+          cx.shadowBlur = photoW * 0.03;
+          cx.strokeRect(sw / 2, th / 2, photoW + sw, photoH + th / 2);
+          cx.restore();
+          if (caption && name) drawCaption(cx, totalW, totalH, bh, glow, name);
+          break;
+        }
+
+        case 'classic':
+        default: {
+          cx.fillStyle = '#ffffff';
+          cx.fillRect(0, 0, totalW, totalH);
+          cx.drawImage(img, sw, th, photoW, photoH);
+          insetShadow(cx, sw, th, photoW, photoH);
+          if (caption && name) drawCaption(cx, totalW, totalH, bh, '#333', name);
+          break;
+        }
       }
 
       return c;
+    }
+
+    function insetShadow(cx, sw, th, photoW, photoH) {
+      const g = cx.createLinearGradient(sw, th, sw, th + 12);
+      g.addColorStop(0, 'rgba(0,0,0,0.15)');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      cx.fillStyle = g;
+      cx.fillRect(sw, th, photoW, 12);
+
+      const gl = cx.createLinearGradient(sw, th, sw + 12, th);
+      gl.addColorStop(0, 'rgba(0,0,0,0.1)');
+      gl.addColorStop(1, 'rgba(0,0,0,0)');
+      cx.fillStyle = gl;
+      cx.fillRect(sw, th, 12, photoH);
+    }
+
+    function roundRectHole(cx, x, y, w, h) {
+      const r = Math.min(w, h) / 3;
+      cx.save();
+      cx.globalCompositeOperation = 'destination-out';
+      cx.beginPath();
+      cx.moveTo(x + r, y);
+      cx.arcTo(x + w, y, x + w, y + h, r);
+      cx.arcTo(x + w, y + h, x, y + h, r);
+      cx.arcTo(x, y + h, x, y, r);
+      cx.arcTo(x, y, x + w, y, r);
+      cx.closePath();
+      cx.fillStyle = '#fff';
+      cx.fill();
+      cx.restore();
+    }
+
+    function styleForEntry(pStyle) {
+      if (pStyle !== 'mix') return pStyle;
+      return CONCRETE_STYLES[Math.floor(Math.random() * CONCRETE_STYLES.length)];
+    }
+
+    function shadowNeeded(pStyle) {
+      return pStyle !== 'flat' && pStyle !== 'framed';
     }
 
     // ─── Grid layout ──────────────────────────────────────────────────────────
@@ -585,13 +808,6 @@
         rows.push(images.slice(idx, idx + inRow));
         idx += inRow;
       }
-
-      // Compute photo heights per row so polaroids fill the width
-      // polaroidW = photoW * (1 + 2*SIDE) = photoH * ar * (1+2*SIDE)
-      // polaroidH = photoH * (1 + TOP + BOTTOM)
-      // sum(polaroidW_i) + (n+1)*margin = canvasW
-      // photoH * (1+2*SIDE) * sum(ar_i) = canvasW - (n+1)*margin
-      // photoH = (canvasW - (n+1)*margin) / ((1+2*SIDE) * sum(ar_i))
 
       const rowData = rows.map(rowImgs => {
         const ars    = rowImgs.map(e => e.img.width / e.img.height);
@@ -609,7 +825,6 @@
 
       const totalH = rowData.reduce((s, r) => s + r.polH, 0) + (rows.length + 1) * margin;
 
-      // Draw
       const mainCanvas = document.createElement('canvas');
       mainCanvas.width  = canvasW;
       mainCanvas.height = Math.round(totalH);
@@ -622,14 +837,15 @@
       for (const { entries, polH } of rowData) {
         let x = margin;
         for (const { entry, photoW, photoH, polW } of entries) {
-          const pol = makePolaroidCanvas(entry.img, Math.round(photoW), Math.round(photoH), pStyle, caption, entry.name);
+          const entryStyle = styleForEntry(pStyle);
+          const pol = makePolaroidCanvas(entry.img, Math.round(photoW), Math.round(photoH), entryStyle, caption, entry.name);
           const angle = useRotation ? (Math.random() - 0.5) * (Math.PI / 9) : 0; // ±20°
 
           ctx.save();
           ctx.translate(x + polW / 2, y + polH / 2);
           ctx.rotate(angle);
 
-          if (pStyle !== 'flat') {
+          if (shadowNeeded(entryStyle)) {
             ctx.shadowColor   = 'rgba(0,0,0,0.35)';
             ctx.shadowBlur    = 14;
             ctx.shadowOffsetX = 4;
@@ -650,7 +866,6 @@
     // ─── Scatter layout ───────────────────────────────────────────────────────
     function buildScatter(canvasW, canvasH, useRotation, pStyle, caption) {
       const n = images.length;
-      // Base photo size: fit roughly 3–4 per row
       const cols = Math.max(2, Math.ceil(Math.sqrt(n * 1.5)));
       const basePhotoW = (canvasW / cols) * 0.8;
 
@@ -662,17 +877,17 @@
       ctx.fillStyle = bgColorEl.value;
       ctx.fillRect(0, 0, canvasW, canvasH);
 
-      // Shuffle and place
       const shuffled = [...images].sort(() => Math.random() - 0.5);
 
       for (const entry of shuffled) {
         const ar     = entry.img.width / entry.img.height;
-        const photoW = basePhotoW * (0.8 + Math.random() * 0.4); // slight size variation
+        const photoW = basePhotoW * (0.8 + Math.random() * 0.4);
         const photoH = photoW / ar;
         const polW   = photoW * (1 + 2 * SIDE);
         const polH   = photoH * (1 + TOP + BOTTOM);
 
-        const pol = makePolaroidCanvas(entry.img, Math.round(photoW), Math.round(photoH), pStyle, caption, entry.name);
+        const entryStyle = styleForEntry(pStyle);
+        const pol = makePolaroidCanvas(entry.img, Math.round(photoW), Math.round(photoH), entryStyle, caption, entry.name);
 
         const cx = Math.random() * canvasW;
         const cy = Math.random() * canvasH;
@@ -682,7 +897,7 @@
         ctx.translate(cx, cy);
         ctx.rotate(angle);
 
-        if (pStyle !== 'flat') {
+        if (shadowNeeded(entryStyle)) {
           ctx.shadowColor   = 'rgba(0,0,0,0.4)';
           ctx.shadowBlur    = 18;
           ctx.shadowOffsetX = 5;
@@ -697,8 +912,6 @@
     }
 
     // ─── Ratio helper ─────────────────────────────────────────────────────────
-    // Composites `src` canvas centred & scaled-to-fit onto a canvas of exact
-    // (targetW × targetH), filled with the current background colour.
     function applyRatio(src, targetW, targetH) {
       const out = document.createElement('canvas');
       out.width  = targetW;
@@ -708,7 +921,6 @@
       ctx.fillStyle = bgColorEl.value;
       ctx.fillRect(0, 0, targetW, targetH);
 
-      // Scale src to fit inside target while preserving aspect ratio
       const scale = Math.min(targetW / src.width, targetH / src.height);
       const dw = Math.round(src.width  * scale);
       const dh = Math.round(src.height * scale);
@@ -720,10 +932,13 @@
     }
 
     function parseRatio(value) {
-      // Returns { w, h } multipliers or null for auto
       if (value === 'auto') return null;
       const [w, h] = value.split(':').map(Number);
       return { w, h };
+    }
+
+    function canvasToBlob(canvas) {
+      return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
     }
 
     // ─── Make collage ─────────────────────────────────────────────────────────
@@ -733,8 +948,7 @@
       makeBtn.disabled = true;
       makeBtn.textContent = 'Generating…';
 
-      // Defer to next frame so UI updates first
-      setTimeout(() => {
+      setTimeout(async () => {
         try {
           const canvasW   = parseInt(canvasSizeEl.value);
           const margin    = Math.round(canvasW * 0.015);
@@ -744,30 +958,32 @@
           const caption   = captionEl.checked;
           const ratio     = parseRatio(aspectEl.value);
 
-          // Determine target canvas height from ratio (if set)
           const targetH = ratio ? Math.round(canvasW * ratio.h / ratio.w) : null;
 
           let result;
           if (layout === 'scatter') {
-            // Use the ratio height directly for scatter so photos fill the space
             const scatterH = targetH || Math.round(canvasW * 0.75);
             result = buildScatter(canvasW, scatterH, useRot, pStyle, caption);
           } else {
             result = buildGrid(canvasW, margin, useRot, pStyle, caption);
           }
 
-          // Apply fixed aspect ratio if chosen — scale & centre onto exact canvas
           if (ratio) {
             result = applyRatio(result, canvasW, targetH);
           }
 
-          // Show on output canvas
           outputCanvas.width  = result.width;
           outputCanvas.height = result.height;
           const ctx = outputCanvas.getContext('2d');
           ctx.drawImage(result, 0, 0);
 
-          downloadBtn.href = outputCanvas.toDataURL('image/png');
+          // Blob-based download/share — more reliable than a data URL,
+          // especially for large images on phones.
+          if (currentBlobUrl) URL.revokeObjectURL(currentBlobUrl);
+          currentBlob = await canvasToBlob(outputCanvas);
+          currentBlobUrl = URL.createObjectURL(currentBlob);
+          downloadBtn.href = currentBlobUrl;
+
           outputMsg.textContent = `${result.width} × ${result.height} px`;
           outputWrap.classList.add('visible');
           outputWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -781,6 +997,24 @@
       }, 30);
     });
 
+    // Prefer the native share sheet on phones (saves straight to Photos and
+    // works around iOS Safari ignoring the download attribute); fall back to
+    // the normal file download everywhere else.
+    downloadBtn.addEventListener('click', async (e) => {
+      if (!currentBlob) return;
+      if (canShareFiles) {
+        const file = new File([currentBlob], 'collage.png', { type: 'image/png' });
+        if (navigator.canShare({ files: [file] })) {
+          e.preventDefault();
+          try {
+            await navigator.share({ files: [file], title: 'My Collage' });
+          } catch (err) {
+            // user cancelled the share sheet — nothing to do
+          }
+        }
+      }
+    });
+
     redoBtn.addEventListener('click', () => {
       outputWrap.classList.remove('visible');
     });
@@ -791,9 +1025,9 @@
     <ol class="how-to-steps">
       <li>Click the upload area or drag and drop your photos. Select multiple images at once — JPG, PNG, HEIC, WEBP, and more are all supported.</li>
       <li>Choose a <strong>Layout</strong>: Grid places photos in a neat horizontal strip; Scatter places them randomly with slight rotations for a natural look.</li>
-      <li>Choose a <strong>Style</strong>: Classic (white border + shadow), Flat (clean, no shadow), or Worn (vintage aged look).</li>
+      <li>Choose a <strong>Style</strong>: Classic (white border + shadow), Flat, Worn (vintage), Framed, Torn edge, Film strip, Neon glow, or Mix &amp; Match — which puts a different random style on every photo.</li>
       <li>Pick an <strong>Aspect Ratio</strong>: Auto fits your photos; 1:1 for Instagram square; 16:9 for YouTube thumbnails; 9:16 for phone wallpapers and Stories; 4:3 or 4:5 for portraits.</li>
-      <li>Click <strong>Make Collage</strong>. Everything is processed in your browser — no upload. Then click <strong>Download PNG</strong> to save your collage.</li>
+      <li>Click <strong>Make Collage</strong>. Everything is processed in your browser — no upload. Then download it, or on your phone, share it straight to Photos or any app.</li>
     </ol>
 
     <h2>Frequently asked questions</h2>
@@ -808,7 +1042,7 @@
       </details>
       <details>
         <summary>What are the different styles?</summary>
-        <div class="faq-body">Classic gives each photo a white border with a soft drop shadow — the classic photo look. Flat removes the shadow for a clean, modern look. Worn adds a vintage aged effect with subtle texture. Grid layout places photos in a clean row; Scatter places them at random angles for a natural, laid-out feel.</div>
+        <div class="faq-body">Classic gives each photo a white border with a soft drop shadow. Flat removes the shadow for a clean look. Worn adds vintage aging. Framed uses a dark mat border. Torn edge gives a deckled paper look. Film strip adds sprocket holes. Neon glow adds a glowing colored outline. Mix &amp; Match randomly assigns a different style to each photo. Grid layout places photos in a clean row; Scatter places them at random angles for a natural, laid-out feel.</div>
       </details>
       <details>
         <summary>Will my collage have a watermark?</summary>
@@ -816,7 +1050,7 @@
       </details>
       <details>
         <summary>How many photos can I add?</summary>
-        <div class="faq-body">No hard limit. 3–8 photos give great results. Very large numbers of high-resolution photos may be slow on older devices.</div>
+        <div class="faq-body">Up to 60. For best results, 3–8 photos work well. Large photos are automatically resized in your browser so things stay fast, even on a phone.</div>
       </details>
       <details>
         <summary>Is this free?</summary>
@@ -843,7 +1077,6 @@
     (function(){
       var t = document.getElementById('bm-toast');
       if (!t) return;
-      // Remove from DOM after animation finishes (~4.7s)
       setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
     })();
   </script>
