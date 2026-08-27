@@ -95,6 +95,11 @@
       <button class="btn" onclick="speak()">&#9654; Speak</button>
       <button class="btn btn-stop" onclick="stopSpeech()">&#9632; Stop</button>
     </div>
+    <div style="margin-top:16px">
+      <button class="btn btn-stop" id="dlBtn" onclick="downloadMp3()" style="width:100%;font-size:14px">&#x2B07; Download as MP3</button>
+      <p style="font-size:11px;color:#aaa;margin-top:6px;text-align:center">Uses StreamElements TTS voices for download. English voices only.</p>
+    </div>
+    <div id="dl-status" style="font-size:13px;color:#888;text-align:center;margin-top:8px;display:none"></div>
   </div>
 
   <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
@@ -135,6 +140,34 @@
       synth.speak(utt);
     }
     function stopSpeech(){if(synth)synth.cancel();}
+
+    // SE voices mapped by language hint
+    var SE_VOICES=['Brian','Amy','Emma','Joanna','Kimberly','Matthew','Salli','Russell','Nicole','Geraint'];
+    async function downloadMp3(){
+      var text=document.getElementById('tts-text').value.trim();
+      if(!text){alert('Please enter some text first.');return;}
+      if(text.length>500){text=text.substring(0,500);}
+      var btn=document.getElementById('dlBtn'),st=document.getElementById('dl-status');
+      btn.disabled=true;st.style.display='block';st.textContent='Fetching audio...';
+      var voice='Brian';
+      try{
+        var url='https://api.streamelements.com/kappa/v2/speech?voice='+voice+'&text='+encodeURIComponent(text);
+        var resp=await fetch(url);
+        if(!resp.ok)throw new Error('API error '+resp.status);
+        var blob=await resp.blob();
+        var a=document.createElement('a');
+        a.href=URL.createObjectURL(blob);
+        a.download='speech.mp3';
+        a.click();
+        st.textContent='Downloaded!';
+      }catch(e){
+        // Fallback: open in new tab
+        st.textContent='Direct download failed — opening in new tab instead.';
+        window.open('https://api.streamelements.com/kappa/v2/speech?voice='+voice+'&text='+encodeURIComponent(text.substring(0,300)),'_blank');
+      }
+      btn.disabled=false;
+      setTimeout(function(){st.style.display='none';},3000);
+    }
   </script>
 </body>
 </html>
