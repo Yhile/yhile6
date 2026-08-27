@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Background Remover — Remove Image Background Online | yhile.com</title>
+  <meta name="description" content="Remove image backgrounds free online using AI in your browser. No upload, no signup, download as transparent PNG. Powered by WebAssembly — free forever.">
+  <meta name="keywords" content="background remover, remove background free, remove image background online, background eraser free, remove bg free, transparent background maker, photo background remover free, cut out background free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/bg-remover.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/bg-remover.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free Background Remover — Remove Image Background | yhile.com">
+  <meta property="og:description" content="Remove image backgrounds free online using AI. No upload, no signup. Download transparent PNG.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free AI Background Remover Online — No Signup">
+  <meta name="twitter:description" content="Remove image backgrounds with AI in your browser. Free, no upload, transparent PNG.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free Background Remover","url":"https://www.yhile.com/bg-remover.html","description":"Remove image backgrounds using AI in your browser. Free, no signup, transparent PNG download.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:680px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:8px}
+    .notice{background:#fef9c3;color:#854d0e;font-size:13px;padding:10px 14px;border-radius:8px;margin-bottom:20px}
+    .drop-zone{border:2px dashed #ddd;border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;transition:.2s}
+    .drop-zone:hover,.drop-zone.over{border-color:#000;background:#fafafa}
+    .drop-zone .icon{font-size:32px;margin-bottom:8px}
+    .drop-zone p{font-size:14px;color:#888;margin:0}
+    input[type=file]{display:none}
+    .btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer;margin-bottom:16px}
+    .btn:hover{background:#333}
+    .btn:disabled{background:#999;cursor:default}
+    .prog{font-size:13px;color:#888;text-align:center;margin-bottom:10px;display:none}
+    .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+    .result-grid img{width:100%;border-radius:10px;border:1px solid #eee}
+    .result-grid .lbl{font-size:11px;color:#888;text-align:center;margin-top:4px}
+    .checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;border-radius:10px;overflow:hidden}
+    .dl{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer}
+    .dl:hover{background:#333}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>Background Remover</h1>
+    <p>Remove the background from any image using AI — runs in your browser.</p>
+    <div class="notice">&#x26A0;&#xFE0F; First use downloads a ~40 MB AI model (cached after that). Processing may take 10–30 seconds.</div>
+    <div class="drop-zone" id="dz" onclick="document.getElementById('fi').click()">
+      <div class="icon">&#x2702;&#xFE0F;</div>
+      <p>Click or drag &amp; drop an image</p>
+    </div>
+    <input type="file" id="fi" accept="image/*">
+    <button class="btn" id="remBtn" onclick="removeBg()" disabled>Remove Background</button>
+    <div class="prog" id="prog"></div>
+    <div class="result-grid" id="rg" style="display:none">
+      <div><img id="orig" alt="Original"><div class="lbl">Original</div></div>
+      <div class="checker"><img id="res" alt="Background removed"><div class="lbl">Background removed</div></div>
+    </div>
+    <button class="dl" id="dlBtn" style="display:none" onclick="dlResult()">Download transparent PNG</button>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script type="module">
+    import { removeBackground } from 'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/index.mjs';
+    var fileData=null,resultBlob=null;
+    var dz=document.getElementById('dz');
+    dz.ondragover=function(e){e.preventDefault();this.classList.add('over');};
+    dz.ondragleave=function(){this.classList.remove('over');};
+    dz.ondrop=function(e){e.preventDefault();this.classList.remove('over');loadFile(e.dataTransfer.files[0]);};
+    document.getElementById('fi').onchange=function(){loadFile(this.files[0]);};
+    function loadFile(f){
+      if(!f||!f.type.startsWith('image/'))return;
+      fileData=f;
+      document.getElementById('remBtn').disabled=false;
+      document.getElementById('orig').src=URL.createObjectURL(f);
+      document.getElementById('rg').style.display='grid';
+    }
+    window.removeBg=async function(){
+      if(!fileData)return;
+      var btn=document.getElementById('remBtn'),prog=document.getElementById('prog');
+      btn.disabled=true;prog.style.display='block';prog.textContent='Loading AI model...';
+      try{
+        resultBlob=await removeBackground(fileData,{
+          progress:function(k,c,t){prog.textContent=k+': '+Math.round(c/t*100)+'%';}
+        });
+        document.getElementById('res').src=URL.createObjectURL(resultBlob);
+        document.getElementById('dlBtn').style.display='block';
+        prog.textContent='Done!';
+      }catch(e){prog.textContent='Error: '+e.message;}
+      btn.disabled=false;
+    };
+    window.dlResult=function(){
+      if(!resultBlob)return;
+      var a=document.createElement('a');a.href=URL.createObjectURL(resultBlob);a.download='no-bg.png';a.click();
+    };
+  </script>
+</body>
+</html>

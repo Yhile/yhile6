@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Image Upscaler — Enlarge Images Online No Signup | yhile.com</title>
+  <meta name="description" content="Upscale and enlarge images free online — 2x, 4x, 8x. Uses high-quality canvas resampling. No signup, no upload, runs in your browser.">
+  <meta name="keywords" content="image upscaler, enlarge image online free, upscale image free, increase image size free, image enlarger online, upscale photo free, image resolution increaser, upscale image no signup, make image bigger free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/img-upscaler.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/img-upscaler.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free Image Upscaler — Enlarge Images Online | yhile.com">
+  <meta property="og:description" content="Upscale images 2x, 4x, 8x free online. No upload, no signup, runs in your browser.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Image Upscaler Online — No Signup">
+  <meta name="twitter:description" content="Enlarge and upscale images 2x, 4x, 8x. Free, no upload, no signup.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free Image Upscaler","url":"https://www.yhile.com/img-upscaler.html","description":"Upscale and enlarge images 2x, 4x, 8x online. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:680px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:24px}
+    .drop-zone{border:2px dashed #ddd;border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;transition:.2s}
+    .drop-zone:hover,.drop-zone.over{border-color:#000;background:#fafafa}
+    .drop-zone .icon{font-size:32px;margin-bottom:8px}
+    .drop-zone p{font-size:14px;color:#888;margin:0}
+    input[type=file]{display:none}
+    .opts{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+    .opts label{font-size:13px;color:#555;display:flex;align-items:center;gap:6px}
+    select{padding:7px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;outline:none}
+    .btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer;margin-bottom:16px}
+    .btn:hover{background:#333}
+    .btn:disabled{background:#999;cursor:default}
+    .stats{font-size:13px;color:#888;margin-bottom:12px;display:none}
+    .preview{width:100%;border-radius:10px;border:1px solid #eee;margin-bottom:12px;display:none;max-height:400px;object-fit:contain}
+    canvas{display:none}
+    .dl{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;display:none}
+    .dl:hover{background:#333}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>Image Upscaler</h1>
+    <p>Enlarge images using high-quality resampling. Runs entirely in your browser.</p>
+    <div class="drop-zone" id="dz" onclick="document.getElementById('fi').click()">
+      <div class="icon">&#x1F50D;</div>
+      <p>Click or drag &amp; drop an image</p>
+    </div>
+    <input type="file" id="fi" accept="image/*">
+    <canvas id="cv"></canvas>
+    <div class="opts">
+      <label>Scale <select id="scale">
+        <option value="2">2x</option>
+        <option value="4">4x</option>
+        <option value="8">8x</option>
+      </select></label>
+      <label>Format <select id="fmt">
+        <option value="image/png">PNG</option>
+        <option value="image/jpeg">JPEG</option>
+        <option value="image/webp">WEBP</option>
+      </select></label>
+    </div>
+    <button class="btn" id="upBtn" onclick="upscale()" disabled>Upscale Image</button>
+    <div class="stats" id="stats"></div>
+    <img class="preview" id="preview" alt="Upscaled preview">
+    <button class="dl" id="dlBtn" onclick="download()">Download upscaled image</button>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>
+    var srcImg=null,outUrl='';
+    var dz=document.getElementById('dz');
+    dz.ondragover=function(e){e.preventDefault();this.classList.add('over');};
+    dz.ondragleave=function(){this.classList.remove('over');};
+    dz.ondrop=function(e){e.preventDefault();this.classList.remove('over');loadImg(e.dataTransfer.files[0]);};
+    document.getElementById('fi').onchange=function(){loadImg(this.files[0]);};
+    function loadImg(f){
+      if(!f||!f.type.startsWith('image/'))return;
+      var r=new FileReader();
+      r.onload=function(e){srcImg=new Image();srcImg.onload=function(){document.getElementById('upBtn').disabled=false;};srcImg.src=e.target.result;};
+      r.readAsDataURL(f);
+    }
+    function upscale(){
+      if(!srcImg)return;
+      var s=parseInt(document.getElementById('scale').value);
+      var fmt=document.getElementById('fmt').value;
+      var cv=document.getElementById('cv');
+      var w=srcImg.naturalWidth*s,h=srcImg.naturalHeight*s;
+      cv.width=w;cv.height=h;
+      var ctx=cv.getContext('2d');
+      ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+      ctx.drawImage(srcImg,0,0,w,h);
+      outUrl=cv.toDataURL(fmt,0.95);
+      document.getElementById('preview').src=outUrl;
+      document.getElementById('preview').style.display='block';
+      document.getElementById('dlBtn').style.display='block';
+      document.getElementById('stats').style.display='block';
+      document.getElementById('stats').textContent=srcImg.naturalWidth+'×'+srcImg.naturalHeight+' → '+w+'×'+h+' ('+s+'x)';
+    }
+    function download(){
+      var ext=document.getElementById('fmt').value.split('/')[1].replace('jpeg','jpg');
+      var a=document.createElement('a');a.href=outUrl;a.download='upscaled.'+ext;a.click();
+    }
+  </script>
+</body>
+</html>

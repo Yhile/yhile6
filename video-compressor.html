@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Video Compressor — Compress Videos Online No Signup | yhile.com</title>
+  <meta name="description" content="Compress videos free online — reduce video file size in your browser using WebAssembly. No upload, no signup. Supports MP4, WebM, MOV. Free forever.">
+  <meta name="keywords" content="video compressor, compress video online free, reduce video size free, video file size reducer, compress mp4 online free, video compressor no signup, online video compressor, compress video free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/video-compressor.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/video-compressor.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free Video Compressor Online — No Signup | yhile.com">
+  <meta property="og:description" content="Compress videos free online in your browser. No upload, no signup. Supports MP4, WebM, MOV.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Video Compressor Online — No Signup">
+  <meta name="twitter:description" content="Compress MP4, WebM, MOV videos free in your browser. No upload, no signup.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free Video Compressor","url":"https://www.yhile.com/video-compressor.html","description":"Compress videos free online using WebAssembly in your browser. No signup, no upload.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:640px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:8px}
+    .notice{background:#fef9c3;color:#854d0e;font-size:13px;padding:10px 14px;border-radius:8px;margin-bottom:20px}
+    .drop-zone{border:2px dashed #ddd;border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;transition:.2s}
+    .drop-zone:hover,.drop-zone.over{border-color:#000;background:#fafafa}
+    .drop-zone .icon{font-size:32px;margin-bottom:8px}
+    .drop-zone p{font-size:14px;color:#888;margin:0}
+    input[type=file]{display:none}
+    .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+    @media(max-width:460px){.opts{grid-template-columns:1fr}}
+    label{font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:5px}
+    select{width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;outline:none}
+    .btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer;margin-bottom:16px}
+    .btn:hover{background:#333}
+    .btn:disabled{background:#999;cursor:default}
+    .prog-wrap{display:none;margin-bottom:12px}
+    .prog-bar{height:8px;background:#eee;border-radius:4px;overflow:hidden;margin-bottom:6px}
+    .prog-fill{height:100%;background:#111;width:0%;border-radius:4px;transition:width .3s}
+    .prog-lbl{font-size:13px;color:#888;text-align:center}
+    .file-info{font-size:13px;color:#888;margin-bottom:12px;display:none;padding:8px 12px;background:#f5f5f5;border-radius:8px}
+    .dl{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;display:none}
+    .dl:hover{background:#333}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>Video Compressor</h1>
+    <p>Compress videos directly in your browser using WebAssembly — no uploads needed.</p>
+    <div class="notice">&#x26A0;&#xFE0F; First use loads a ~30 MB WASM engine (cached after that). Best results with files under 200 MB on mobile.</div>
+    <div class="drop-zone" id="dz" onclick="document.getElementById('vfi').click()">
+      <div class="icon">&#x1F3AC;</div>
+      <p>Click or drag &amp; drop a video (MP4, WebM, MOV, AVI)</p>
+    </div>
+    <input type="file" id="vfi" accept="video/*">
+    <div class="file-info" id="finfo"></div>
+    <div class="opts">
+      <div>
+        <label>Quality (CRF)</label>
+        <select id="crf">
+          <option value="18">High quality (larger)</option>
+          <option value="28" selected>Balanced</option>
+          <option value="35">Smaller file</option>
+          <option value="45">Smallest</option>
+        </select>
+      </div>
+      <div>
+        <label>Output format</label>
+        <select id="vfmt">
+          <option value="mp4">MP4 (H.264)</option>
+          <option value="webm">WebM (VP9)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" id="compBtn" onclick="doCompress()" disabled>Compress Video</button>
+    <div class="prog-wrap" id="pw">
+      <div class="prog-bar"><div class="prog-fill" id="pf"></div></div>
+      <div class="prog-lbl" id="pl">Loading...</div>
+    </div>
+    <button class="dl" id="dlBtn">Download compressed video</button>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script src="lib/ffmpeg/ffmpeg.min.js"></script>
+  <script>
+    var videoFile=null,ffmpegInstance=null;
+    var dz=document.getElementById('dz');
+    dz.ondragover=function(e){e.preventDefault();this.classList.add('over');};
+    dz.ondragleave=function(){this.classList.remove('over');};
+    dz.ondrop=function(e){e.preventDefault();this.classList.remove('over');loadVideo(e.dataTransfer.files[0]);};
+    document.getElementById('vfi').onchange=function(){loadVideo(this.files[0]);};
+    function loadVideo(f){
+      if(!f||!f.type.startsWith('video/'))return;
+      videoFile=f;
+      var mb=(f.size/1048576).toFixed(1);
+      document.getElementById('finfo').textContent=f.name+' — '+mb+' MB';
+      document.getElementById('finfo').style.display='block';
+      document.getElementById('compBtn').disabled=false;
+    }
+    function setProgress(pct,msg){
+      document.getElementById('pf').style.width=pct+'%';
+      document.getElementById('pl').textContent=msg;
+    }
+    async function doCompress(){
+      if(!videoFile)return;
+      var btn=document.getElementById('compBtn'),pw=document.getElementById('pw'),dl=document.getElementById('dlBtn');
+      btn.disabled=true;pw.style.display='block';dl.style.display='none';
+      setProgress(5,'Loading FFmpeg engine...');
+      try{
+        var createFFmpeg=FFmpeg.createFFmpeg,fetchFile=FFmpeg.fetchFile;
+        if(!ffmpegInstance){
+          ffmpegInstance=createFFmpeg({
+            corePath:'lib/ffmpeg/ffmpeg-core.js',
+            log:false,
+            progress:function(p){setProgress(5+Math.round(p.ratio*90),'Compressing '+Math.round(p.ratio*100)+'%');}
+          });
+          await ffmpegInstance.load();
+        }
+        var ff=ffmpegInstance;
+        var ext=videoFile.name.split('.').pop().toLowerCase()||'mp4';
+        var inName='input.'+ext;
+        var outFmt=document.getElementById('vfmt').value;
+        var outName='output.'+outFmt;
+        var crf=document.getElementById('crf').value;
+        ff.FS('writeFile',inName,await fetchFile(videoFile));
+        var args=['-i',inName,'-crf',crf];
+        if(outFmt==='mp4') args=args.concat(['-c:v','libx264','-preset','fast','-c:a','aac']);
+        else args=args.concat(['-c:v','libvpx-vp9','-b:v','0','-c:a','libopus']);
+        args.push(outName);
+        await ff.run.apply(ff,args);
+        var data=ff.FS('readFile',outName);
+        var mime=outFmt==='mp4'?'video/mp4':'video/webm';
+        var blob=new Blob([data.buffer],{type:mime});
+        var url=URL.createObjectURL(blob);
+        var origMb=(videoFile.size/1048576).toFixed(1);
+        var newMb=(blob.size/1048576).toFixed(1);
+        dl.onclick=function(){var a=document.createElement('a');a.href=url;a.download='compressed.'+outFmt;a.click();};
+        dl.style.display='block';
+        setProgress(100,'Done! '+origMb+' MB → '+newMb+' MB');
+      }catch(e){setProgress(0,'Error: '+e.message);}
+      btn.disabled=false;
+    }
+  </script>
+</body>
+</html>

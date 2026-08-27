@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free PDF Merger — Combine PDF Files Online No Signup | yhile.com</title>
+  <meta name="description" content="Merge multiple PDF files into one — free, no signup, no upload. Runs entirely in your browser. Download the combined PDF instantly.">
+  <meta name="keywords" content="pdf merger, merge pdf online free, combine pdf free, join pdf files online, merge pdf no signup, pdf combiner free, merge pdf files free, pdf joiner online free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/pdf-merger.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/pdf-merger.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free PDF Merger — Combine PDFs Online | yhile.com">
+  <meta property="og:description" content="Merge multiple PDF files into one free online. No upload, no signup. Runs in your browser.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free PDF Merger Online — No Signup">
+  <meta name="twitter:description" content="Combine multiple PDFs into one. Free, no upload, no signup, instant download.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free PDF Merger","url":"https://www.yhile.com/pdf-merger.html","description":"Merge multiple PDF files into one. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:640px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:24px}
+    .drop-zone{border:2px dashed #ddd;border-radius:12px;padding:36px 20px;text-align:center;cursor:pointer;margin-bottom:16px;transition:.2s}
+    .drop-zone:hover{border-color:#000;background:#fafafa}
+    .drop-zone .icon{font-size:32px;margin-bottom:8px}
+    .drop-zone p{font-size:14px;color:#888;margin:0}
+    input[type=file]{display:none}
+    .file-list{list-style:none;margin:0 0 16px;padding:0}
+    .file-list li{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid #eee;border-radius:8px;margin-bottom:8px;font-size:14px}
+    .file-list li button{background:none;border:none;color:#e11;cursor:pointer;font-size:16px;padding:0 4px}
+    .btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer;margin-top:4px}
+    .btn:hover{background:#333}
+    .btn:disabled{background:#999;cursor:default}
+    .progress{font-size:13px;color:#888;text-align:center;margin-top:10px;display:none}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>PDF Merger</h1>
+    <p>Add multiple PDF files and merge them into one. Runs in your browser — no upload needed.</p>
+    <div class="drop-zone" onclick="document.getElementById('pfi').click()">
+      <div class="icon">&#x1F4C4;</div>
+      <p>Click to add PDF files (or drag &amp; drop)</p>
+    </div>
+    <input type="file" id="pfi" accept="application/pdf" multiple>
+    <ul class="file-list" id="flist"></ul>
+    <button class="btn" id="mergeBtn" onclick="doMerge()" disabled>Merge PDFs &amp; Download</button>
+    <div class="progress" id="prog">Merging...</div>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>
+    var files=[];
+    var dz=document.querySelector('.drop-zone');
+    dz.ondragover=function(e){e.preventDefault();this.style.borderColor='#000';};
+    dz.ondragleave=function(){this.style.borderColor='';};
+    dz.ondrop=function(e){e.preventDefault();this.style.borderColor='';Array.from(e.dataTransfer.files).forEach(function(f){if(f.type==='application/pdf')files.push(f);});renderList();};
+    document.getElementById('pfi').onchange=function(){Array.from(this.files).forEach(function(f){files.push(f);});renderList();this.value='';};
+    function renderList(){
+      var ul=document.getElementById('flist');ul.innerHTML='';
+      files.forEach(function(f,i){
+        var li=document.createElement('li');
+        li.innerHTML='<span>'+f.name+' <small style="color:#aaa">('+( f.size/1024).toFixed(0)+' KB)</small></span><button onclick="removeFile('+i+')" title="Remove">&#x2715;</button>';
+        ul.appendChild(li);
+      });
+      document.getElementById('mergeBtn').disabled=files.length<2;
+    }
+    function removeFile(i){files.splice(i,1);renderList();}
+    async function doMerge(){
+      var btn=document.getElementById('mergeBtn'),prog=document.getElementById('prog');
+      prog.style.display='block';prog.textContent='Merging...';btn.disabled=true;
+      try{
+        var merged=await PDFLib.PDFDocument.create();
+        for(var f of files){
+          var ab=await f.arrayBuffer();
+          var doc=await PDFLib.PDFDocument.load(ab);
+          var pages=await merged.copyPages(doc,doc.getPageIndices());
+          pages.forEach(function(p){merged.addPage(p);});
+        }
+        var bytes=await merged.save();
+        var blob=new Blob([bytes],{type:'application/pdf'});
+        var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='merged.pdf';a.click();
+        prog.textContent='Done! PDF downloaded.';
+      }catch(e){prog.textContent='Error: '+e.message;}
+      btn.disabled=false;
+    }
+  </script>
+</body>
+</html>

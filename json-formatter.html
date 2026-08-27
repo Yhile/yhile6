@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free JSON Formatter &amp; Validator — Format JSON Online | yhile.com</title>
+  <meta name="description" content="Format, validate and beautify JSON online — free, no signup, instant. Also minify JSON. Runs entirely in your browser. No data sent anywhere.">
+  <meta name="keywords" content="json formatter, json validator, json beautifier, format json online, json pretty print, json minify, validate json, json lint, json editor free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/json-formatter.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/json-formatter.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free JSON Formatter &amp; Validator Online | yhile.com">
+  <meta property="og:description" content="Format, validate and beautify JSON online — free, no signup. Runs in your browser.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free JSON Formatter &amp; Validator Online">
+  <meta name="twitter:description" content="Format, validate, and beautify JSON free online. No signup, no upload.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free JSON Formatter & Validator","url":"https://www.yhile.com/json-formatter.html","description":"Format, validate and beautify JSON online. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:900px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:20px}
+    .json-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:620px){.json-grid{grid-template-columns:1fr}}
+    .panel-label{font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+    textarea{width:100%;height:320px;font-family:'SF Mono','Fira Code',monospace;font-size:13px;padding:12px;border:1px solid #ddd;border-radius:10px;outline:none;resize:vertical;box-sizing:border-box;line-height:1.5}
+    textarea:focus{border-color:#000}
+    .btn-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+    .btn{padding:9px 18px;background:#111;color:#fff;border:none;border-radius:8px;font-size:13px;font-family:inherit;cursor:pointer}
+    .btn:hover{background:#333}
+    .btn-outline{background:#fff;color:#111;border:1px solid #ddd}
+    .btn-outline:hover{border-color:#999;background:#f5f5f5}
+    .status{font-size:13px;padding:8px 12px;border-radius:8px;display:none;margin-bottom:8px}
+    .ok{background:#dcfce7;color:#166534;display:block}
+    .err{background:#fee2e2;color:#991b1b;display:block}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>JSON Formatter</h1>
+    <p>Paste JSON to format, validate or minify. Runs entirely in your browser — nothing is uploaded.</p>
+    <div class="btn-row">
+      <button class="btn" onclick="fmt()">Beautify</button>
+      <button class="btn btn-outline" onclick="mini()">Minify</button>
+      <button class="btn btn-outline" onclick="clr()">Clear</button>
+      <button class="btn btn-outline" onclick="copyOut()">Copy output</button>
+    </div>
+    <div id="status" class="status"></div>
+    <div class="json-grid">
+      <div><div class="panel-label">Input</div><textarea id="inp" placeholder='{"key": "value"}'></textarea></div>
+      <div><div class="panel-label">Output</div><textarea id="out" readonly placeholder="Formatted JSON appears here..."></textarea></div>
+    </div>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>
+    function fmt(){
+      var v=document.getElementById('inp').value.trim(),st=document.getElementById('status');
+      if(!v)return;
+      try{document.getElementById('out').value=JSON.stringify(JSON.parse(v),null,2);st.className='status ok';st.textContent='Valid JSON ✓';}
+      catch(e){st.className='status err';st.textContent='Invalid JSON: '+e.message;document.getElementById('out').value='';}
+    }
+    function mini(){
+      var v=document.getElementById('inp').value.trim(),st=document.getElementById('status');
+      try{document.getElementById('out').value=JSON.stringify(JSON.parse(v));st.className='status ok';st.textContent='Minified ✓';}
+      catch(e){st.className='status err';st.textContent='Invalid JSON: '+e.message;}
+    }
+    function clr(){document.getElementById('inp').value='';document.getElementById('out').value='';document.getElementById('status').className='status';}
+    function copyOut(){var t=document.getElementById('out').value;if(t)navigator.clipboard.writeText(t);}
+    document.getElementById('inp').addEventListener('input',function(){if(this.value.trim())fmt();});
+  </script>
+</body>
+</html>

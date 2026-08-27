@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Image Compressor — Compress Images Online No Signup | yhile.com</title>
+  <meta name="description" content="Compress JPG, PNG and WEBP images free online. Reduce file size without losing quality. No upload, no signup, runs in your browser. Free forever.">
+  <meta name="keywords" content="image compressor, compress image online free, reduce image size free, jpg compressor online, png compressor, webp compressor, compress photo online, reduce photo size, image size reducer free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/img-compressor.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/img-compressor.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free Image Compressor — No Signup | yhile.com">
+  <meta property="og:description" content="Compress images free online. Reduce file size without losing quality. Runs in your browser.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Image Compressor Online — No Signup">
+  <meta name="twitter:description" content="Compress JPG, PNG, WEBP images free. No upload, no signup, instant download.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free Image Compressor","url":"https://www.yhile.com/img-compressor.html","description":"Compress JPG, PNG and WEBP images online. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:680px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:24px}
+    .drop-zone{border:2px dashed #ddd;border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:20px}
+    .drop-zone:hover,.drop-zone.over{border-color:#000;background:#fafafa}
+    .drop-zone .icon{font-size:32px;margin-bottom:8px}
+    .drop-zone p{font-size:14px;color:#888;margin:0}
+    input[type=file]{display:none}
+    .settings{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+    @media(max-width:460px){.settings{grid-template-columns:1fr}}
+    label{font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:5px}
+    select{width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;box-sizing:border-box;outline:none}
+    input[type=range]{width:100%;cursor:pointer}
+    .btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer;margin-bottom:20px}
+    .btn:hover{background:#333}
+    .btn:disabled{background:#999;cursor:default}
+    .result{display:none}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+    .stat{border:1px solid #eee;border-radius:10px;padding:12px;text-align:center}
+    .stat .val{font-size:18px;font-weight:700;margin-bottom:2px}
+    .stat .lbl{font-size:11px;color:#888;text-transform:uppercase}
+    .dl{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer}
+    .dl:hover{background:#333}
+    canvas{display:none}
+    .preview{width:100%;border-radius:10px;border:1px solid #eee;margin-bottom:12px;max-height:300px;object-fit:contain}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>Image Compressor</h1>
+    <p>Reduce image file size without visible quality loss. Runs entirely in your browser.</p>
+    <div class="drop-zone" id="dz" onclick="document.getElementById('fi').click()">
+      <div class="icon">&#x1F5BC;&#xFE0F;</div>
+      <p>Click or drag &amp; drop an image (JPG, PNG, WEBP)</p>
+    </div>
+    <input type="file" id="fi" accept="image/*">
+    <canvas id="cv"></canvas>
+    <div class="settings">
+      <div>
+        <label>Quality <span id="qv">80%</span></label>
+        <input type="range" id="quality" min="10" max="100" value="80">
+      </div>
+      <div>
+        <label>Output format</label>
+        <select id="fmt">
+          <option value="image/jpeg">JPEG</option>
+          <option value="image/webp">WEBP</option>
+          <option value="image/png">PNG (lossless)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" id="compBtn" onclick="compress()" disabled>Compress Image</button>
+    <div class="result" id="result">
+      <img id="preview" class="preview">
+      <div class="stats">
+        <div class="stat"><div class="val" id="origSize">-</div><div class="lbl">Original</div></div>
+        <div class="stat"><div class="val" id="newSize">-</div><div class="lbl">Compressed</div></div>
+        <div class="stat"><div class="val" id="saved">-</div><div class="lbl">Saved</div></div>
+      </div>
+      <button class="dl" onclick="dl()">Download compressed image</button>
+    </div>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>
+    var img=null,origBytes=0,outDataUrl='';
+    document.getElementById('quality').oninput=function(){document.getElementById('qv').textContent=this.value+'%';};
+    var dz=document.getElementById('dz');
+    dz.ondragover=function(e){e.preventDefault();this.classList.add('over');};
+    dz.ondragleave=function(){this.classList.remove('over');};
+    dz.ondrop=function(e){e.preventDefault();this.classList.remove('over');loadFile(e.dataTransfer.files[0]);};
+    document.getElementById('fi').onchange=function(){loadFile(this.files[0]);};
+    function fmt(b){return b>1048576?(b/1048576).toFixed(2)+' MB':(b/1024).toFixed(1)+' KB';}
+    function loadFile(f){
+      if(!f||!f.type.startsWith('image/'))return;
+      origBytes=f.size;
+      var r=new FileReader();
+      r.onload=function(e){img=new Image();img.onload=function(){document.getElementById('compBtn').disabled=false;};img.src=e.target.result;};
+      r.readAsDataURL(f);
+    }
+    function compress(){
+      if(!img)return;
+      var cv=document.getElementById('cv');
+      cv.width=img.naturalWidth;cv.height=img.naturalHeight;
+      cv.getContext('2d').drawImage(img,0,0);
+      var fmtVal=document.getElementById('fmt').value;
+      var q=parseInt(document.getElementById('quality').value)/100;
+      outDataUrl=cv.toDataURL(fmtVal,q);
+      var bytes=Math.round((outDataUrl.length-outDataUrl.indexOf(',')-1)*0.75);
+      document.getElementById('origSize').textContent=fmt(origBytes);
+      document.getElementById('newSize').textContent=fmt(bytes);
+      var pct=Math.round((1-bytes/origBytes)*100);
+      document.getElementById('saved').textContent=pct>0?pct+'%':'~0%';
+      document.getElementById('preview').src=outDataUrl;
+      document.getElementById('result').style.display='block';
+    }
+    function dl(){
+      var a=document.createElement('a');
+      var ext=document.getElementById('fmt').value.split('/')[1].replace('jpeg','jpg');
+      a.download='compressed.'+ext;a.href=outDataUrl;a.click();
+    }
+  </script>
+</body>
+</html>

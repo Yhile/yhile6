@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free PDF Splitter — Split PDF Pages Online No Signup | yhile.com</title>
+  <meta name="description" content="Split a PDF into individual pages or extract a page range — free, no signup, runs in your browser. Download each page as a separate PDF.">
+  <meta name="keywords" content="pdf splitter, split pdf online free, split pdf pages, extract pdf pages, pdf page extractor, split pdf no signup, pdf splitter free, separate pdf pages online">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/pdf-splitter.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/pdf-splitter.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free PDF Splitter — Split PDF Online | yhile.com">
+  <meta property="og:description" content="Split a PDF into individual pages or extract a page range. Free, no upload, no signup.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free PDF Splitter Online — No Signup">
+  <meta name="twitter:description" content="Split PDF pages into separate files. Free, no upload, no signup, runs in browser.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free PDF Splitter","url":"https://www.yhile.com/pdf-splitter.html","description":"Split a PDF into pages or extract a page range. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:600px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:24px}
+    .drop-zone{border:2px dashed #ddd;border-radius:12px;padding:36px 20px;text-align:center;cursor:pointer;margin-bottom:20px;transition:.2s}
+    .drop-zone:hover{border-color:#000;background:#fafafa}
+    .drop-zone .icon{font-size:32px;margin-bottom:8px}
+    .drop-zone p{font-size:14px;color:#888;margin:0}
+    input[type=file]{display:none}
+    .info-bar{background:#f5f5f5;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:16px;display:none}
+    label{font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:5px}
+    .tabs{display:flex;gap:0;border-bottom:2px solid #eee;margin-bottom:20px}
+    .tab-btn{background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;padding:8px 18px;font-size:14px;font-weight:500;font-family:inherit;color:#888;cursor:pointer}
+    .tab-btn.active{color:#000;border-bottom-color:#000}
+    .range-row{display:flex;gap:10px;align-items:center;margin-bottom:16px;font-size:14px}
+    input[type=number]{width:70px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;outline:none;text-align:center}
+    input[type=number]:focus{border-color:#000}
+    .btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer}
+    .btn:hover{background:#333}
+    .btn:disabled{background:#999;cursor:default}
+    .prog{font-size:13px;color:#888;text-align:center;margin-top:10px;display:none}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>PDF Splitter</h1>
+    <p>Upload a PDF and split it into individual pages or extract a custom range.</p>
+    <div class="drop-zone" onclick="document.getElementById('pfi').click()">
+      <div class="icon">&#x2702;&#xFE0F;</div>
+      <p>Click to select a PDF file</p>
+    </div>
+    <input type="file" id="pfi" accept="application/pdf">
+    <div class="info-bar" id="ibar"></div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="setTab('all',this)">All pages (individual)</button>
+      <button class="tab-btn" onclick="setTab('range',this)">Page range</button>
+    </div>
+    <div id="tab-range" style="display:none">
+      <label>Pages to extract</label>
+      <div class="range-row">
+        <span>From</span>
+        <input type="number" id="pfrom" value="1" min="1">
+        <span>to</span>
+        <input type="number" id="pto" value="1" min="1">
+      </div>
+    </div>
+    <button class="btn" id="splitBtn" onclick="doSplit()" disabled>Split PDF</button>
+    <div class="prog" id="prog">Splitting...</div>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>
+    var pdfData=null,pageCount=0,mode='all';
+    document.getElementById('pfi').onchange=async function(){
+      var f=this.files[0];if(!f)return;
+      pdfData=await f.arrayBuffer();
+      var doc=await PDFLib.PDFDocument.load(pdfData);
+      pageCount=doc.getPageCount();
+      var ib=document.getElementById('ibar');
+      ib.textContent=f.name+' — '+pageCount+' page'+(pageCount>1?'s':'');ib.style.display='block';
+      document.getElementById('pfrom').max=pageCount;
+      document.getElementById('pto').max=pageCount;
+      document.getElementById('pto').value=pageCount;
+      document.getElementById('splitBtn').disabled=false;
+    };
+    function setTab(m,btn){
+      mode=m;
+      document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      document.getElementById('tab-range').style.display=m==='range'?'block':'none';
+    }
+    async function doSplit(){
+      if(!pdfData)return;
+      var prog=document.getElementById('prog'),btn=document.getElementById('splitBtn');
+      prog.style.display='block';prog.textContent='Splitting...';btn.disabled=true;
+      try{
+        var src=await PDFLib.PDFDocument.load(pdfData);
+        var indices=[];
+        if(mode==='all'){for(var i=0;i<pageCount;i++)indices.push(i);}
+        else{
+          var fr=Math.max(0,parseInt(document.getElementById('pfrom').value)-1);
+          var to=Math.min(pageCount-1,parseInt(document.getElementById('pto').value)-1);
+          for(var i=fr;i<=to;i++)indices.push(i);
+        }
+        for(var i=0;i<indices.length;i++){
+          var idx=indices[i];
+          var out=await PDFLib.PDFDocument.create();
+          var pgs=await out.copyPages(src,[idx]);
+          out.addPage(pgs[0]);
+          var bytes=await out.save();
+          var blob=new Blob([bytes],{type:'application/pdf'});
+          var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='page-'+(idx+1)+'.pdf';a.click();
+          await new Promise(function(r){setTimeout(r,250);});
+        }
+        prog.textContent='Done! '+indices.length+' file'+(indices.length>1?'s':'')+' downloaded.';
+      }catch(e){prog.textContent='Error: '+e.message;}
+      btn.disabled=false;
+    }
+  </script>
+</body>
+</html>

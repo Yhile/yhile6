@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free PDF to Image Converter — PDF to PNG JPG Online | yhile.com</title>
+  <meta name="description" content="Convert PDF pages to PNG or JPG images free online. No signup, no upload. Runs in your browser. Download each page as an image instantly.">
+  <meta name="keywords" content="pdf to image, pdf to png, pdf to jpg, convert pdf to image online free, pdf page to image, pdf to jpeg free, pdf to png free, pdf image extractor free, pdf to image no signup">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/pdf-to-image.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/pdf-to-image.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free PDF to Image Converter — PDF to PNG/JPG | yhile.com">
+  <meta property="og:description" content="Convert PDF pages to PNG or JPG images free online. No upload, no signup. Runs in your browser.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free PDF to Image Converter Online">
+  <meta name="twitter:description" content="Convert PDF pages to PNG or JPG. Free, no upload, no signup, instant download.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free PDF to Image Converter","url":"https://www.yhile.com/pdf-to-image.html","description":"Convert PDF pages to PNG or JPG images. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:640px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:24px}
+    .drop-zone{border:2px dashed #ddd;border-radius:12px;padding:36px 20px;text-align:center;cursor:pointer;margin-bottom:20px;transition:.2s}
+    .drop-zone:hover{border-color:#000;background:#fafafa}
+    .drop-zone .icon{font-size:32px;margin-bottom:8px}
+    .drop-zone p{font-size:14px;color:#888;margin:0}
+    input[type=file]{display:none}
+    .opts{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+    .opts label{font-size:13px;color:#555;display:flex;align-items:center;gap:6px}
+    select{padding:7px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;outline:none}
+    .btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer;margin-bottom:20px}
+    .btn:hover{background:#333}
+    .btn:disabled{background:#999;cursor:default}
+    .pages-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+    .page-card{border:1px solid #eee;border-radius:8px;overflow:hidden;text-align:center}
+    .page-card img{width:100%;display:block}
+    .page-card button{width:100%;padding:7px;background:#111;color:#fff;border:none;font-size:12px;font-family:inherit;cursor:pointer}
+    .page-card button:hover{background:#333}
+    .prog{font-size:13px;color:#888;text-align:center;margin:8px 0;display:none}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>PDF to Image</h1>
+    <p>Convert each PDF page to a PNG or JPG image. Runs entirely in your browser.</p>
+    <div class="drop-zone" onclick="document.getElementById('pfi').click()">
+      <div class="icon">&#x1F4F7;</div>
+      <p>Click to select a PDF</p>
+    </div>
+    <input type="file" id="pfi" accept="application/pdf">
+    <div class="opts">
+      <label>Format <select id="imgfmt"><option value="png">PNG</option><option value="jpeg">JPEG</option></select></label>
+      <label>Scale <select id="scale"><option value="1.5">150%</option><option value="2" selected>200%</option><option value="3">300% (high-res)</option></select></label>
+    </div>
+    <button class="btn" id="convBtn" onclick="convert()" disabled>Convert to Images</button>
+    <div class="prog" id="prog"></div>
+    <div class="pages-grid" id="grid"></div>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    var pdfFile=null;
+    document.getElementById('pfi').onchange=function(){pdfFile=this.files[0];document.getElementById('convBtn').disabled=!pdfFile;};
+    async function convert(){
+      if(!pdfFile)return;
+      var btn=document.getElementById('convBtn'),prog=document.getElementById('prog'),grid=document.getElementById('grid');
+      btn.disabled=true;prog.style.display='block';grid.innerHTML='';
+      var fmt=document.getElementById('imgfmt').value;
+      var scale=parseFloat(document.getElementById('scale').value);
+      try{
+        var ab=await pdfFile.arrayBuffer();
+        var pdf=await pdfjsLib.getDocument({data:ab}).promise;
+        for(var i=1;i<=pdf.numPages;i++){
+          prog.textContent='Rendering page '+i+' of '+pdf.numPages+'...';
+          var page=await pdf.getPage(i);
+          var vp=page.getViewport({scale:scale});
+          var cv=document.createElement('canvas');
+          cv.width=vp.width;cv.height=vp.height;
+          await page.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise;
+          var url=cv.toDataURL('image/'+fmt,0.92);
+          var card=document.createElement('div');card.className='page-card';
+          var imgEl=document.createElement('img');imgEl.src=url;
+          var dlBtn=document.createElement('button');
+          dlBtn.textContent='Download p.'+i;
+          (function(u,n,f){dlBtn.onclick=function(){var a=document.createElement('a');a.href=u;a.download='page-'+n+'.'+f;a.click();};})(url,i,fmt);
+          card.appendChild(imgEl);card.appendChild(dlBtn);grid.appendChild(card);
+        }
+        prog.textContent='Done! '+pdf.numPages+' page'+(pdf.numPages>1?'s':'')+' converted.';
+      }catch(e){prog.textContent='Error: '+e.message;}
+      btn.disabled=false;
+    }
+  </script>
+</body>
+</html>

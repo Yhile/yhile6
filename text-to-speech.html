@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Text to Speech — Online TTS No Signup | yhile.com</title>
+  <meta name="description" content="Convert text to speech free online. Choose voice, speed and pitch. Uses your device voices — no data uploaded, no signup required. Free forever.">
+  <meta name="keywords" content="text to speech, text to speech free, tts online, text to speech online free, tts no signup, read text aloud free, speech synthesis online, online tts free, text reader online free, voice reader free">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/text-to-speech.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/text-to-speech.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Free Text to Speech — Online TTS No Signup">
+  <meta property="og:description" content="Convert text to speech free online. No upload, no signup. Uses your device voices.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Text to Speech Online — No Signup">
+  <meta name="twitter:description" content="Free TTS — type or paste text, pick a voice, and listen. Runs in your browser.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Free Text to Speech","url":"https://www.yhile.com/text-to-speech.html","description":"Convert text to speech free online using your device voices. No signup, no upload.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
+  </script>
+  <style>
+    .tool-page{max-width:620px;margin:0 auto;padding:48px 20px}
+    .tool-page h1{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+    .tool-page>p{color:#666;font-size:14px;margin-bottom:24px}
+    textarea{width:100%;min-height:180px;padding:14px;font-size:15px;font-family:inherit;border:1px solid #ddd;border-radius:10px;outline:none;resize:vertical;box-sizing:border-box;margin-bottom:16px}
+    textarea:focus{border-color:#000}
+    .ctrl{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+    @media(max-width:420px){.ctrl{grid-template-columns:1fr}}
+    label{font-size:12px;color:#888;display:block;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+    select{width:100%;font-family:inherit;font-size:14px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;outline:none;box-sizing:border-box}
+    input[type=range]{width:100%;cursor:pointer;margin-top:4px}
+    .range-row{display:flex;justify-content:space-between;font-size:12px;color:#aaa;margin-top:2px}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{flex:1;padding:12px;background:#111;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer}
+    .btn:hover{background:#333}
+    .btn-stop{background:#fff;color:#111;border:1px solid #ddd}
+    .btn-stop:hover{border-color:#999}
+    .no-support{background:#fef9c3;color:#854d0e;padding:12px;border-radius:8px;font-size:13px;display:none;margin-bottom:14px}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="tool-page">
+    <h1>Text to Speech</h1>
+    <p>Paste text below and click Speak. Uses your device's built-in voices — nothing is uploaded.</p>
+    <div id="no-support" class="no-support">Your browser does not support speech synthesis. Try Chrome or Edge.</div>
+    <textarea id="tts-text" placeholder="Type or paste text here..."></textarea>
+    <div class="ctrl">
+      <div><label>Voice</label><select id="voice-sel"></select></div>
+      <div>
+        <label>Speed <span id="rate-val">1.0x</span></label>
+        <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1">
+        <div class="range-row"><span>0.5x</span><span>2x</span></div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="speak()">&#9654; Speak</button>
+      <button class="btn btn-stop" onclick="stopSpeech()">&#9632; Stop</button>
+    </div>
+  </div>
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
+  </footer>
+  <div id="bm-toast">&#x1F516; Bookmark this for quick access!<button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">&#x2715;</button></div>
+  <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
+  <div id="cookie-banner">
+    <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+  </div>
+  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>
+    var synth=window.speechSynthesis;
+    if(!synth)document.getElementById('no-support').style.display='block';
+    var voices=[];
+    function loadVoices(){
+      voices=synth.getVoices();
+      var sel=document.getElementById('voice-sel');sel.innerHTML='';
+      voices.forEach(function(v,i){var o=document.createElement('option');o.value=i;o.textContent=v.name+' ('+v.lang+')';if(v.default)o.selected=true;sel.appendChild(o);});
+    }
+    if(synth){synth.onvoiceschanged=loadVoices;loadVoices();}
+    document.getElementById('rate').addEventListener('input',function(){document.getElementById('rate-val').textContent=parseFloat(this.value).toFixed(1)+'x';});
+    function speak(){
+      if(!synth)return;synth.cancel();
+      var text=document.getElementById('tts-text').value.trim();if(!text)return;
+      var utt=new SpeechSynthesisUtterance(text);
+      var idx=document.getElementById('voice-sel').value;
+      if(voices[idx])utt.voice=voices[idx];
+      utt.rate=parseFloat(document.getElementById('rate').value);
+      synth.speak(utt);
+    }
+    function stopSpeech(){if(synth)synth.cancel();}
+  </script>
+</body>
+</html>
