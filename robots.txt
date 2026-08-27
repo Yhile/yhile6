@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yhile.com/sitemap.xml
+Sitemap: https://www.yhile.com/sitemap.xml

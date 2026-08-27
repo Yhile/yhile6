@@ -43,6 +43,30 @@
     .btn:disabled{background:#999;cursor:default}
     .progress{font-size:13px;color:#888;text-align:center;margin-top:10px;display:none}
   </style>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://www.yhile.com/tools.html"},
+    {"@type":"ListItem","position":3,"name":"PDF Merger","item":"https://www.yhile.com/pdf-merger.html"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is it safe to merge PDFs on yhile.com?","acceptedAnswer":{"@type":"Answer","text":"Yes. The PDF merger runs entirely in your browser. Your PDF files are never uploaded to any server."}},
+    {"@type":"Question","name":"How many PDFs can I merge at once?","acceptedAnswer":{"@type":"Answer","text":"There is no hard limit. You can add as many PDF files as needed. Performance depends on the total file size and your device."}},
+    {"@type":"Question","name":"Will the merged PDF preserve the original quality?","acceptedAnswer":{"@type":"Answer","text":"Yes. pdf-lib is used to copy pages directly, preserving all content, fonts, and images at full quality."}},
+    {"@type":"Question","name":"Can I change the order of PDFs before merging?","acceptedAnswer":{"@type":"Answer","text":"Currently PDFs merge in the order you add them. Remove and re-add files to reorder."}}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HowTo","name":"How to merge PDF files online for free","description":"Combine multiple PDF files into one using your browser — no upload required.","step":[
+    {"@type":"HowToStep","name":"Add your PDF files","text":"Click the upload area or drag and drop to add all the PDF files you want to combine."},
+    {"@type":"HowToStep","name":"Check the order","text":"Your files appear in a list. Remove any you do not want using the X button."},
+    {"@type":"HowToStep","name":"Click Merge PDFs","text":"Click the Merge PDFs & Download button. The merged file is created in your browser."},
+    {"@type":"HowToStep","name":"Download the result","text":"Your browser will download the combined PDF automatically."}
+  ]}
+  </script>
 </head>
 <body>
   <nav>
@@ -65,6 +89,14 @@
     <button class="btn" id="mergeBtn" onclick="doMerge()" disabled>Merge PDFs &amp; Download</button>
     <div class="progress" id="prog">Merging...</div>
   </div>
+
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">Frequently asked questions</h2>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Is it safe to merge PDFs on yhile.com?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Yes. The PDF merger runs entirely in your browser. Your PDF files are never uploaded to any server.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">How many PDFs can I merge at once?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">There is no hard limit. You can add as many PDF files as needed. Performance depends on the total file size and your device.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Will the merged PDF preserve the original quality?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Yes. pdf-lib is used to copy pages directly, preserving all content, fonts, and images at full quality.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Can I change the order of PDFs before merging?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Currently PDFs merge in the order you add them. Remove and re-add files to reorder.</p></details>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>

@@ -52,6 +52,30 @@
     canvas{display:none}
     .preview{width:100%;border-radius:10px;border:1px solid #eee;margin-bottom:12px;max-height:300px;object-fit:contain}
   </style>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://www.yhile.com/tools.html"},
+    {"@type":"ListItem","position":3,"name":"Image Compressor","item":"https://www.yhile.com/img-compressor.html"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Does compressing images reduce visible quality?","acceptedAnswer":{"@type":"Answer","text":"At the default 80% quality setting, most people cannot see any difference. Lower quality settings produce smaller files with more visible compression."}},
+    {"@type":"Question","name":"Which image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, WEBP, and any other format your browser can read. You can output as JPEG, WEBP, or PNG."}},
+    {"@type":"Question","name":"Are my images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Compression uses the browser Canvas API. Your images never leave your device."}},
+    {"@type":"Question","name":"What is the maximum file size I can compress?","acceptedAnswer":{"@type":"Answer","text":"There is no server-side limit. Very large images (over 20 MP) may be slow on mobile devices due to browser memory constraints."}}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HowTo","name":"How to compress images online for free","description":"Reduce image file size without losing quality, in your browser.","step":[
+    {"@type":"HowToStep","name":"Upload your image","text":"Click the drop zone or drag and drop a JPG, PNG, or WEBP image."},
+    {"@type":"HowToStep","name":"Set quality and format","text":"Adjust the quality slider (80% is a good balance) and choose your output format."},
+    {"@type":"HowToStep","name":"Click Compress Image","text":"The image is compressed in your browser using the Canvas API."},
+    {"@type":"HowToStep","name":"Download the result","text":"Click Download to save the compressed image. The size reduction is shown before you download."}
+  ]}
+  </script>
 </head>
 <body>
   <nav>
@@ -96,6 +120,14 @@
       <button class="dl" onclick="dl()">Download compressed image</button>
     </div>
   </div>
+
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">Frequently asked questions</h2>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Does compressing images reduce visible quality?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">At the default 80% quality setting, most people cannot see any difference. Lower quality settings produce smaller files with more visible compression.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Which image formats are supported?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">JPG, PNG, WEBP, and any other format your browser can read. You can output as JPEG, WEBP, or PNG.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Are my images uploaded to a server?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">No. Compression uses the browser Canvas API. Your images never leave your device.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">What is the maximum file size I can compress?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">There is no server-side limit. Very large images (over 20 MP) may be slow on mobile devices due to browser memory constraints.</p></details>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>

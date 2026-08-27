@@ -49,6 +49,14 @@
       "@type": "Organization",
       "name": "yhile.com",
       "url": "https://www.yhile.com/"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.yhile.com/tools.html?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
     }
   }
   </script>
@@ -81,6 +89,39 @@
       { "@type": "ListItem", "position": 19, "name": "PDF to Image", "url": "https://www.yhile.com/pdf-to-image.html" },
       { "@type": "ListItem", "position": 20, "name": "Background Remover", "url": "https://www.yhile.com/bg-remover.html" },
       { "@type": "ListItem", "position": 21, "name": "Video Compressor", "url": "https://www.yhile.com/video-compressor.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are all tools on yhile.com really free?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes — every tool on yhile.com is 100% free, with no signup, no account, no credit card, and no usage limits. Free forever."}
+      },
+      {
+        "@type": "Question",
+        "name": "Do my files get uploaded to a server?",
+        "acceptedAnswer": {"@type": "Answer", "text": "No. Every tool runs entirely inside your browser using JavaScript and WebAssembly. Your files never leave your device and are never sent to any server — because we don't have one."}
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to create an account to use these tools?",
+        "acceptedAnswer": {"@type": "Answer", "text": "No account, no login, no email, and no registration of any kind is required. Open any tool and start using it immediately."}
+      },
+      {
+        "@type": "Question",
+        "name": "Do the tools work on mobile phones?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes. All tools are designed to be lightweight and mobile-friendly, tested on Chrome and Safari for iOS and Android."}
+      },
+      {
+        "@type": "Question",
+        "name": "What file formats are supported?",
+        "acceptedAnswer": {"@type": "Answer", "text": "yhile.com supports a wide range of formats depending on the tool: MP4, MP3, WAV, OGG, FLAC, M4A for audio; PNG, JPG, WEBP, HEIC, GIF for images; PDF for document tools; MP4, WebM, MOV for video compression."}
+      }
     ]
   }
   </script>
@@ -278,6 +319,23 @@
       transition: border-color 0.15s;
     }
     .see-all:hover { border-color: #000; color: #000; }
+
+    /* FAQ section */
+    .faq-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 64px;
+    }
+    .faq-section h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 32px; }
+    .faq-item { border-bottom: 1px solid #eee; padding: 18px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item summary { font-size: 15px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 20px; color: #aaa; flex-shrink: 0; }
+    details[open] .faq-item summary::after { content: '−'; }
+    .faq-item p { font-size: 14px; color: #555; line-height: 1.7; margin-top: 12px; }
   </style>
 </head>
 <body>
@@ -412,6 +470,29 @@
     <a href="tools.html" class="see-all">See all tools →</a>
   </section>
 
+  <section class="faq-section" aria-label="Frequently asked questions">
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item">
+      <summary>Are all tools on yhile.com really free?</summary>
+      <p>Yes — every tool is 100% free with no signup, no account, no credit card, and no usage limits. Free forever.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do my files get uploaded to a server?</summary>
+      <p>No. Every tool runs entirely in your browser using JavaScript and WebAssembly. Your files never leave your device and are never sent to any server — because we don't have one.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I need to create an account?</summary>
+      <p>No account, no login, no email, and no registration of any kind is required. Open any tool and start using it immediately.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do the tools work on mobile phones?</summary>
+      <p>Yes. All tools are designed to be lightweight and mobile-friendly, and work on Chrome and Safari for iOS and Android.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What file formats are supported?</summary>
+      <p>Depending on the tool: MP4, MP3, WAV, OGG, FLAC for audio; PNG, JPG, WEBP, HEIC, GIF for images; PDF for document tools; MP4, WebM, MOV for video. Each tool page lists its supported formats.</p>
+    </details>
+  </section>
 
   <!-- Bookmark toast -->
   <div id="bm-toast">

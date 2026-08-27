@@ -44,6 +44,30 @@
     .btn-stop:hover{border-color:#999}
     .no-support{background:#fef9c3;color:#854d0e;padding:12px;border-radius:8px;font-size:13px;display:none;margin-bottom:14px}
   </style>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://www.yhile.com/tools.html"},
+    {"@type":"ListItem","position":3,"name":"Text to Speech","item":"https://www.yhile.com/text-to-speech.html"}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Which voices are available?","acceptedAnswer":{"@type":"Answer","text":"The available voices depend on your browser and operating system. Chrome and Edge on Windows/Mac offer the most voices, including many languages."}},
+    {"@type":"Question","name":"Is text-to-speech free with no limits?","acceptedAnswer":{"@type":"Answer","text":"Yes. It uses your device's built-in speech synthesis — completely free, unlimited, no signup."}},
+    {"@type":"Question","name":"Is my text sent to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The Web Speech API uses your device's speech engine. Your text never leaves your browser."}},
+    {"@type":"Question","name":"Can I change the speed of the voice?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Speed slider to set any rate from 0.5x (slow) to 2x (fast)."}}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HowTo","name":"How to convert text to speech online for free","description":"Read text aloud using your device voices — free, no signup.","step":[
+    {"@type":"HowToStep","name":"Type or paste text","text":"Enter or paste the text you want to convert to speech in the text box."},
+    {"@type":"HowToStep","name":"Choose a voice","text":"Select from the available voices provided by your browser and operating system."},
+    {"@type":"HowToStep","name":"Adjust speed","text":"Use the speed slider to set the reading rate (0.5x to 2x)."},
+    {"@type":"HowToStep","name":"Click Speak","text":"Press the Speak button. Click Stop at any time to halt playback."}
+  ]}
+  </script>
 </head>
 <body>
   <nav>
@@ -72,6 +96,14 @@
       <button class="btn btn-stop" onclick="stopSpeech()">&#9632; Stop</button>
     </div>
   </div>
+
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">Frequently asked questions</h2>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Which voices are available?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">The available voices depend on your browser and operating system. Chrome and Edge on Windows/Mac offer the most voices, including many languages.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Is text-to-speech free with no limits?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Yes. It uses your device's built-in speech synthesis — completely free, unlimited, no signup.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Is my text sent to a server?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">No. The Web Speech API uses your device's speech engine. Your text never leaves your browser.</p></details>
+    <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Can I change the speed of the voice?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Yes. Use the Speed slider to set any rate from 0.5x (slow) to 2x (fast).</p></details>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
