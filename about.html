@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>About yhile.com — Free Tools, No Signup, No Data Stored</title>
-  <meta name="description" content="yhile.com is a free collection of browser-based tools. No accounts, no subscriptions, no paywalls, and no data storage — ever. Every tool runs locally in your browser.">
+  <meta name="description" content="yhile.com is a free collection of browser-based tools. No accounts, no subscriptions, no paywalls — ever. Every tool runs locally in your browser.">
   <meta name="keywords" content="about yhile, free online tools, no signup tools, browser tools, private tools, 100% free, no data stored">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -140,7 +146,7 @@
           <h3>Truly free</h3>
           <p>Not "freemium." Not a free trial. Not a free tier with limits. Every tool is completely free to use, for everyone, forever — with no premium plan or upgrade required.</p>
         </div>
-     
+      </div>
     </div>
 
     <h2>Tools available now</h2>
@@ -177,8 +183,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -186,17 +191,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

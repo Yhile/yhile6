@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');if(localStorage.getItem('cookie_consent')==='granted'){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free PDF Merger — Combine PDF Files Online No Signup | yhile.com</title>
+  <title>Free PDF Merger — Combine PDF Files Online | yhile.com</title>
   <meta name="description" content="Merge multiple PDF files into one — free, no signup, no upload. Runs entirely in your browser. Download the combined PDF instantly.">
   <meta name="keywords" content="pdf merger, merge pdf online free, combine pdf free, join pdf files online, merge pdf no signup, pdf combiner free, merge pdf files free, pdf joiner online free">
   <meta name="author" content="yhile.com">
@@ -22,7 +21,7 @@
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Free PDF Merger","url":"https://www.yhile.com/pdf-merger.html","description":"Merge multiple PDF files into one. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
   </script>
@@ -42,7 +41,9 @@
     .btn:hover{background:#333}
     .btn:disabled{background:#999;cursor:default}
     .progress{font-size:13px;color:#888;text-align:center;margin-top:10px;display:none}
-  </style>
+  
+@media(prefers-color-scheme:dark){.file-list li{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#2c2c2c!important;}}
+</style>
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -97,6 +98,15 @@
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Will the merged PDF preserve the original quality?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Yes. pdf-lib is used to copy pages directly, preserving all content, fonts, and images at full quality.</p></details>
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Can I change the order of PDFs before merging?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Currently PDFs merge in the order you add them. Remove and re-add files to reorder.</p></details>
   </section>
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="pdf-splitter.html" class="related-card"><span class="r-icon">✂️</span><span class="r-title">PDF Splitter</span></a>
+    <a href="pdf-to-image.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">PDF to Image</span></a>
+    <a href="img-compressor.html" class="related-card"><span class="r-icon">🗜️</span><span class="r-title">Image Compressor</span></a>
+    <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -104,9 +114,9 @@
   <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
   <div id="cookie-banner">
     <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
-    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieAccept()">Got it</button><button class="cb-decline" onclick="cookieDecline()">Decline</button></div>
   </div>
-  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>function cookieAccept(){localStorage.setItem('cookie_consent','granted');var b=document.getElementById('cookie-banner');if(b)b.remove();if(!window.gaLoaded){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}}function cookieDecline(){localStorage.setItem('cookie_consent','denied');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
   <script>
     var files=[];
     var dz=document.querySelector('.drop-zone');

@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Free QR Code Generator — Create QR Codes Online | yhile.com</title>
-  <meta name="description" content="Generate QR codes free online — for any URL, text, email, phone number or Wi-Fi. Download as PNG. No signup, no account, no data stored. Runs in your browser. Free forever.">
+  <meta name="description" content="Generate QR codes free online — for any URL, text, email or Wi-Fi. Download as PNG. No signup, no data stored. Runs in your browser.">
   <meta name="keywords" content="qr code generator, free qr code generator, qr code maker, qr code creator, qr code online, create qr code free, qr code generator no signup, qr code generator free download, qr code for url, qr code for website, qr code for text, qr code for email, qr code for wifi, qr code png download, qr code generator no account, free qr code maker online, instant qr code, qr code tool free, qr code generator 2024, qr code generator 2025, qr code generator 2026">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -169,7 +175,9 @@
       transition: background 0.15s;
     }
     .dl-btn:hover { background: #333; }
-  </style>
+  
+@media(prefers-color-scheme:dark){.tool-page>p{color:#aaa!important;}input[type=text]{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}label{color:#aaa!important;}select{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}}
+</style>
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -247,6 +255,15 @@
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">What size and format can I download?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">You can download the QR code as a PNG image at small (128px), medium (256px), or large (512px) sizes.</p></details>
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Can I customize the QR code colors?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Yes. You can change the foreground (dark) and background (light) colors before generating.</p></details>
   </section>
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="color-picker.html" class="related-card"><span class="r-icon">🎨</span><span class="r-title">Color Picker</span></a>
+    <a href="img-to-base64.html" class="related-card"><span class="r-icon">🔗</span><span class="r-title">Image to Base64</span></a>
+    <a href="json-formatter.html" class="related-card"><span class="r-icon">{}</span><span class="r-title">JSON Formatter</span></a>
+    <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Photo Collage Maker</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -269,17 +286,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

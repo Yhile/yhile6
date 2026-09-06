@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Free Color Picker — HEX RGB HSL Converter Online | yhile.com</title>
-  <meta name="description" content="Free online color picker — pick any color and instantly get HEX, RGB, and HSL values. Copy to clipboard with one click. No signup, no account, runs in your browser. Free forever.">
+  <meta name="description" content="Free online color picker — pick any color and get HEX, RGB, and HSL values instantly. Copy with one click. No signup, runs in your browser.">
   <meta name="keywords" content="color picker, color picker online, free color picker, hex color picker, rgb color picker, hsl color picker, hex to rgb, rgb to hex, hex to hsl, color converter online, color code picker, color value finder, pick color online, web color picker, html color picker, css color picker, color picker no signup, color picker free, online color tool, color picker tool free">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -201,7 +207,9 @@
     @media (max-width: 400px) {
       .values-grid { grid-template-columns: 1fr; }
     }
-  </style>
+  
+@media(prefers-color-scheme:dark){.color-swatch{border-color:#333!important;}input[type=color]{border-color:#444!important;background:#1a1a1a!important;}.picker-label{color:#aaa!important;}#hexDisplay{color:#f0f0f0!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -264,6 +272,15 @@
     </div>
   </div>
 
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="json-formatter.html" class="related-card"><span class="r-icon">{}</span><span class="r-title">JSON Formatter</span></a>
+    <a href="qr-generator.html" class="related-card"><span class="r-icon">📱</span><span class="r-title">QR Code Generator</span></a>
+    <a href="img-to-base64.html" class="related-card"><span class="r-icon">🔗</span><span class="r-title">Image to Base64</span></a>
+    <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Photo Collage Maker</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -286,17 +303,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

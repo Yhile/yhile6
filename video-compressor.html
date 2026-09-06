@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');if(localStorage.getItem('cookie_consent')==='granted'){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Video Compressor — Compress Videos Online No Signup | yhile.com</title>
+  <title>Free Video Compressor Online — No Signup | yhile.com</title>
   <meta name="description" content="Compress videos free online — reduce video file size in your browser using WebAssembly. No upload, no signup. Supports MP4, WebM, MOV. Free forever.">
   <meta name="keywords" content="video compressor, compress video online free, reduce video size free, video file size reducer, compress mp4 online free, video compressor no signup, online video compressor, compress video free">
   <meta name="author" content="yhile.com">
@@ -49,7 +48,9 @@
     .file-info{font-size:13px;color:#888;margin-bottom:12px;display:none;padding:8px 12px;background:#f5f5f5;border-radius:8px}
     .dl{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;display:none}
     .dl:hover{background:#333}
-  </style>
+  
+@media(prefers-color-scheme:dark){.notice{background:#2a1f00!important;color:#f5d060!important;}.file-info{background:#1e1e1e!important;color:#ccc!important;}select{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.prog-bar{background:#2c2c2c!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -102,6 +103,15 @@
     </div>
     <button class="dl" id="dlBtn">Download compressed video</button>
   </div>
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="audio-extractor.html" class="related-card"><span class="r-icon">🎵</span><span class="r-title">MP4 to MP3 Extractor</span></a>
+    <a href="audio-converter.html" class="related-card"><span class="r-icon">🎧</span><span class="r-title">Audio Converter</span></a>
+    <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
+    <a href="img-compressor.html" class="related-card"><span class="r-icon">🗜️</span><span class="r-title">Image Compressor</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -109,12 +119,15 @@
   <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
   <div id="cookie-banner">
     <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
-    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieAccept()">Got it</button><button class="cb-decline" onclick="cookieDecline()">Decline</button></div>
   </div>
-  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
-  <script src="lib/ffmpeg/ffmpeg.min.js"></script>
+  <script>function cookieAccept(){localStorage.setItem('cookie_consent','granted');var b=document.getElementById('cookie-banner');if(b)b.remove();if(!window.gaLoaded){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}}function cookieDecline(){localStorage.setItem('cookie_consent','denied');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script src="lib/ffmpeg/ffmpeg.js"></script>
+  <script src="lib/ffmpeg/ffmpeg-util.js"></script>
   <script>
-    var videoFile=null,ffmpegInstance=null;
+    var videoFile=null, ffmpegInstance=null;
+    var FFmpeg=FFmpegWASM.FFmpeg, fetchFile=FFmpegUtil.fetchFile;
+
     var dz=document.getElementById('dz');
     dz.ondragover=function(e){e.preventDefault();this.classList.add('over');};
     dz.ondragleave=function(){this.classList.remove('over');};
@@ -138,14 +151,17 @@
       btn.disabled=true;pw.style.display='block';dl.style.display='none';
       setProgress(5,'Loading FFmpeg engine...');
       try{
-        var createFFmpeg=FFmpeg.createFFmpeg,fetchFile=FFmpeg.fetchFile;
         if(!ffmpegInstance){
-          ffmpegInstance=createFFmpeg({
-            corePath:'lib/ffmpeg/ffmpeg-core.js',
-            log:false,
-            progress:function(p){setProgress(5+Math.round(p.ratio*90),'Compressing '+Math.round(p.ratio*100)+'%');}
+          ffmpegInstance=new FFmpeg();
+          ffmpegInstance.on('progress',function(e){
+            var pct=Math.min(Math.round(e.progress*100),99);
+            setProgress(5+Math.round(pct*0.9),'Compressing... '+pct+'%');
           });
-          await ffmpegInstance.load();
+          var libBase=new URL('lib/ffmpeg/',window.location.href).href;
+          await ffmpegInstance.load({
+            coreURL: libBase+'ffmpeg-core.js',
+            wasmURL: libBase+'ffmpeg-core.wasm'
+          });
         }
         var ff=ffmpegInstance;
         var ext=videoFile.name.split('.').pop().toLowerCase()||'mp4';
@@ -153,13 +169,19 @@
         var outFmt=document.getElementById('vfmt').value;
         var outName='output.'+outFmt;
         var crf=document.getElementById('crf').value;
-        ff.FS('writeFile',inName,await fetchFile(videoFile));
+
+        setProgress(8,'Reading file...');
+        await ff.writeFile(inName, await fetchFile(videoFile));
+
         var args=['-i',inName,'-crf',crf];
         if(outFmt==='mp4') args=args.concat(['-c:v','libx264','-preset','fast','-c:a','aac']);
         else args=args.concat(['-c:v','libvpx-vp9','-b:v','0','-c:a','libopus']);
         args.push(outName);
-        await ff.run.apply(ff,args);
-        var data=ff.FS('readFile',outName);
+
+        setProgress(10,'Compressing...');
+        await ff.exec(args);
+
+        var data=await ff.readFile(outName);
         var mime=outFmt==='mp4'?'video/mp4':'video/webm';
         var blob=new Blob([data.buffer],{type:mime});
         var url=URL.createObjectURL(blob);
@@ -168,7 +190,13 @@
         dl.onclick=function(){var a=document.createElement('a');a.href=url;a.download='compressed.'+outFmt;a.click();};
         dl.style.display='block';
         setProgress(100,'Done! '+origMb+' MB → '+newMb+' MB');
-      }catch(e){setProgress(0,'Error: '+e.message);}
+
+        await ff.deleteFile(inName);
+        await ff.deleteFile(outName);
+      }catch(e){
+        console.error(e);
+        setProgress(0,'Error: '+e.message);
+      }
       btn.disabled=false;
     }
   </script>

@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Decimal Binary Hex Converter — Text to Binary Online | yhile.com</title>
-  <meta name="description" content="Convert decimal to binary, binary to hex, text to binary and more — 100% free, no signup, no account, completely private. Live bidirectional converter. No login, no data stored, free forever. Works instantly in your browser.">
+  <title>Decimal Binary Hex Converter Online | yhile.com</title>
+  <meta name="description" content="Convert decimal to binary, binary to hex, text to binary and more — free, no signup, private. Live bidirectional converter, runs in your browser.">
   <meta name="keywords" content="decimal to binary, binary to decimal, decimal to hexadecimal, hex to decimal, text to binary, binary to text, number to binary, text to hex, hex to text, binary to hex, base converter, number system converter, binary converter online, decimal binary hex converter, ascii to binary, ascii to hex, hex to ascii, decimal converter, binary number converter, hex converter, octal converter, base 2 converter, base 16 converter, convert decimal to binary online, how to convert decimal to binary, decimal to binary calculator, binary decoder, binary encoder, hexadecimal converter free, hex to decimal calculator, text to ascii converter, ascii table converter, binary translator, hex translator, binary code translator, convert text to binary code, programmer calculator, developer tools free, coding tools online, binary math, number base converter, radix converter, 100% free, completely free, free forever, no signup, no account, no login, no registration, totally free, private, no data stored, works in browser, secure, anonymous">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -240,7 +246,9 @@
     }
     .hint-chip:hover { background: #eee; }
     .hint-chip span { color: #aaa; font-size: 11px; margin-left: 4px; }
-  </style>
+  
+@media(prefers-color-scheme:dark){label{color:#aaa!important;}input[type=text],textarea{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.tool-page>p{color:#aaa!important;}.swap-btn{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.hint-chip{background:#2c2c2c!important;color:#ddd!important;}textarea.error{background:#2a1414!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -637,6 +645,7 @@
       <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
       <a href="word-checker.html" class="related-card"><span class="r-icon">📝</span><span class="r-title">Repeated Words Checker</span></a>
       <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Snapshot Collage</span></a>
+      <a href="text-to-speech.html" class="related-card"><span class="r-icon">🔊</span><span class="r-title">Text to Speech</span></a>
     </div>
   </section>
 
@@ -656,8 +665,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -665,17 +673,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

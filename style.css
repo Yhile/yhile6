@@ -524,3 +524,198 @@ footer a:hover { color: var(--text-muted); }
   flex: 1;
 }
 .cb-decline:hover { color: var(--btn-decline-hover-text); border-color: var(--btn-decline-hover-border); }
+/* ══════════════════════════════════════════════
+   LIGHT MODE — force all secondary text to black
+   ══════════════════════════════════════════════ */
+@media (prefers-color-scheme: light) {
+  .tool-page > p,
+  .drop-zone p,
+  label,
+  .prog, .progress, .prog-lbl,
+  .panel-label,
+  .tab-btn,
+  .range-row span,
+  .opts label,
+  .stat .lbl,
+  .lbl,
+  .picker-label,
+  .file-info, .info-bar,
+  small { color: #333 !important; }
+
+  .tool-card p { color: #444 !important; }
+  .page > p    { color: #333 !important; }
+
+  .tab-btn.active { color: #000 !important; border-bottom-color: #000 !important; }
+  details p       { color: #333 !important; }
+  details summary { color: #111 !important; }
+  section details p { color: #333 !important; }
+  .faq-list .faq-body { color: #333 !important; }
+}
+
+/* ══════════════════════════════════════════════
+   DARK MODE OVERRIDES — tool pages
+   Uses !important to override inline <style> blocks
+   ══════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+
+  /* --- Text colours --- */
+  .tool-page > p,
+  .drop-zone p,
+  label,
+  .prog, .progress, .prog-lbl,
+  .panel-label,
+  .tab-btn,
+  .range-row span,
+  .opts label,
+  .stat .lbl,
+  .lbl,
+  small { color: #ccc !important; }
+
+  /* Active tab */
+  .tab-btn.active { color: #fff !important; border-bottom-color: #fff !important; }
+  .tabs { border-bottom-color: #333 !important; }
+
+  /* Drop zone */
+  .drop-zone { border-color: #444 !important; }
+  .drop-zone:hover, .drop-zone.over {
+    border-color: #888 !important;
+    background: #1e1e1e !important;
+  }
+
+  /* Info / file info bars */
+  .info-bar, .file-info {
+    background: #1e1e1e !important;
+    color: #ccc !important;
+  }
+
+  /* Warning / notice boxes */
+  .notice, .no-support {
+    background: #2a1f00 !important;
+    color: #f5d060 !important;
+  }
+
+  /* All text inputs, selects, textareas */
+  input[type=number],
+  input[type=text],
+  input[type=email],
+  textarea {
+    background: #1a1a1a !important;
+    color: #f0f0f0 !important;
+    border-color: #444 !important;
+  }
+  select {
+    background: #1a1a1a !important;
+    color: #f0f0f0 !important;
+    border-color: #444 !important;
+  }
+  textarea:focus,
+  input:focus,
+  select:focus { border-color: #888 !important; }
+
+  /* File list items */
+  .file-list li { border-color: #2c2c2c !important; color: #f0f0f0 !important; }
+
+  /* Page cards (pdf-to-image) */
+  .page-card { border-color: #2c2c2c !important; }
+
+  /* Stat cards (img-compressor) */
+  .stat { border-color: #2c2c2c !important; }
+
+  /* Value cards (color-picker) */
+  .val-card { border-color: #2c2c2c !important; }
+  .val-card .label { color: #888 !important; }
+  .val-card .value { color: #f0f0f0 !important; }
+
+  /* Result grid images */
+  .result-grid img { border-color: #333 !important; }
+
+  /* Preview images */
+  .preview { border-color: #333 !important; }
+
+  /* Outline / stop / secondary buttons */
+  .btn-stop, .btn-outline {
+    background: #1e1e1e !important;
+    color: #f0f0f0 !important;
+    border-color: #444 !important;
+  }
+  .btn-outline:hover { background: #2c2c2c !important; border-color: #888 !important; }
+
+  /* Copy buttons (color picker) */
+  .copy-btn {
+    background: #2c2c2c !important;
+    color: #f0f0f0 !important;
+  }
+  .copy-btn:hover { background: #444 !important; }
+
+  /* JSON status indicators */
+  .ok  { background: #052e16 !important; color: #86efac !important; }
+  .err { background: #3b0000 !important; color: #fca5a5 !important; }
+
+  /* Progress bar track */
+  .prog-bar { background: #2c2c2c !important; }
+
+  /* ---- FAQ sections (inline-styled <details>) ---- */
+  /* Override inline style="border-bottom:1px solid #eee" */
+  details {
+    border-color: #2c2c2c !important;
+    border-bottom-color: #2c2c2c !important;
+  }
+  /* Override inline style="color:#555" on <p> inside details */
+  details p { color: #bbb !important; }
+  /* Override inline style on <summary> */
+  details summary { color: #f0f0f0 !important; }
+  /* Inline section FAQ borders */
+  section details { border-bottom-color: #2c2c2c !important; }
+  section details p { color: #bbb !important; }
+
+  /* Hex input row in color picker */
+  .hex-input-row input {
+    background: #1a1a1a !important;
+    color: #f0f0f0 !important;
+    border-color: #444 !important;
+  }
+
+  /* range-row spans */
+  .range-row span { color: #888 !important; }
+  .range-row { color: #bbb !important; }
+
+  /* hue slider label values */
+  #rate-val { color: #f0f0f0 !important; }
+
+  /* Download note text (TTS) */
+  p[style*="color:#aaa"],
+  p[style*="color: #aaa"] { color: #777 !important; }
+}
+
+/* Same overrides for manual dark theme */
+html[data-theme="dark"] .tool-page > p,
+html[data-theme="dark"] .drop-zone p,
+html[data-theme="dark"] label,
+html[data-theme="dark"] .prog,
+html[data-theme="dark"] .progress,
+html[data-theme="dark"] .prog-lbl,
+html[data-theme="dark"] .tab-btn { color: #aaa !important; }
+
+html[data-theme="dark"] .tab-btn.active { color: #fff !important; border-bottom-color: #fff !important; }
+html[data-theme="dark"] .tabs { border-bottom-color: #333 !important; }
+html[data-theme="dark"] .drop-zone { border-color: #444 !important; }
+html[data-theme="dark"] .drop-zone:hover { border-color: #888 !important; background: #1e1e1e !important; }
+html[data-theme="dark"] .info-bar,
+html[data-theme="dark"] .file-info { background: #1e1e1e !important; color: #ccc !important; }
+html[data-theme="dark"] .notice,
+html[data-theme="dark"] .no-support { background: #2a1f00 !important; color: #f5d060 !important; }
+html[data-theme="dark"] input[type=number],
+html[data-theme="dark"] input[type=text],
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select { background: #1a1a1a !important; color: #f0f0f0 !important; border-color: #444 !important; }
+html[data-theme="dark"] .file-list li { border-color: #2c2c2c !important; color: #f0f0f0 !important; }
+html[data-theme="dark"] .stat,
+html[data-theme="dark"] .val-card,
+html[data-theme="dark"] .page-card { border-color: #2c2c2c !important; }
+html[data-theme="dark"] .btn-stop,
+html[data-theme="dark"] .btn-outline { background: #1e1e1e !important; color: #f0f0f0 !important; border-color: #444 !important; }
+html[data-theme="dark"] .ok { background: #052e16 !important; color: #86efac !important; }
+html[data-theme="dark"] .err { background: #3b0000 !important; color: #fca5a5 !important; }
+html[data-theme="dark"] details { border-color: #2c2c2c !important; border-bottom-color: #2c2c2c !important; }
+html[data-theme="dark"] details p { color: #bbb !important; }
+html[data-theme="dark"] details summary { color: #f0f0f0 !important; }

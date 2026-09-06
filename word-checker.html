@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Duplicate Word Checker — Find Repeated Words in Text Free | yhile.com</title>
-  <meta name="description" content="Find repeated words in your text — 100% free, no signup, no account, completely private. Paste writing to instantly highlight overused words and check frequency. No login, no data stored, free forever.">
+  <title>Duplicate Word Checker — Find Repeated Words | yhile.com</title>
+  <meta name="description" content="Find repeated words in your text — free, no signup, private. Paste writing to instantly highlight overused words and check frequency. Free forever.">
   <meta name="keywords" content="repeated words checker, duplicate word finder, find repeated words, word frequency counter, overused words checker, word repetition checker, check duplicate words, writing checker, word frequency analyzer, repeated word highlighter, word count tool, word frequency tool, check writing for repetition, find overused words in essay, check essay for repeated words, writing analysis tool, text analyzer, plagiarism helper, writing improvement tool, grammar checker alternative, writing editor online, crutch word finder, stop word remover, word occurrence counter, word usage checker, online writing tool free, writing helper no signup, essay checker free, proofreading tool free, text statistics tool, writing quality checker, 100% free, completely free, free forever, no signup, no account, no login, no registration, totally free, private, no data stored, works in browser, secure, anonymous, free writing tool">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -279,13 +285,29 @@
       font-size: 15px;
       padding: 20px 0;
     }
-  </style>
+  
+@media(prefers-color-scheme:dark){.tool-page>p{color:#aaa!important;}textarea{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}label{color:#aaa!important;}.stat{background:#1a1a1a!important;}.stat .num{color:#f0f0f0!important;}.stat .label{color:#888!important;}.section-title{color:#888!important;}.highlighted-text{background:#1a1a1a!important;border-color:#2c2c2c!important;color:#f0f0f0!important;}.word-tag{background:#2c2c2c!important;color:#f0f0f0!important;}.word-tag:hover{background:#3a3a3a!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
     {"@type":"ListItem","position":2,"name":"Tools","item":"https://www.yhile.com/tools.html"},
     {"@type":"ListItem","position":3,"name":"Repeated Words Checker","item":"https://www.yhile.com/word-checker.html"}
   ]}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Duplicate Word Checker",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (Web-based)",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
   </script>
 </head>
 <body>
@@ -494,6 +516,11 @@
   </script>
 
   <section class="info-section">
+    <h2>What is a duplicate word checker?</h2>
+    <p>A duplicate word checker scans a piece of writing and flags every word that appears more than once, then sorts those repeated words by how often they show up. Instead of manually rereading a document line by line hoping to spot repetition, you paste your text in and get an instant breakdown: total word count, unique word count, and a list of every word you've reused, ranked from most to least frequent.</p>
+    <p>Using the tool is simple. Paste any text into the box — an email, essay, article, product description, or social media post — and click Check (or press Ctrl+Enter). The tool immediately tokenizes your writing, counts every occurrence of every word, and highlights repeated words directly in the text so you can see exactly where they show up. Toggle "Ignore common words" if you want to filter out function words like "the," "a," and "is" that are naturally used often and rarely worth changing, so you can focus on the content words — nouns, verbs, and adjectives — that actually affect how varied your writing sounds.</p>
+    <p>This kind of check is especially useful during proofreading and editing, when it's easy to lose track of word choices after staring at the same paragraph too long. Students use it before submitting essays to avoid looking repetitive, bloggers and copywriters use it to keep content feeling fresh rather than mechanical, and it also doubles as a quick way to catch accidental typos — like typing "the the" — since those show up as high-frequency repeats. Because everything runs locally in your browser, no text ever leaves your device, making it a fast, private way to tighten up any piece of writing before it goes out.</p>
+
     <h2>How to find repeated words — step by step</h2>
     <ol class="how-to-steps">
       <li>Paste your text — an essay, email, blog post, or any writing — into the input box.</li>
@@ -532,6 +559,7 @@
       <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
       <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
       <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Snapshot Collage</span></a>
+      <a href="text-to-speech.html" class="related-card"><span class="r-icon">🔊</span><span class="r-title">Text to Speech</span></a>
     </div>
   </section>
 
@@ -551,8 +579,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -560,17 +587,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

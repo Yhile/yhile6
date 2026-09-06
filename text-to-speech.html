@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');if(localStorage.getItem('cookie_consent')==='granted'){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Text to Speech — Online TTS No Signup | yhile.com</title>
@@ -43,7 +42,9 @@
     .btn-stop{background:#fff;color:#111;border:1px solid #ddd}
     .btn-stop:hover{border-color:#999}
     .no-support{background:#fef9c3;color:#854d0e;padding:12px;border-radius:8px;font-size:13px;display:none;margin-bottom:14px}
-  </style>
+  
+@media(prefers-color-scheme:dark){textarea{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}select{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.btn-stop{background:#1e1e1e!important;color:#f0f0f0!important;border-color:#444!important;}.no-support{background:#2a1f00!important;color:#f5d060!important;}}
+</style>
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -95,11 +96,6 @@
       <button class="btn" onclick="speak()">&#9654; Speak</button>
       <button class="btn btn-stop" onclick="stopSpeech()">&#9632; Stop</button>
     </div>
-    <div style="margin-top:16px">
-      <button class="btn btn-stop" id="dlBtn" onclick="downloadMp3()" style="width:100%;font-size:14px">&#x2B07; Download as MP3</button>
-      <p style="font-size:11px;color:#aaa;margin-top:6px;text-align:center">Uses StreamElements TTS voices for download. English voices only.</p>
-    </div>
-    <div id="dl-status" style="font-size:13px;color:#888;text-align:center;margin-top:8px;display:none"></div>
   </div>
 
   <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
@@ -109,6 +105,15 @@
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Is my text sent to a server?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">No. The Web Speech API uses your device's speech engine. Your text never leaves your browser.</p></details>
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Can I change the speed of the voice?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Yes. Use the Speed slider to set any rate from 0.5x (slow) to 2x (fast).</p></details>
   </section>
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="json-formatter.html" class="related-card"><span class="r-icon">{}</span><span class="r-title">JSON Formatter</span></a>
+    <a href="word-checker.html" class="related-card"><span class="r-icon">📝</span><span class="r-title">Repeated Words Checker</span></a>
+    <a href="audio-converter.html" class="related-card"><span class="r-icon">🎧</span><span class="r-title">Audio Converter</span></a>
+    <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -116,9 +121,9 @@
   <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
   <div id="cookie-banner">
     <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
-    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieAccept()">Got it</button><button class="cb-decline" onclick="cookieDecline()">Decline</button></div>
   </div>
-  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>function cookieAccept(){localStorage.setItem('cookie_consent','granted');var b=document.getElementById('cookie-banner');if(b)b.remove();if(!window.gaLoaded){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}}function cookieDecline(){localStorage.setItem('cookie_consent','denied');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
   <script>
     var synth=window.speechSynthesis;
     if(!synth)document.getElementById('no-support').style.display='block';
@@ -140,34 +145,6 @@
       synth.speak(utt);
     }
     function stopSpeech(){if(synth)synth.cancel();}
-
-    // SE voices mapped by language hint
-    var SE_VOICES=['Brian','Amy','Emma','Joanna','Kimberly','Matthew','Salli','Russell','Nicole','Geraint'];
-    async function downloadMp3(){
-      var text=document.getElementById('tts-text').value.trim();
-      if(!text){alert('Please enter some text first.');return;}
-      if(text.length>500){text=text.substring(0,500);}
-      var btn=document.getElementById('dlBtn'),st=document.getElementById('dl-status');
-      btn.disabled=true;st.style.display='block';st.textContent='Fetching audio...';
-      var voice='Brian';
-      try{
-        var url='https://api.streamelements.com/kappa/v2/speech?voice='+voice+'&text='+encodeURIComponent(text);
-        var resp=await fetch(url);
-        if(!resp.ok)throw new Error('API error '+resp.status);
-        var blob=await resp.blob();
-        var a=document.createElement('a');
-        a.href=URL.createObjectURL(blob);
-        a.download='speech.mp3';
-        a.click();
-        st.textContent='Downloaded!';
-      }catch(e){
-        // Fallback: open in new tab
-        st.textContent='Direct download failed — opening in new tab instead.';
-        window.open('https://api.streamelements.com/kappa/v2/speech?voice='+voice+'&text='+encodeURIComponent(text.substring(0,300)),'_blank');
-      }
-      btn.disabled=false;
-      setTimeout(function(){st.style.display='none';},3000);
-    }
   </script>
 </body>
 </html>

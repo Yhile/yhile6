@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Free Online Calculator — Scientific Calculator No Signup | yhile.com</title>
-  <meta name="description" content="Free scientific calculator online — addition, subtraction, multiplication, division, square root, exponents, sin, cos, tan, log, pi, and more. 100% free, no signup, no account, no data stored. Works instantly in your browser. Free forever.">
+  <title>Free Scientific Calculator Online — No Signup | yhile.com</title>
+  <meta name="description" content="Free scientific calculator online — sin, cos, log, sqrt, exponents and more. 100% free, no signup, no account. Works instantly in your browser.">
   <meta name="keywords" content="online calculator, free calculator, scientific calculator, calculator online free, calculator no signup, calculator no account, basic calculator online, math calculator, free scientific calculator, advanced calculator online, calculator with history, sin cos tan calculator, logarithm calculator, square root calculator, exponent calculator, percentage calculator, pi calculator, euler number calculator, trigonometry calculator free, algebra calculator free, arithmetic calculator, calculator that shows work, free calculator no login, web calculator, browser calculator, calculator online no download, instant calculator, fast calculator online, calculator 100% free, calculator free forever, calculator no registration, calculator no email, simple calculator free, calculation tool free, math tool online, number calculator free, calculator works in browser, calculator private calculator no ads, best free online calculator, calculator for students, calculator for school, calculator for math homework, scientific calculator for students free, online math tool, compute online free, calculate online free">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -228,7 +234,9 @@
       padding: 4px 0;
     }
     .clear-history:hover { color: #555; }
-  </style>
+  
+@media(prefers-color-scheme:dark){.tool-page>p{color:#aaa!important;}.history-panel{background:#1a1a1a!important;border-color:#2c2c2c!important;}.history-panel h3{color:#888!important;}.history-item:hover{background:#252525!important;}.h-expr{color:#888!important;}.h-result{color:#f0f0f0!important;}.history-empty{color:#666!important;}.clear-history{color:#777!important;}.clear-history:hover{color:#bbb!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -608,8 +616,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -617,17 +624,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

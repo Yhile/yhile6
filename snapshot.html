@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Free Photo Collage Maker — Snapshot Collage Online | yhile.com</title>
-  <meta name="description" content="Create photo collages online — 100% free, no signup, no upload, completely private. Grid or scatter layouts, vintage style, custom aspect ratios for phone, YouTube, Instagram. No account, no login, no data stored, free forever.">
+  <title>Free Photo Collage Maker Online | yhile.com</title>
+  <meta name="description" content="Create photo collages online — free, no signup, private. Grid or scatter layouts, vintage styles, custom aspect ratios. Free forever.">
   <meta name="keywords" content="photo collage maker, free collage maker, online photo collage, collage maker no signup, photo collage online free, make photo collage, picture collage maker, snapshot collage, collage maker 9x16, collage maker 16x9, instagram collage maker, free collage no account, 100% free collage maker, photo collage no watermark, free collage maker no watermark, collage maker without watermark, free collage maker no signup no watermark, photo collage for instagram free, photo collage for youtube thumbnail, photo collage 16x9 free, photo collage 9x16 free, photo grid maker free, photo grid online, scatter photo collage, vintage photo collage maker, polaroid collage maker, photo layout maker, photo mosaic free, picture grid maker, combine photos into one, merge photos online free, photo montage maker, collage photo editor free, free photo collage app, collage maker for phone, collage maker iphone, instagram story collage, tiktok collage maker, collage maker 1x1, square collage maker, portrait collage maker, landscape collage maker, free collage download without watermark, completely free, free forever, no signup collage, no account collage, no login, no upload collage maker, private collage maker, no data stored, 100% private, totally free, works in browser, secure, anonymous, free photo tool">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -313,7 +319,9 @@
       font-size: 14px;
       color: #888;
     }
-  </style>
+  
+@media(prefers-color-scheme:dark){.tool-page>p{color:#aaa!important;}.drop-zone{border-color:#444!important;}.drop-zone p{color:#aaa!important;}.drop-zone:hover{border-color:#888!important;background:#1e1e1e!important;}label{color:#aaa!important;}select,input[type=number],input[type=text]{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.controls{background:#1a1a1a!important;}.control-group label{color:#aaa!important;}.control-group select{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.control-group input[type=color]{background:#1a1a1a!important;border-color:#444!important;}.toggle-row{color:#ddd!important;}.ghost-btn{background:#1e1e1e!important;color:#f0f0f0!important;border-color:#444!important;}.msg{color:#aaa!important;}.preview-thumb{background:#1a1a1a!important;}.add-more{border-color:#444!important;color:#666!important;}.add-more:hover{border-color:#888!important;color:#ccc!important;}.drop-zone.dragover{background:#1e1e1e!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -1184,8 +1192,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -1193,17 +1200,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Image to Base64 Converter — Free Online, No Signup | yhile.com</title>
-  <meta name="description" content="Convert any image to Base64 online — 100% free, no signup, no upload, completely private. Get the Base64 string or data URL instantly in your browser. Also decode Base64 back to image. No account, no login, no data stored. Free forever.">
+  <title>Image to Base64 Converter — Free Online | yhile.com</title>
+  <meta name="description" content="Convert any image to Base64 online — free, no signup, private. Get the Base64 string or data URL instantly. Also decodes Base64 back to image.">
   <meta name="keywords" content="image to base64, img to base64, convert image to base64, base64 image encoder, base64 encode image, image base64 converter, png to base64, jpg to base64, jpeg to base64, webp to base64, gif to base64, svg to base64, base64 to image, decode base64 image, base64 decoder image, base64 image decoder online, base64 data url generator, data url converter, image data url, base64 string from image, convert image to base64 string, base64 encode png free, base64 encode jpg free, base64 image online free, base64 converter no signup, base64 tool free, image encoder free, encode image online free, base64 for html, base64 for css, embed image in html base64, inline image base64, base64 image embed, image to base64 no upload, image to base64 private, base64 converter no account, base64 converter no login, 100% free base64 converter, completely free, free forever, no data stored, works in browser, totally free, base64 image tool, free developer tool, web developer tool free, frontend tool free, base64 string copy, copy base64 image, base64 image preview">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -309,7 +315,9 @@
       margin-top: 12px;
     }
     .error-msg.visible { display: block; }
-  </style>
+  
+@media(prefers-color-scheme:dark){.tool-page>p{color:#aaa!important;}.drop-zone{border-color:#444!important;}.drop-zone p{color:#aaa!important;}.drop-zone:hover,.drop-zone.over{border-color:#888!important;background:#1e1e1e!important;}textarea{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.result-url{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.output-textarea,.decode-input{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.stat-chip{background:#2c2c2c!important;color:#f0f0f0!important;}.drop-zone.drag-over{background:#1e1e1e!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -629,8 +637,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -638,17 +645,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

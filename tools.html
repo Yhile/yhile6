@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>All Free Tools — yhile.com | No Signup Required</title>
-  <meta name="description" content="Browse all free tools on yhile.com. MP4 to MP3 audio extractor, HEIC image converter, decimal to binary converter, repeated words checker, photo collage maker and more. No signup, no data stored.">
+  <meta name="description" content="Browse all free tools on yhile.com — audio extractor, image converter, PDF tools, calculators and more. No signup, no data stored.">
   <meta name="keywords" content="free online tools, free web tools, free browser tools, all free tools, list of free tools, free tools no signup, free tools no watermark, free tools no account, mp4 to mp3 free, heic to jpg free, heic to png free, decimal to binary free, binary to hex free, photo collage maker free, repeated words checker free, audio extractor free, image converter free, base converter free, word frequency checker free, snapshot collage free, disk changer free, 100% free, completely free, free forever, totally free, no signup, no account, no login, no registration, no email required, 100% private, no data stored, no upload, no ads, private tools, secure online tools, anonymous, works in browser, free forever no cost, best free online tools, useful free tools, top free tools, free productivity tools, free creative tools, free utility tools, simple online tools, instant free tools, private file tools, no install tools">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -99,6 +105,12 @@
       font-size: 13px;
       color: #777;
     }
+    @media(prefers-color-scheme:dark){
+      .page>p{color:#aaa!important;}
+      .tool-card{border-color:#2c2c2c!important;background:#1a1a1a!important;}
+      .tool-card:hover{border-color:#fff!important;box-shadow:0 2px 12px rgba(0,0,0,0.4)!important;}
+      .tool-card p{color:#999!important;}
+    }
   </style>
 </head>
 <body>
@@ -115,18 +127,11 @@
   <div class="page">
     <h1>All tools</h1>
     <p>Free to use. No account needed. Everything runs in your browser.</p>
-
-    <h2 style="font-size:13px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.8px;margin:36px 0 14px">&#x26A1; Heavy tools</h2>
     <div class="grid">
       <a href="video-compressor.html" class="tool-card">
         <div class="icon">&#x1F3AC;</div>
         <h3>Video Compressor</h3>
         <p>Compress MP4, WebM and MOV videos in your browser using WebAssembly. No upload.</p>
-      </a>
-      <a href="bg-remover.html" class="tool-card">
-        <div class="icon">&#x2702;&#xFE0F;</div>
-        <h3>Background Remover</h3>
-        <p>Remove image backgrounds using AI — runs in your browser. Download transparent PNG.</p>
       </a>
       <a href="audio-extractor.html" class="tool-card">
         <div class="icon">&#x1F3B5;</div>
@@ -173,10 +178,7 @@
         <h3>Photo Collage Maker</h3>
         <p>Create grid or scatter collages with vintage styles. Custom aspect ratios.</p>
       </a>
-    </div>
 
-    <h2 style="font-size:13px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.8px;margin:40px 0 14px">&#x26A1; Light tools</h2>
-    <div class="grid">
       <a href="json-formatter.html" class="tool-card">
         <div class="icon">&#x7B;&#x7D;</div>
         <h3>JSON Formatter</h3>
@@ -185,7 +187,7 @@
       <a href="text-to-speech.html" class="tool-card">
         <div class="icon">&#x1F50A;</div>
         <h3>Text to Speech</h3>
-        <p>Convert text to speech using your device voices. Download as MP3. No upload.</p>
+        <p>Convert text to speech using your device voices. No upload, runs in your browser.</p>
       </a>
       <a href="color-picker.html" class="tool-card">
         <div class="icon">&#x1F3A8;</div>
@@ -245,8 +247,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -254,17 +255,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

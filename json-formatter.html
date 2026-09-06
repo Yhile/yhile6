@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');if(localStorage.getItem('cookie_consent')==='granted'){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free JSON Formatter &amp; Validator — Format JSON Online | yhile.com</title>
+  <title>Free JSON Formatter &amp; Validator Online | yhile.com</title>
   <meta name="description" content="Format, validate and beautify JSON online — free, no signup, instant. Also minify JSON. Runs entirely in your browser. No data sent anywhere.">
   <meta name="keywords" content="json formatter, json validator, json beautifier, format json online, json pretty print, json minify, validate json, json lint, json editor free">
   <meta name="author" content="yhile.com">
@@ -43,7 +42,9 @@
     .status{font-size:13px;padding:8px 12px;border-radius:8px;display:none;margin-bottom:8px}
     .ok{background:#dcfce7;color:#166534;display:block}
     .err{background:#fee2e2;color:#991b1b;display:block}
-  </style>
+  
+@media(prefers-color-scheme:dark){textarea{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.btn-outline{background:#1e1e1e!important;color:#f0f0f0!important;border-color:#444!important;}.btn-outline:hover{background:#2c2c2c!important;}}
+</style>
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -101,6 +102,15 @@
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Can I format large JSON files?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Yes. Since processing happens in your browser, performance depends on your device, but typical JSON files of any size work fine.</p></details>
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">What is the difference between Beautify and Minify?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">Beautify adds indentation and line breaks to make JSON human-readable. Minify removes all whitespace to reduce file size for production use.</p></details>
   </section>
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
+    <a href="word-checker.html" class="related-card"><span class="r-icon">📝</span><span class="r-title">Repeated Words Checker</span></a>
+    <a href="img-to-base64.html" class="related-card"><span class="r-icon">🔗</span><span class="r-title">Image to Base64</span></a>
+    <a href="color-picker.html" class="related-card"><span class="r-icon">🎨</span><span class="r-title">Color Picker</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -108,9 +118,9 @@
   <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
   <div id="cookie-banner">
     <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
-    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieAccept()">Got it</button><button class="cb-decline" onclick="cookieDecline()">Decline</button></div>
   </div>
-  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>function cookieAccept(){localStorage.setItem('cookie_consent','granted');var b=document.getElementById('cookie-banner');if(b)b.remove();if(!window.gaLoaded){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}}function cookieDecline(){localStorage.setItem('cookie_consent','denied');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
   <script>
     function fmt(){
       var v=document.getElementById('inp').value.trim(),st=document.getElementById('status');

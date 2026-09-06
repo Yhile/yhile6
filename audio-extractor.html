@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MP4 to MP3 Converter — Free Audio Extractor Online | yhile.com</title>
-  <meta name="description" content="Convert MP4 to MP3 online — 100% free, no signup, no upload, completely private. Extract audio from any MP4 video instantly in your browser. No account, no login, no data stored. Download your MP3 in seconds. Free forever.">
+  <title>MP4 to MP3 Converter — Free Audio Extractor | yhile.com</title>
+  <meta name="description" content="Convert MP4 to MP3 online — 100% free, no signup, no upload, private. Extract audio from any MP4 instantly in your browser. Free forever.">
   <meta name="keywords" content="mp4 to mp3, mp4 to mp3 converter, extract audio from mp4, mp4 to mp3 online free, audio extractor, convert video to audio, free audio extractor, mp4 audio extractor online, extract mp3 from mp4, mp4 converter, video to audio converter, mp4 to mp3 no watermark, mp4 to mp3 without watermark, mp4 to mp3 converter online no download, convert mp4 to mp3 free online no signup, mp4 to mp3 fast, mp4 audio track extractor, save audio from video, rip audio from mp4, mp4 to audio, video audio extractor free, online audio converter no signup, mp3 downloader from video, convert youtube video to mp3 offline, extract sound from video, mp4 to wav, mp4 to aac, video to mp3 free, movie to mp3 converter, mp4 to mp3 chrome, mp4 to mp3 safari, mp4 to mp3 iphone, mp4 to mp3 android, 100% free, completely free, free forever, no signup, no account, no login, no registration, no email, 100% private, no data stored, no upload, private audio converter, secure, anonymous, works in browser, totally free">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -219,13 +225,29 @@
       display: none;
     }
     .error.visible { display: block; }
-  </style>
+  
+@media(prefers-color-scheme:dark){.tool-page>p{color:#aaa!important;}.drop-zone{border-color:#444!important;}.drop-zone p{color:#aaa!important;}.drop-zone:hover,.drop-zone.over{border-color:#888!important;background:#1e1e1e!important;}.file-info,.info-bar{background:#1e1e1e!important;color:#ccc!important;}.prog,.prog-lbl{color:#aaa!important;}.prog-bar{background:#2c2c2c!important;}.file-info{background:#1e1e1e!important;}.file-name-el,.file-name{color:#f0f0f0!important;}.progress-bar{background:#2c2c2c!important;}.drop-zone.dragover{background:#1e1e1e!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
     {"@type":"ListItem","position":2,"name":"Tools","item":"https://www.yhile.com/tools.html"},
     {"@type":"ListItem","position":3,"name":"MP4 to MP3 Audio Extractor","item":"https://www.yhile.com/audio-extractor.html"}
   ]}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Audio Extractor",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (Web-based)",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
   </script>
 </head>
 <body>
@@ -418,13 +440,17 @@
   </script>
 
   <section class="info-section">
-    <h2>How to convert MP4 to MP3 — step by step</h2>
+    <h2>How to Extract Audio from MP4</h2>
     <ol class="how-to-steps">
-      <li>Click the upload area or drag and drop your MP4 video file onto the converter.</li>
-      <li>Click <strong>Convert to MP3</strong>. The tool processes everything inside your browser — nothing is sent to any server.</li>
-      <li>Wait a few seconds while the audio is extracted. A progress bar shows you how far along it is.</li>
-      <li>Click <strong>Download MP3</strong> to save the audio file directly to your device.</li>
+      <li>Open the Audio Extractor page in any modern browser — Chrome, Safari, Firefox, or Edge, on desktop or mobile.</li>
+      <li>Click the upload area, or drag and drop your MP4 file directly onto it. The tool accepts standard MP4 video files, along with M4V and MOV files that use a compatible container.</li>
+      <li>Once your file is loaded, check the file name and size shown above the Extract button to confirm you selected the right video.</li>
+      <li>Click <strong>Extract MP3</strong>. On the first run, the browser downloads a small audio-processing engine (around 31 MB) that powers the conversion — this is cached afterward, so future conversions start instantly.</li>
+      <li>Watch the progress bar as the tool extracts the audio track from your video and encodes it as an MP3 file, entirely inside your browser.</li>
+      <li>When the status changes to "Done," click <strong>Download MP3</strong> to save the extracted audio file to your device.</li>
+      <li>Click <strong>Convert another</strong> if you have more videos to process — there's no limit on how many files you can convert.</li>
     </ol>
+    <p>Extracting audio from MP4 files is useful in more situations than it might seem. Podcasters and content creators use it to pull the spoken track out of a screen recording or interview video, turning it into a shareable MP3 without the extra weight of a video file. Musicians and DJs use it to save a soundtrack or performance clip from a video for offline listening. Students and professionals extract audio from recorded lectures, meetings, or webinars so they can listen back later without needing to replay the entire video. It's also a quick way to convert a video voice memo, a birthday message, or a home movie's audio into a standalone file that's easier to send over text or email, since MP3s are dramatically smaller than video files and play on virtually any device.</p>
 
     <h2>Frequently asked questions</h2>
     <div class="faq-list">
@@ -456,6 +482,7 @@
 
     <h2>More free tools</h2>
     <div class="related-grid">
+      <a href="audio-converter.html" class="related-card"><span class="r-icon">🎧</span><span class="r-title">Audio Converter</span></a>
       <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
       <a href="word-checker.html" class="related-card"><span class="r-icon">📝</span><span class="r-title">Repeated Words Checker</span></a>
       <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
@@ -479,8 +506,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -488,17 +514,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

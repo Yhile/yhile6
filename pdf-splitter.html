@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');if(localStorage.getItem('cookie_consent')==='granted'){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free PDF Splitter — Split PDF Pages Online No Signup | yhile.com</title>
+  <title>Free PDF Splitter — Split PDF Pages Online | yhile.com</title>
   <meta name="description" content="Split a PDF into individual pages or extract a page range — free, no signup, runs in your browser. Download each page as a separate PDF.">
   <meta name="keywords" content="pdf splitter, split pdf online free, split pdf pages, extract pdf pages, pdf page extractor, split pdf no signup, pdf splitter free, separate pdf pages online">
   <meta name="author" content="yhile.com">
@@ -22,7 +21,7 @@
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Free PDF Splitter","url":"https://www.yhile.com/pdf-splitter.html","description":"Split a PDF into pages or extract a page range. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
   </script>
@@ -47,7 +46,9 @@
     .btn:hover{background:#333}
     .btn:disabled{background:#999;cursor:default}
     .prog{font-size:13px;color:#888;text-align:center;margin-top:10px;display:none}
-  </style>
+  
+@media(prefers-color-scheme:dark){.info-bar{background:#1e1e1e!important;color:#ccc!important;}.range-row{color:#bbb!important;}input[type=number]{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.tabs{border-bottom-color:#333!important;}.tab-btn{color:#aaa!important;}.tab-btn.active{color:#fff!important;border-bottom-color:#fff!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -90,6 +91,15 @@
     <button class="btn" id="splitBtn" onclick="doSplit()" disabled>Split PDF</button>
     <div class="prog" id="prog">Splitting...</div>
   </div>
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="pdf-merger.html" class="related-card"><span class="r-icon">📋</span><span class="r-title">PDF Merger</span></a>
+    <a href="pdf-to-image.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">PDF to Image</span></a>
+    <a href="img-compressor.html" class="related-card"><span class="r-icon">🗜️</span><span class="r-title">Image Compressor</span></a>
+    <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -97,9 +107,9 @@
   <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
   <div id="cookie-banner">
     <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
-    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieAccept()">Got it</button><button class="cb-decline" onclick="cookieDecline()">Decline</button></div>
   </div>
-  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>function cookieAccept(){localStorage.setItem('cookie_consent','granted');var b=document.getElementById('cookie-banner');if(b)b.remove();if(!window.gaLoaded){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}}function cookieDecline(){localStorage.setItem('cookie_consent','denied');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
   <script>
     var pdfData=null,pageCount=0,mode='all';
     document.getElementById('pfi').onchange=async function(){

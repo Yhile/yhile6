@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary SEO -->
   <title>yhile.com — Free Online Tools. No Signup. No Data Stored.</title>
-  <meta name="description" content="100% free online tools that run in your browser. No account, no signup, no login, no data stored — ever. Convert images, extract audio from MP4, make collages, convert decimal to binary and hex. Completely free, totally private.">
+  <meta name="description" content="100% free online tools that run in your browser. No account, no signup, no data stored — ever. Convert images, extract audio, make collages and more.">
   <meta name="keywords" content="free online tools, 100% free tools, completely free online tools, free forever, no signup tools, no account needed, no login required, no registration, no email required, free tools no account, private online tools, 100% private, no data stored, no data collection, privacy first tools, anonymous tools, secure online tools, browser based tools, free web utilities, totally free, free no cost, no ads, works in browser, free tools no watermark, free tools without watermark, free tools no download required, best free online tools, useful free tools, free browser tools, free utilities online, free tools for everyone, free everyday tools, mp4 to mp3 free, heic converter free, binary converter free, photo collage free, word checker free, free productivity tools, free developer tools, free creative tools, free file converter, free audio converter, free image tools, free writing tools, no registration required tools, no install tools, instant online tools, fast free tools, simple free tools, private file converter, secure browser tools, free tools 2024, free tools 2025, free tools 2026">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -66,7 +72,7 @@
     "@type": "ItemList",
     "name": "Free Online Tools — yhile.com",
     "url": "https://www.yhile.com/tools.html",
-    "numberOfItems": 21,
+    "numberOfItems":20,
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "MP4 to MP3 Audio Extractor", "url": "https://www.yhile.com/audio-extractor.html" },
       { "@type": "ListItem", "position": 2, "name": "Audio Converter (MP3, WAV, OGG, FLAC)", "url": "https://www.yhile.com/audio-converter.html" },
@@ -87,7 +93,6 @@
       { "@type": "ListItem", "position": 17, "name": "PDF Merger", "url": "https://www.yhile.com/pdf-merger.html" },
       { "@type": "ListItem", "position": 18, "name": "PDF Splitter", "url": "https://www.yhile.com/pdf-splitter.html" },
       { "@type": "ListItem", "position": 19, "name": "PDF to Image", "url": "https://www.yhile.com/pdf-to-image.html" },
-      { "@type": "ListItem", "position": 20, "name": "Background Remover", "url": "https://www.yhile.com/bg-remover.html" },
       { "@type": "ListItem", "position": 21, "name": "Video Compressor", "url": "https://www.yhile.com/video-compressor.html" }
     ]
   }
@@ -509,8 +514,7 @@
   </script>
 
 <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="word-checker.html">Duplicate Word Checker</a> &nbsp;&middot;&nbsp; <a href="audio-extractor.html">Audio Extractor</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -518,17 +522,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

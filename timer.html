@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Free Online Timer &amp; Stopwatch — Countdown Timer No Signup | yhile.com</title>
-  <meta name="description" content="Free online timer and stopwatch — countdown timer, stopwatch with lap times, alarm sound when done. 100% free, no signup, no account, no data stored. Works instantly in your browser. Free forever.">
+  <title>Free Online Timer &amp; Stopwatch — No Signup | yhile.com</title>
+  <meta name="description" content="Free online timer and stopwatch — countdown timer, lap times, alarm sound. 100% free, no signup, no account. Works instantly in your browser.">
   <meta name="keywords" content="online timer, free timer, countdown timer, countdown timer online, countdown timer free, timer online no signup, timer online free, timer online no account, stopwatch online free, stopwatch online, stopwatch no signup, free stopwatch, free countdown timer, interval timer online free, kitchen timer online, egg timer online, timer with alarm, timer with sound, alarm timer online free, countdown clock online free, online clock timer, timer app free, timer no download, timer works in browser, timer no login, timer no registration, timer no email, timer 100% free, timer free forever, stopwatch lap times, lap timer free, lap stopwatch online, free lap timer, stopwatch with laps free, interval training timer free, workout timer free, study timer free, pomodoro timer free, 25 minute timer, 5 minute timer, 10 minute timer, 1 minute timer, 30 minute timer, 1 hour timer, 2 hour timer, timer for kids free, egg timer free, online stopwatch free, digital stopwatch online, countdown to zero, timer that beeps free, timer alarm online, alarm clock online free, timer private timer no ads, best free timer online, timer for students free, timer for cooking free, timer for exercise free, timer for meetings free">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -251,7 +257,9 @@
     .lap-item .lap-num { color: #888; }
     .lap-item .lap-time { font-variant-numeric: tabular-nums; font-weight: 600; }
     .lap-item .lap-split { font-size: 12px; color: #aaa; }
-  </style>
+  
+@media(prefers-color-scheme:dark){.tool-page>p{color:#aaa!important;}input[type=text],input[type=number]{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}label{color:#aaa!important;}.chip{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.lap-item{background:#1a1a1a!important;color:#f0f0f0!important;}.ctrl-btn.secondary{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.ctrl-btn.secondary:hover{background:#2c2c2c!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -599,8 +607,7 @@
   </script>
 
 <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -608,17 +615,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

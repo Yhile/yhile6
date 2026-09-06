@@ -2,18 +2,24 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Free Image Converter — HEIC to PNG, JPG, WEBP Online | yhile.com</title>
-  <meta name="description" content="Convert HEIC to PNG, JPG, WEBP and more — 100% free, no signup, no upload, completely private. Batch convert images in your browser. No account, no login, no data stored ever. Free forever. Supports HEIC, HEIF, PNG, JPEG, WEBP, GIF, BMP, AVIF.">
+  <title>Free Image Converter — HEIC to PNG, JPG, WEBP | yhile.com</title>
+  <meta name="description" content="Convert HEIC to PNG, JPG, WEBP and more — free, no signup, no upload, private. Batch convert images in your browser. Free forever.">
   <meta name="keywords" content="heic to png, heic to jpg, heic converter, convert heic to png, heic to jpeg, heic to webp, heif to jpg, heif converter, heic to png no watermark, heic to jpg no signup, heic to jpg free online, open heic file windows, open heic file online, convert iphone photos to jpg, iphone heic to jpg, ios photo converter, image converter online free, iphone photo converter, webp to png, png to jpg, jpg to png, png to jpeg, jpeg to png, bmp to jpg, tiff to png, gif to jpg, jpg to webp, png to webp, webp to jpg, image format converter, batch image converter, bulk image converter, batch photo converter, convert multiple photos free, convert heic online, heic converter free no signup, free image converter no watermark, photo format changer, online photo converter, compress image free, jpg compressor, webp converter, 100% free image converter, completely free, no upload image converter, private image converter, no account, no login, no registration, no email, 100% private, no data stored, secure image converter, anonymous, free forever, totally free, works in browser">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
@@ -289,7 +295,9 @@
       margin-right: 6px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+  
+@media(prefers-color-scheme:dark){.tool-page>p{color:#aaa!important;}.drop-zone{border-color:#444!important;}.drop-zone p{color:#aaa!important;}.drop-zone:hover,.drop-zone.over{border-color:#888!important;background:#1e1e1e!important;}label{color:#aaa!important;}select{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.file-list li{border-color:#2c2c2c!important;color:#f0f0f0!important;}.prog{color:#aaa!important;}.options-bar{background:#1a1a1a!important;}.opt-group{color:#ddd!important;}.opt-group select{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#444!important;}.thumb{background:#2c2c2c!important;}.ghost-btn{background:#1e1e1e!important;color:#f0f0f0!important;border-color:#444!important;}.result-card{border-color:#2c2c2c!important;}.results-header p{color:#aaa!important;}.drop-zone.dragover{background:#1e1e1e!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -595,6 +603,7 @@
       <a href="word-checker.html" class="related-card"><span class="r-icon">📝</span><span class="r-title">Repeated Words Checker</span></a>
       <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Snapshot Collage</span></a>
       <a href="base-converter.html" class="related-card"><span class="r-icon">🔢</span><span class="r-title">Base Converter</span></a>
+      <a href="video-compressor.html" class="related-card"><span class="r-icon">🎬</span><span class="r-title">Video Compressor</span></a>
     </div>
   </section>
 
@@ -614,8 +623,7 @@
   </script>
 
   <footer>
-  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; All tools provided "as is"
-&nbsp;&middot;&nbsp; MapleV1
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
 
   <!-- Cookie consent -->
@@ -623,17 +631,29 @@
     <p><strong>🍪 This site uses cookies.</strong><br>
     We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
     <div class="cb-btns">
-      <button class="cb-accept" onclick="cookieOk()">Got it</button>
-      <button class="cb-decline" onclick="cookieOk()">Decline</button>
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
     </div>
   </div>
   <script>
-    function cookieOk(){
-      localStorage.setItem('cookie_ok','1');
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }
-    if(localStorage.getItem('cookie_ok')) {
+    if(localStorage.getItem('cookie_consent')) {
       var b=document.getElementById('cookie-banner');
       if(b) b.remove();
     }

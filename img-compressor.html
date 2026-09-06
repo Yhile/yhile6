@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');if(localStorage.getItem('cookie_consent')==='granted'){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Image Compressor — Compress Images Online No Signup | yhile.com</title>
+  <title>Free Image Compressor Online — No Signup | yhile.com</title>
   <meta name="description" content="Compress JPG, PNG and WEBP images free online. Reduce file size without losing quality. No upload, no signup, runs in your browser. Free forever.">
   <meta name="keywords" content="image compressor, compress image online free, reduce image size free, jpg compressor online, png compressor, webp compressor, compress photo online, reduce photo size, image size reducer free">
   <meta name="author" content="yhile.com">
@@ -51,7 +50,9 @@
     .dl:hover{background:#333}
     canvas{display:none}
     .preview{width:100%;border-radius:10px;border:1px solid #eee;margin-bottom:12px;max-height:300px;object-fit:contain}
-  </style>
+  
+@media(prefers-color-scheme:dark){.stat{background:#1a1a1a!important;border-color:#2c2c2c!important;}.stat .val{color:#f0f0f0!important;}.preview{border-color:#333!important;}}
+</style>
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -94,6 +95,7 @@
       <p>Click or drag &amp; drop an image (JPG, PNG, WEBP)</p>
     </div>
     <input type="file" id="fi" accept="image/*">
+    <div class="file-info" id="finfo" style="display:none"></div>
     <canvas id="cv"></canvas>
     <div class="settings">
       <div>
@@ -105,13 +107,12 @@
         <select id="fmt">
           <option value="image/jpeg">JPEG</option>
           <option value="image/webp">WEBP</option>
-          <option value="image/png">PNG (lossless)</option>
         </select>
       </div>
     </div>
     <button class="btn" id="compBtn" onclick="compress()" disabled>Compress Image</button>
     <div class="result" id="result">
-      <img id="preview" class="preview">
+      <img id="preview" class="preview" alt="Compressed image preview">
       <div class="stats">
         <div class="stat"><div class="val" id="origSize">-</div><div class="lbl">Original</div></div>
         <div class="stat"><div class="val" id="newSize">-</div><div class="lbl">Compressed</div></div>
@@ -128,6 +129,15 @@
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">Are my images uploaded to a server?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">No. Compression uses the browser Canvas API. Your images never leave your device.</p></details>
     <details style="border-bottom:1px solid #eee;padding:14px 0"><summary style="font-size:14px;font-weight:600;cursor:pointer;list-style:none">What is the maximum file size I can compress?</summary><p style="font-size:13px;color:#555;line-height:1.7;margin-top:10px">There is no server-side limit. Very large images (over 20 MP) may be slow on mobile devices due to browser memory constraints.</p></details>
   </section>
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="img-upscaler.html" class="related-card"><span class="r-icon">🔍</span><span class="r-title">Image Upscaler</span></a>
+    <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
+    <a href="pdf-to-image.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">PDF to Image</span></a>
+    <a href="qr-generator.html" class="related-card"><span class="r-icon">📱</span><span class="r-title">QR Code Generator</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -135,9 +145,9 @@
   <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
   <div id="cookie-banner">
     <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
-    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieAccept()">Got it</button><button class="cb-decline" onclick="cookieDecline()">Decline</button></div>
   </div>
-  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>function cookieAccept(){localStorage.setItem('cookie_consent','granted');var b=document.getElementById('cookie-banner');if(b)b.remove();if(!window.gaLoaded){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}}function cookieDecline(){localStorage.setItem('cookie_consent','denied');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
   <script>
     var img=null,origBytes=0,outDataUrl='';
     document.getElementById('quality').oninput=function(){document.getElementById('qv').textContent=this.value+'%';};

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4JRNGS3BZR');if(localStorage.getItem('cookie_consent')==='granted'){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Image Upscaler — Enlarge Images Online No Signup | yhile.com</title>
+  <title>Free Image Upscaler — Enlarge Images Online | yhile.com</title>
   <meta name="description" content="Upscale and enlarge images free online — 2x, 4x, 8x. Uses high-quality canvas resampling. No signup, no upload, runs in your browser.">
   <meta name="keywords" content="image upscaler, enlarge image online free, upscale image free, increase image size free, image enlarger online, upscale photo free, image resolution increaser, upscale image no signup, make image bigger free">
   <meta name="author" content="yhile.com">
@@ -45,7 +44,9 @@
     canvas{display:none}
     .dl{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;display:none}
     .dl:hover{background:#333}
-  </style>
+  
+@media(prefers-color-scheme:dark){.stat{background:#1a1a1a!important;border-color:#2c2c2c!important;}.stat .val{color:#f0f0f0!important;}.preview{border-color:#333!important;}}
+</style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
@@ -71,6 +72,7 @@
       <p>Click or drag &amp; drop an image</p>
     </div>
     <input type="file" id="fi" accept="image/*">
+    <div class="file-info" id="finfo" style="display:none;margin-bottom:12px"></div>
     <canvas id="cv"></canvas>
     <div class="opts">
       <label>Scale <select id="scale">
@@ -89,6 +91,15 @@
     <img class="preview" id="preview" alt="Upscaled preview">
     <button class="dl" id="dlBtn" onclick="download()">Download upscaled image</button>
   </div>
+  <section style="max-width:680px;margin:0 auto;padding:0 20px 60px">
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:20px">More free tools</h2>
+    <div class="related-grid">
+    <a href="img-compressor.html" class="related-card"><span class="r-icon">🗜️</span><span class="r-title">Image Compressor</span></a>
+    <a href="img-converter.html" class="related-card"><span class="r-icon">🔄</span><span class="r-title">Image Converter</span></a>
+    <a href="snapshot.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">Photo Collage Maker</span></a>
+    <a href="pdf-to-image.html" class="related-card"><span class="r-icon">📷</span><span class="r-title">PDF to Image</span></a>
+    </div>
+  </section>
   <footer>
     &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; MapleV1
   </footer>
@@ -96,9 +107,9 @@
   <script>(function(){var t=document.getElementById('bm-toast');if(!t)return;setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},4700);})();</script>
   <div id="cookie-banner">
     <p><strong>&#x1F36A; This site uses cookies.</strong><br>We use Google Analytics to understand site traffic. Your files never leave your browser. <a href="privacy-policy.html">Privacy policy</a></p>
-    <div class="cb-btns"><button class="cb-accept" onclick="cookieOk()">Got it</button><button class="cb-decline" onclick="cookieOk()">Decline</button></div>
+    <div class="cb-btns"><button class="cb-accept" onclick="cookieAccept()">Got it</button><button class="cb-decline" onclick="cookieDecline()">Decline</button></div>
   </div>
-  <script>function cookieOk(){localStorage.setItem('cookie_ok','1');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_ok')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
+  <script>function cookieAccept(){localStorage.setItem('cookie_consent','granted');var b=document.getElementById('cookie-banner');if(b)b.remove();if(!window.gaLoaded){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}}function cookieDecline(){localStorage.setItem('cookie_consent','denied');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
   <script>
     var srcImg=null,outUrl='';
     var dz=document.getElementById('dz');
@@ -108,6 +119,8 @@
     document.getElementById('fi').onchange=function(){loadImg(this.files[0]);};
     function loadImg(f){
       if(!f||!f.type.startsWith('image/'))return;
+      var fi=document.getElementById('finfo');
+      if(fi){fi.textContent=f.name+' — '+(f.size/1024).toFixed(0)+' KB';fi.style.display='block';}
       var r=new FileReader();
       r.onload=function(e){srcImg=new Image();srcImg.onload=function(){document.getElementById('upBtn').disabled=false;};srcImg.src=e.target.result;};
       r.readAsDataURL(f);
