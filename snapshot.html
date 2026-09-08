@@ -833,9 +833,27 @@
     }
 
     // ─── Grid layout ──────────────────────────────────────────────────────────
-    function buildGrid(canvasW, margin, useRotation, pStyle, caption) {
+    function buildGrid(canvasW, margin, useRotation, pStyle, caption, targetAspect) {
       const n = images.length;
-      const rowCount = Math.ceil(Math.sqrt(n));
+
+      // FIX: previously this always assumed a roughly square arrangement
+      // (Math.ceil(Math.sqrt(n))) with no regard for the requested aspect
+      // ratio. That meant a 16:9 request first got packed into a near-square
+      // block of photos, which was then squeezed/padded to fit 16:9 by
+      // applyRatio() later — visually looking like a portrait clump of
+      // photos floating in a wide canvas instead of a layout that actually
+      // spreads wide. Now, when a target aspect ratio is known, the row
+      // count is solved for directly so the grid's natural shape already
+      // matches the requested frame, and only minor padding (if any) is
+      // needed afterward.
+      let rowCount;
+      if (targetAspect) {
+        const avgAr = images.reduce((s, e) => s + e.img.width / e.img.height, 0) / n;
+        rowCount = Math.max(1, Math.min(n, Math.round(Math.sqrt(n * avgAr / targetAspect))));
+      } else {
+        rowCount = Math.ceil(Math.sqrt(n));
+      }
+
       const rows = [];
       let idx = 0;
       for (let r = 0; r < rowCount && idx < n; r++) {
@@ -924,8 +942,18 @@
     // Greedy shortest-column packing (classic Pinterest-style algorithm) so
     // photos of any aspect ratio tile cleanly with no leftover gaps and,
     // unlike scatter, never overlap or run off the canvas.
-    function buildMasonry(canvasW, margin, useRotation, pStyle, caption) {
-      const colCount = Math.max(2, Math.round(Math.sqrt(images.length * 1.1)));
+    function buildMasonry(canvasW, margin, useRotation, pStyle, caption, targetAspect) {
+      // FIX: colCount previously ignored the requested aspect ratio entirely
+      // (always Math.sqrt(n * 1.1)), so a 16:9 request produced the same
+      // near-square column count as "auto" — then got squeezed/padded into
+      // a wide frame afterward instead of actually being laid out wide.
+      let colCount;
+      if (targetAspect) {
+        const avgAr = images.reduce((s, e) => s + e.img.width / e.img.height, 0) / images.length;
+        colCount = Math.max(2, Math.round(Math.sqrt(images.length * targetAspect / avgAr)));
+      } else {
+        colCount = Math.max(2, Math.round(Math.sqrt(images.length * 1.1)));
+      }
       const colWidth = (canvasW - (colCount + 1) * margin) / colCount;
       const colHeights = new Array(colCount).fill(margin);
       const colX = i => margin + i * (colWidth + margin);
@@ -1130,14 +1158,20 @@
           const ratio     = parseRatio(aspectEl.value);
 
           const targetH = ratio ? Math.round(canvasW * ratio.h / ratio.w) : null;
+          // FIX: this aspect ratio is now threaded into buildGrid/buildMasonry
+          // so they arrange photos to already fill the requested shape
+          // (e.g. more, shorter rows for 16:9) instead of always defaulting
+          // to a square-ish arrangement that then has to be squeezed and
+          // padded into the target frame after the fact.
+          const targetAspect = ratio ? (ratio.w / ratio.h) : null;
 
           let result;
           if (layout === 'scatter') {
             result = buildScatter(canvasW, targetH, useRot, pStyle, caption);
           } else if (layout === 'masonry') {
-            result = buildMasonry(canvasW, margin, useRot, pStyle, caption);
+            result = buildMasonry(canvasW, margin, useRot, pStyle, caption, targetAspect);
           } else {
-            result = buildGrid(canvasW, margin, useRot, pStyle, caption);
+            result = buildGrid(canvasW, margin, useRot, pStyle, caption, targetAspect);
           }
 
           if (ratio) {
