@@ -81,7 +81,7 @@
       {
         "@type": "Question",
         "name": "What aspect ratios are supported?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Auto (fits your photos), 1:1 (square, for Instagram), 16:9 (YouTube thumbnail, widescreen), 9:16 (phone wallpaper, Instagram Story, TikTok), 4:3 (classic photo), and 4:5 (Instagram portrait)." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Auto (fits your photos), 1:1 (square, for Instagram), 16:9 (YouTube thumbnail, widescreen), 9:16 (phone wallpaper, Instagram Story, TikTok), 4:3 (classic photo), 3:4 (portrait), and 4:5 (Instagram portrait)." }
       },
       {
         "@type": "Question",
@@ -443,7 +443,7 @@
 
   <script>
     // ─── State ───────────────────────────────────────────────────────────────
-    let images = []; // { img (Image or downscaled canvas), name, url (preview src), key }
+    let images = []; // { img (Image or downscaled canvas), name, url (preview src), key, isBlobUrl }
     let isLoading = false;
     let currentBlob = null;
     let currentBlobUrl = null;
@@ -494,6 +494,11 @@
     });
     fileInput.addEventListener('change', e => loadFiles(e.target.files));
     clearAllBtn.addEventListener('click', () => {
+      // BUGFIX: revoke every blob URL still referenced by the current photo
+      // set before wiping the array, otherwise they leak for the page's life.
+      for (const entry of images) {
+        if (entry.isBlobUrl && entry.url) URL.revokeObjectURL(entry.url);
+      }
       images = [];
       renderPreviews();
     });
@@ -507,6 +512,11 @@
     //    repeated photos showing up in the collage)
     //  - large phone photos are downscaled right after decoding, so a batch of
     //    12MP+ photos doesn't blow past mobile Safari/Chrome's memory limits
+    //  - BUGFIX: the object URL for a photo that fails to decode is now
+    //    revoked in the catch block instead of leaking
+    //  - BUGFIX: track whether each entry's preview url is a blob: URL (vs. a
+    //    data: URL from downscaling) so it can be safely revoked later when
+    //    that photo is removed or the whole set is cleared
     async function loadFiles(fileList) {
       if (isLoading) return;
       isLoading = true;
@@ -523,8 +533,9 @@
         const key = `${f.name}_${f.size}_${f.lastModified}`;
         if (images.some(e => e.key === key)) continue; // already added, skip duplicate
 
+        let url = null;
         try {
-          const url = URL.createObjectURL(f);
+          url = URL.createObjectURL(f);
           const rawImg = new Image();
           rawImg.src = url;
           await rawImg.decode();
@@ -532,6 +543,7 @@
           const longest = Math.max(rawImg.width, rawImg.height);
           let drawSource = rawImg;
           let previewUrl = url;
+          let isBlobUrl = true;
 
           if (longest > MAX_SOURCE_DIM) {
             const scale = MAX_SOURCE_DIM / longest;
@@ -541,11 +553,14 @@
             sc.getContext('2d').drawImage(rawImg, 0, 0, sc.width, sc.height);
             drawSource = sc;
             previewUrl = sc.toDataURL('image/jpeg', 0.85);
+            isBlobUrl = false;
             URL.revokeObjectURL(url);
           }
 
-          images.push({ img: drawSource, name: f.name.replace(/\.[^.]+$/, ''), url: previewUrl, key });
+          images.push({ img: drawSource, name: f.name.replace(/\.[^.]+$/, ''), url: previewUrl, key, isBlobUrl });
         } catch (err) {
+          // BUGFIX: previously this object URL was leaked on decode failure.
+          if (url) URL.revokeObjectURL(url);
           failCount++;
           console.warn('Could not load image:', f.name, err);
         }
@@ -566,6 +581,11 @@
 
     function renderPreviews() {
       previewStrip.innerHTML = '';
+
+      // BUGFIX: previously this early return skipped hiding a stale
+      // generated collage, so "Clear all" left the old output visible.
+      outputWrap.classList.remove('visible');
+
       if (!images.length) {
         previewStrip.classList.remove('visible');
         previewActions.style.display = 'none';
@@ -587,7 +607,9 @@
         removeBtn.textContent = '×';
         removeBtn.addEventListener('click', e => {
           e.stopPropagation();
-          images.splice(i, 1);
+          // BUGFIX: revoke this photo's blob URL when it's individually removed.
+          const [removed] = images.splice(i, 1);
+          if (removed && removed.isBlobUrl && removed.url) URL.revokeObjectURL(removed.url);
           renderPreviews();
         });
         thumb.appendChild(imgEl);
@@ -607,7 +629,6 @@
       previewActions.style.display = 'flex';
       controlsEl.style.display = 'grid';
       actionRowEl.style.display = 'flex';
-      outputWrap.classList.remove('visible');
     }
 
     // ─── Shared polaroid-ish bounding-box proportions ──────────────────────────
@@ -855,7 +876,13 @@
         for (const { entry, photoW, photoH, polW } of entries) {
           const entryStyle = styleForEntry(pStyle);
           const pol = makePolaroidCanvas(entry.img, Math.round(photoW), Math.round(photoH), entryStyle, caption, entry.name);
-          const angle = useRotation ? (Math.random() - 0.5) * (Math.PI / 9) : 0; // ±20°
+
+          // BUGFIX: rotation angle is now clamped so the rotated bounding
+          // box never exceeds the cell's own polW/polH footprint — previously
+          // a fixed ±10° rotation could visually intrude into a neighboring
+          // cell's margin regardless of how tight the row spacing was.
+          const maxAngle = useRotation ? maxSafeAngle(polW, polH, margin) : 0;
+          const angle = maxAngle ? (Math.random() - 0.5) * 2 * maxAngle : 0;
 
           ctx.save();
           ctx.translate(x + polW / 2, y + polH / 2);
@@ -877,6 +904,20 @@
       }
 
       return mainCanvas;
+    }
+
+    // Largest rotation angle (radians, capped at 10°) whose rotated bounding
+    // box still fits within polW/polH plus the available margin on each side.
+    function maxSafeAngle(polW, polH, margin) {
+      const capDeg = 10;
+      for (let deg = capDeg; deg >= 0; deg -= 0.5) {
+        const rad = deg * Math.PI / 180;
+        const { hw, hh } = getRotatedHalfExtents(polW, polH, rad);
+        if (hw <= polW / 2 + margin / 2 && hh <= polH / 2 + margin / 2) {
+          return rad;
+        }
+      }
+      return 0;
     }
 
     // ─── Masonry layout ─────────────────────────────────────────────────────
@@ -916,7 +957,10 @@
       for (const p of placements) {
         const entryStyle = styleForEntry(pStyle);
         const pol = makePolaroidCanvas(p.entry.img, Math.round(p.photoW), Math.round(p.photoH), entryStyle, caption, p.entry.name);
-        const angle = useRotation ? (Math.random() - 0.5) * (Math.PI / 60) : 0; // slight tilt only
+
+        // BUGFIX: same clamped-angle approach as grid, using this column's margin.
+        const maxAngle = useRotation ? maxSafeAngle(p.polW, p.polH, margin) : 0;
+        const angle = maxAngle ? (Math.random() - 0.5) * 2 * maxAngle : 0;
 
         ctx.save();
         ctx.translate(p.x + p.polW / 2, p.y + p.polH / 2);
@@ -937,73 +981,92 @@
     }
 
     // ─── Scatter layout ───────────────────────────────────────────────────────
-    // Every photo's rotated bounding box is clamped fully inside the canvas
-    // before it's drawn — nothing can hang off an edge and get cropped
-    // anymore — and a handful of candidate positions are tried per photo so
-    // heavy overlap is reduced instead of pure random placement.
+    // BUGFIX (major): the previous implementation used a fixed canvas height
+    // regardless of photo count, and only tried 25 random positions per photo,
+    // accepting the "best of 25" even when every attempt still overlapped.
+    // With many photos (or a small fixed canvas) this reliably produced
+    // visible overlap. This version instead:
+    //   1) sizes the canvas so there's always enough room for every photo,
+    //   2) assigns each photo its own non-overlapping grid cell,
+    //   3) rotates/jitters each photo only as far as it can go while its
+    //      rotated bounding box stays fully inside its own cell.
+    // This makes overlap structurally impossible instead of merely unlikely.
     function getRotatedHalfExtents(w, h, angle) {
       const cos = Math.abs(Math.cos(angle));
       const sin = Math.abs(Math.sin(angle));
       return { hw: (w * cos + h * sin) / 2, hh: (w * sin + h * cos) / 2 };
     }
 
-    function buildScatter(canvasW, canvasH, useRotation, pStyle, caption) {
+    function buildScatter(canvasW, requestedH, useRotation, pStyle, caption) {
       const n = images.length;
-      const cols = Math.max(2, Math.ceil(Math.sqrt(n * 1.5)));
-      const basePhotoW = (canvasW / cols) * 0.8;
+
+      // BUGFIX: canvas height now scales with photo count when no explicit
+      // aspect ratio was requested, instead of always being canvasW * 0.75.
+      const aspect = requestedH ? canvasW / requestedH : (canvasW / (canvasW * 0.75));
+      const cols = Math.max(1, Math.round(Math.sqrt(n * aspect)));
+      const rows = Math.ceil(n / cols);
+
+      // Estimate a per-cell size from the average photo aspect ratio so cells
+      // are reasonably proportioned, then derive canvas height from that —
+      // unless the caller requested a fixed aspect ratio, in which case that
+      // ratio's height is respected (and the grid still guarantees no overlap
+      // because cell size is derived from the same canvasW/rows/cols).
+      const canvasH = requestedH || Math.round(canvasW * (rows / cols) * 0.9);
+
+      const cellW = canvasW / cols;
+      const cellH = canvasH / rows;
 
       const mainCanvas = document.createElement('canvas');
       mainCanvas.width  = canvasW;
       mainCanvas.height = canvasH;
       const ctx = mainCanvas.getContext('2d');
-
       ctx.fillStyle = bgColorEl.value;
       ctx.fillRect(0, 0, canvasW, canvasH);
 
-      const shuffled = [...images].sort(() => Math.random() - 0.5);
-      const placed = []; // {cx, cy, hw, hh} — used for light overlap avoidance
+      const cells = [];
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          if (cells.length < n) cells.push({ cx: c * cellW + cellW / 2, cy: r * cellH + cellH / 2 });
+        }
+      }
 
-      for (const entry of shuffled) {
-        const ar     = entry.img.width / entry.img.height;
-        const photoW = basePhotoW * (0.8 + Math.random() * 0.4);
+      const shuffled = [...images].sort(() => Math.random() - 0.5);
+      const allowedHw = cellW / 2 * 0.92; // small safety margin so rotated edges never cross into a neighbor
+      const allowedHh = cellH / 2 * 0.92;
+      const polArW = 1 + 2 * SIDE;
+      const polArH = 1 + TOP + BOTTOM;
+
+      shuffled.forEach((entry, i) => {
+        const { cx: baseCx, cy: baseCy } = cells[i];
+        const ar = entry.img.width / entry.img.height;
+        const angle = useRotation ? (Math.random() - 0.5) * (Math.PI / 4) : 0; // up to ±45°
+
+        // Largest photoW whose rotated bounding box still fits the cell's free space.
+        const cos = Math.abs(Math.cos(angle)), sin = Math.abs(Math.sin(angle));
+        const kW = polArW * cos + (polArH / ar) * sin;
+        const kH = polArW * sin + (polArH / ar) * cos;
+        const maxByW = kW > 0 ? (allowedHw * 2) / kW : Infinity;
+        const maxByH = kH > 0 ? (allowedHh * 2) / kH : Infinity;
+        let photoW = Math.min(maxByW, maxByH) * (0.75 + Math.random() * 0.2); // size variety, always safe
+        photoW = Math.max(20, photoW);
         const photoH = photoW / ar;
-        const polW   = photoW * (1 + 2 * SIDE);
-        const polH   = photoH * (1 + TOP + BOTTOM);
+        const polW = photoW * polArW;
+        const polH = photoH * polArH;
 
         const entryStyle = styleForEntry(pStyle);
         const pol = makePolaroidCanvas(entry.img, Math.round(photoW), Math.round(photoH), entryStyle, caption, entry.name);
 
-        let best = null;
-        for (let attempt = 0; attempt < 25; attempt++) {
-          const angle = useRotation ? (Math.random() - 0.5) * (Math.PI / 4) : 0; // ±45°
-          const { hw, hh } = getRotatedHalfExtents(polW, polH, angle);
-
-          // if a single photo is bigger than the canvas, shrink the clamp
-          // extents so it still gets placed (centered) rather than failing
-          const clampHw = Math.min(hw, canvasW / 2);
-          const clampHh = Math.min(hh, canvasH / 2);
-
-          const cx = clampHw + Math.random() * Math.max(1, canvasW - clampHw * 2);
-          const cy = clampHh + Math.random() * Math.max(1, canvasH - clampHh * 2);
-
-          let overlap = 0;
-          for (const p of placed) {
-            const dist = Math.hypot(cx - p.cx, cy - p.cy);
-            const minDist = (hw + hh) / 2 * 0.55 + (p.hw + p.hh) / 2 * 0.55;
-            overlap += Math.max(0, minDist - dist);
-          }
-
-          if (!best || overlap < best.overlap) {
-            best = { cx, cy, angle, hw, hh, overlap };
-            if (overlap === 0) break;
-          }
-        }
-
-        placed.push({ cx: best.cx, cy: best.cy, hw: best.hw, hh: best.hh });
+        // Jitter within whatever slack remains in the cell — never enough to
+        // push the rotated box past the cell boundary.
+        const { hw, hh } = getRotatedHalfExtents(polW, polH, angle);
+        const slackX = Math.max(0, allowedHw - hw);
+        const slackY = Math.max(0, allowedHh - hh);
+        const cx = baseCx + (Math.random() - 0.5) * 2 * slackX;
+        const cy = baseCy + (Math.random() - 0.5) * 2 * slackY;
 
         ctx.save();
-        ctx.translate(best.cx, best.cy);
-        ctx.rotate(best.angle);
+        ctx.translate(cx, cy);
+        ctx.rotate(angle);
 
         if (shadowNeeded(entryStyle)) {
           ctx.shadowColor   = 'rgba(0,0,0,0.4)';
@@ -1014,7 +1077,7 @@
 
         ctx.drawImage(pol, -polW / 2, -polH / 2, polW, polH);
         ctx.restore();
-      }
+      });
 
       return mainCanvas;
     }
@@ -1070,8 +1133,7 @@
 
           let result;
           if (layout === 'scatter') {
-            const scatterH = targetH || Math.round(canvasW * 0.75);
-            result = buildScatter(canvasW, scatterH, useRot, pStyle, caption);
+            result = buildScatter(canvasW, targetH, useRot, pStyle, caption);
           } else if (layout === 'masonry') {
             result = buildMasonry(canvasW, margin, useRot, pStyle, caption);
           } else {
@@ -1133,10 +1195,10 @@
   <section class="info-section">
     <h2>How to make a photo collage — step by step</h2>
     <ol class="how-to-steps">
-      <li>Click the upload area or drag and drop your photos. Select multiple images at once — JPG, PNG, HEIC, WEBP, and more are all supported.</li>
+      <li>Click the upload area or drag and drop your photos. Select multiple images at once — most common formats like JPG, PNG, and WEBP are supported; HEIC support depends on your browser.</li>
       <li>Choose a <strong>Layout</strong>: Grid places photos in a neat horizontal strip; Scatter places them randomly with slight rotations for a natural look; Masonry packs them into tight, gapless columns like a Pinterest board.</li>
       <li>Choose a <strong>Style</strong>: Classic (white border + shadow), Flat, Worn (vintage), Framed, Torn edge, Film strip, Neon glow, or Mix &amp; Match — which puts a different random style on every photo.</li>
-      <li>Pick an <strong>Aspect Ratio</strong>: Auto fits your photos; 1:1 for Instagram square; 16:9 for YouTube thumbnails; 9:16 for phone wallpapers and Stories; 4:3 or 4:5 for portraits.</li>
+      <li>Pick an <strong>Aspect Ratio</strong>: Auto fits your photos; 1:1 for Instagram square; 16:9 for YouTube thumbnails; 9:16 for phone wallpapers and Stories; 4:3, 3:4, or 4:5 for portraits/landscapes.</li>
       <li>Click <strong>Make Collage</strong>. Everything is processed in your browser — no upload. Then download it, or on your phone, share it straight to Photos or any app.</li>
     </ol>
 
@@ -1148,7 +1210,7 @@
       </details>
       <details>
         <summary>What aspect ratios are available?</summary>
-        <div class="faq-body">Auto (fits your photos automatically), 1:1 (square — perfect for Instagram grid posts), 16:9 (YouTube thumbnails and widescreen), 9:16 (phone wallpaper, Instagram Story, TikTok vertical), 4:3 (classic photo ratio), and 4:5 (Instagram portrait posts).</div>
+        <div class="faq-body">Auto (fits your photos automatically), 1:1 (square — perfect for Instagram grid posts), 16:9 (YouTube thumbnails and widescreen), 9:16 (phone wallpaper, Instagram Story, TikTok vertical), 4:3 (classic photo ratio), 3:4 (portrait), and 4:5 (Instagram portrait posts).</div>
       </details>
       <details>
         <summary>What are the different styles?</summary>
