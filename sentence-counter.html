@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sentence Counter – Count Sentences, Words &amp; Characters Free</title>
+  <meta name="description" content="Free sentence counter: paste text to count sentences, words, characters, paragraphs and average sentence length. Runs in your browser, nothing is uploaded.">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/sentence-counter.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/sentence-counter.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Sentence Counter – Count Sentences &amp; Words Free">
+  <meta property="og:description" content="Count sentences, words, characters and paragraphs. Free, private, no signup.">
+  <meta property="og:image" content="https://www.yhile.com/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.yhile.com/og-image.png">
+  <meta name="twitter:title" content="Sentence Counter – Count Sentences &amp; Words Free">
+  <meta name="twitter:description" content="Count sentences, words, characters and paragraphs. Free, private, no signup.">
+
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sentence Counter",
+    "url": "https://www.yhile.com/sentence-counter.html",
+    "description": "Free online sentence counter. Counts sentences, words, characters, paragraphs and average sentence length. Runs in your browser.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://www.yhile.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the sentence counter count sentences?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It counts text that ends with a period, question mark or exclamation mark. Common abbreviations like Mr., Dr., e.g. and decimals like 3.5 are not counted as sentence endings." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Counting happens in your browser and your text never leaves your device." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .tool-page { max-width: 760px; margin: 0 auto; padding: 60px 24px; }
+    .tool-page h1 { font-size: 32px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
+    .tool-page > p { color: #666; font-size: 15px; margin-bottom: 24px; }
+    #input { width: 100%; min-height: 220px; padding: 14px; font: inherit; font-size: 15px; border: 1px solid #e5e5e5; border-radius: 8px; background: transparent; color: inherit; resize: vertical; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 16px; }
+    .stat { border: 1px solid #e5e5e5; border-radius: 8px; padding: 16px; }
+    .stat .num { font-size: 28px; font-weight: 700; }
+    .stat .label { font-size: 12px; color: #777; margin-top: 2px; }
+    .ghost-btn { margin-top: 12px; padding: 8px 16px; border: 1px solid #e5e5e5; border-radius: 6px; background: transparent; color: inherit; cursor: pointer; font: inherit; font-size: 14px; }
+    .faq { margin-top: 40px; }
+    .faq h2 { font-size: 20px; margin-bottom: 12px; }
+    .faq h3 { font-size: 15px; margin: 16px 0 4px; }
+    .faq p { font-size: 14px; color: #666; }
+    @media(prefers-color-scheme:dark){
+      .tool-page>p,.faq p,.stat .label{color:#aaa!important;}
+      #input,.stat,.ghost-btn{border-color:#2c2c2c!important;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" class="active">Tools</a>
+      <a href="extensions.html">Extensions</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <main>
+
+  <div class="tool-page">
+    <h1>Sentence Counter</h1>
+    <p>Paste your text to count sentences, words, characters and paragraphs. Free, private, and nothing is uploaded.</p>
+
+    <textarea id="input" placeholder="Paste or type your text here…" aria-label="Text to count"></textarea>
+    <button class="ghost-btn" id="clear-btn" type="button">Clear</button>
+
+    <div class="stats">
+      <div class="stat"><div class="num" id="s-sent">0</div><div class="label">Sentences</div></div>
+      <div class="stat"><div class="num" id="s-words">0</div><div class="label">Words</div></div>
+      <div class="stat"><div class="num" id="s-chars">0</div><div class="label">Characters</div></div>
+      <div class="stat"><div class="num" id="s-nospace">0</div><div class="label">Characters (no spaces)</div></div>
+      <div class="stat"><div class="num" id="s-para">0</div><div class="label">Paragraphs</div></div>
+      <div class="stat"><div class="num" id="s-avg">0</div><div class="label">Words per sentence</div></div>
+    </div>
+
+    <section class="faq">
+      <h2>FAQ</h2>
+      <h3>How does the sentence counter count sentences?</h3>
+      <p>It counts text that ends with a period, question mark or exclamation mark. Common abbreviations like Mr., Dr., e.g. and decimals like 3.5 are not counted as sentence endings.</p>
+      <h3>Is my text uploaded anywhere?</h3>
+      <p>No. Counting happens in your browser and your text never leaves your device.</p>
+    </section>
+  </div>
+  </main>
+
+  <script>
+    var input = document.getElementById('input');
+    var ABBR = /\b(?:Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|vs|etc|e\.g|i\.e|U\.S|No)\.$/i;
+    function countSentences(text) {
+      var t = text.replace(/\d\.\d/g, function (m) { return m.replace('.', '\u0001'); });
+      var parts = t.match(/[^.!?]*[.!?]+["')\]]*(?:\s+|$)|[^.!?]+$/g) || [];
+      var count = 0, buf = '';
+      for (var i = 0; i < parts.length; i++) {
+        buf += parts[i];
+        var trimmed = buf.trim();
+        if (!trimmed) { buf = ''; continue; }
+        if (ABBR.test(trimmed) && i < parts.length - 1) continue;
+        if (/[A-Za-z0-9]/.test(trimmed)) count++;
+        buf = '';
+      }
+      if (buf.trim() && /[A-Za-z0-9]/.test(buf)) count++;
+      return count;
+    }
+    function update() {
+      var text = input.value;
+      var words = (text.match(/\S+/g) || []).length;
+      var sent = countSentences(text);
+      var paras = text.split(/\n\s*\n/).filter(function (p) { return p.trim(); }).length;
+      document.getElementById('s-sent').textContent = sent;
+      document.getElementById('s-words').textContent = words;
+      document.getElementById('s-chars').textContent = text.length;
+      document.getElementById('s-nospace').textContent = text.replace(/\s/g, '').length;
+      document.getElementById('s-para').textContent = paras;
+      document.getElementById('s-avg').textContent = sent ? (words / sent).toFixed(1) : '0';
+    }
+    input.addEventListener('input', update);
+    document.getElementById('clear-btn').addEventListener('click', function () { input.value = ''; update(); input.focus(); });
+  </script>
+
+  <footer>
+  &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_consent')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>
