@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free Chrome Extensions — yhile.com</title>
+  <meta name="description" content="Free Chrome extensions from yhile.com. No account, no tracking, no ads. Your data stays in your browser.">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/extensions.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/extensions.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:image" content="https://www.yhile.com/og-image.png">
+  <meta property="og:title" content="Free Chrome Extensions — yhile.com">
+  <meta property="og:description" content="Free Chrome extensions. No account, no tracking, no ads.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.yhile.com/og-image.png">
+  <meta name="twitter:title" content="Free Chrome Extensions — yhile.com">
+  <meta name="twitter:description" content="Free Chrome extensions. No account, no tracking, no ads.">
+
+    <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Free Chrome Extensions — yhile.com",
+    "url": "https://www.yhile.com/extensions.html",
+    "description": "Free Chrome extensions from yhile.com: HomeworkX homework reminders with Canvas import.",
+    "isPartOf": { "@type": "WebSite", "name": "yhile.com", "url": "https://www.yhile.com/" }
+  }
+  </script>
+  <style>
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .page h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .page > p {
+      color: #666;
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .tool-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      display: block;
+    }
+
+    .tool-card:hover {
+      border-color: #000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    .tool-card .icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .tool-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .tool-card p {
+      font-size: 13px;
+      color: #777;
+    }
+    @media(prefers-color-scheme:dark){
+      .page>p{color:#aaa!important;}
+      .tool-card{border-color:#2c2c2c!important;background:#1a1a1a!important;}
+      .tool-card:hover{border-color:#fff!important;box-shadow:0 2px 12px rgba(0,0,0,0.4)!important;}
+      .tool-card p{color:#999!important;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html" >Tools</a>
+      <a href="extensions.html" class="active">Extensions</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <main>
+
+  <div class="page">
+    <h1>Web extensions</h1>
+    <p>Free Chrome extensions. No account, no tracking, no ads.</p>
+    <div class="grid">
+      <a href="homeworkx.html" class="tool-card">
+        <div class="icon">&#x1F4DA;</div>
+        <h3>HomeworkX</h3>
+        <p>Homework reminders in your browser. Type it in one line, or import from Canvas. No account.</p>
+      </a>
+    </div>
+  </div>
+  </main>
+
+  <!-- Bookmark toast -->
+  <div id="bm-toast">
+    🔖 Bookmark this for quick access!
+    <button class="bm-close" onclick="this.parentElement.remove()" aria-label="Dismiss">✕</button>
+  </div>
+  <script>
+    (function(){
+      var t = document.getElementById('bm-toast');
+      if (!t) return;
+      // Remove from DOM after animation finishes (~4.7s)
+      setTimeout(function(){ if(t.parentNode) t.parentNode.removeChild(t); }, 4700);
+    })();
+  </script>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_consent')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>
