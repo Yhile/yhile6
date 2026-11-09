@@ -6,22 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free PDF to Image Converter Online | yhile.com</title>
   <meta name="description" content="Convert PDF pages to PNG or JPG images free online. No signup, no upload. Runs in your browser. Download each page as an image instantly.">
-  <meta name="keywords" content="pdf to image, pdf to png, pdf to jpg, convert pdf to image online free, pdf page to image, pdf to jpeg free, pdf to png free, pdf image extractor free, pdf to image no signup">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.yhile.com/pdf-to-image.html">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.yhile.com/pdf-to-image.html">
   <meta property="og:site_name" content="yhile.com">
+  <meta property="og:image" content="https://www.yhile.com/logo.png">
   <meta property="og:title" content="Free PDF to Image Converter — PDF to PNG/JPG | yhile.com">
   <meta property="og:description" content="Convert PDF pages to PNG or JPG images free online. No upload, no signup. Runs in your browser.">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://www.yhile.com/logo.png">
   <meta name="twitter:title" content="Free PDF to Image Converter Online">
   <meta name="twitter:description" content="Convert PDF pages to PNG or JPG. Free, no upload, no signup, instant download.">
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="lib/pdfjs/pdf.min.js"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Free PDF to Image Converter","url":"https://www.yhile.com/pdf-to-image.html","description":"Convert PDF pages to PNG or JPG images. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
   </script>
@@ -103,7 +104,7 @@
   </div>
   <script>function cookieAccept(){localStorage.setItem('cookie_consent','granted');var b=document.getElementById('cookie-banner');if(b)b.remove();if(!window.gaLoaded){var gaScript=document.createElement('script');gaScript.async=true;gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';document.head.appendChild(gaScript);window.gaLoaded=true;}}function cookieDecline(){localStorage.setItem('cookie_consent','denied');var b=document.getElementById('cookie-banner');if(b)b.remove();}if(localStorage.getItem('cookie_consent')){var b=document.getElementById('cookie-banner');if(b)b.remove();}</script>
   <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc='lib/pdfjs/pdf.worker.min.js';
     var pdfFile=null;
     document.getElementById('pfi').onchange=function(){pdfFile=this.files[0];document.getElementById('convBtn').disabled=!pdfFile;if(pdfFile){var fi=document.getElementById('finfo');if(fi){fi.textContent=pdfFile.name+' — '+(pdfFile.size/1024).toFixed(0)+' KB';fi.style.display='block';}}};
     async function convert(){

@@ -2,17 +2,36 @@
 
 > Free, 100% client-side browser tools. No signup, no account, no data upload — every tool runs entirely in the user's browser and nothing is ever sent to a server.
 
-yhile.com is a solo-built collection of free web utilities covering file conversion, audio, images, text, and productivity. All processing happens locally in-browser (Canvas API, WebAssembly/ffmpeg.wasm); no files or text are ever uploaded or stored. No ads, no paywalls, no premium tier — free forever.
+yhile.com is a solo-built collection of free web utilities covering file conversion, audio, images, PDFs, text, and productivity. All processing happens locally in-browser (Canvas API, WebAssembly/ffmpeg.wasm); no files or text are ever uploaded or stored. No ads, no paywalls, no premium tier — free forever.
 
-## Tools
+## Audio and video
 
 - [Audio Extractor (MP4 to MP3)](https://www.yhile.com/audio-extractor.html): Extract audio from any MP4 video and download it as MP3, entirely in-browser.
 - [Audio Converter](https://www.yhile.com/audio-converter.html): Convert between MP3, WAV, OGG, FLAC, M4A, AAC, OPUS, AIFF, WEBM and more.
+- [Video Compressor](https://www.yhile.com/video-compressor.html): Shrink video file size in the browser.
+- [Text to Speech](https://www.yhile.com/text-to-speech.html): Turn text into spoken audio using the browser's built-in voices.
+
+## Images
+
 - [Image Converter](https://www.yhile.com/img-converter.html): Batch convert HEIC, PNG, JPEG, WEBP, GIF and more; download as ZIP.
+- [Image Compressor](https://www.yhile.com/img-compressor.html): Reduce image file size.
+- [Image Upscaler](https://www.yhile.com/img-upscaler.html): Enlarge images in the browser.
 - [Image to Base64](https://www.yhile.com/img-to-base64.html): Convert an image to a Base64 string or data URL, and decode Base64 back to an image.
 - [Snapshot Collage Maker](https://www.yhile.com/snapshot.html): Create grid or scatter photo collages with classic or vintage styles and custom aspect ratios.
+- [Color Picker](https://www.yhile.com/color-picker.html): Pick and convert colors between formats.
+- [QR Code Generator](https://www.yhile.com/qr-generator.html): Create QR codes for links and text.
+
+## PDF
+
+- [PDF Merger](https://www.yhile.com/pdf-merger.html): Combine several PDFs into one.
+- [PDF Splitter](https://www.yhile.com/pdf-splitter.html): Split a PDF into separate files or page ranges.
+- [PDF to Image](https://www.yhile.com/pdf-to-image.html): Convert PDF pages to images.
+
+## Text and utilities
+
+- [Duplicate Word Checker](https://www.yhile.com/word-checker.html): Paste text to find repeated words and double words (like "the the"), with word frequency counts.
 - [Base Converter](https://www.yhile.com/base-converter.html): Convert decimal, binary, hex, and text between each other live and bidirectionally.
-- [Repeated Words Checker](https://www.yhile.com/word-checker.html): Paste text to find and highlight overused/repeated words, with word frequency counts.
+- [JSON Formatter](https://www.yhile.com/json-formatter.html): Format, validate, and minify JSON.
 - [Calculator](https://www.yhile.com/calculator.html): Scientific calculator with trig, log, sqrt, pi, and calculation history.
 - [Timer & Stopwatch](https://www.yhile.com/timer.html): Countdown timer with alarm plus a stopwatch with lap times.
 - [Disk Changer](https://www.yhile.com/diskchanger.html): Swap and manage Minecraft Bedrock music disk images.

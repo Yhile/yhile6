@@ -6,22 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free PDF Merger — Combine PDF Files Online | yhile.com</title>
   <meta name="description" content="Merge multiple PDF files into one — free, no signup, no upload. Runs entirely in your browser. Download the combined PDF instantly.">
-  <meta name="keywords" content="pdf merger, merge pdf online free, combine pdf free, join pdf files online, merge pdf no signup, pdf combiner free, merge pdf files free, pdf joiner online free">
   <meta name="author" content="yhile.com">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.yhile.com/pdf-merger.html">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.yhile.com/pdf-merger.html">
   <meta property="og:site_name" content="yhile.com">
+  <meta property="og:image" content="https://www.yhile.com/logo.png">
   <meta property="og:title" content="Free PDF Merger — Combine PDFs Online | yhile.com">
   <meta property="og:description" content="Merge multiple PDF files into one free online. No upload, no signup. Runs in your browser.">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://www.yhile.com/logo.png">
   <meta name="twitter:title" content="Free PDF Merger Online — No Signup">
   <meta name="twitter:description" content="Combine multiple PDFs into one. Free, no upload, no signup, instant download.">
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="lib/pdflib/pdf-lib.min.js"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Free PDF Merger","url":"https://www.yhile.com/pdf-merger.html","description":"Merge multiple PDF files into one. Free, no signup, runs in browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isPartOf":{"@type":"WebSite","name":"yhile.com","url":"https://www.yhile.com/"}}
   </script>
@@ -128,7 +129,18 @@
       var ul=document.getElementById('flist');ul.innerHTML='';
       files.forEach(function(f,i){
         var li=document.createElement('li');
-        li.innerHTML='<span>'+f.name+' <small style="color:#aaa">('+( f.size/1024).toFixed(0)+' KB)</small></span><button onclick="removeFile('+i+')" title="Remove">&#x2715;</button>';
+        var nameEl=document.createElement('span');
+        nameEl.textContent=f.name+' ';
+        var sizeEl=document.createElement('small');
+        sizeEl.style.color='#aaa';
+        sizeEl.textContent='('+(f.size/1024).toFixed(0)+' KB)';
+        nameEl.appendChild(sizeEl);
+        var rmBtn=document.createElement('button');
+        rmBtn.title='Remove';
+        rmBtn.innerHTML='&#x2715;';
+        rmBtn.onclick=function(){removeFile(i);};
+        li.appendChild(nameEl);
+        li.appendChild(rmBtn);
         ul.appendChild(li);
       });
       document.getElementById('mergeBtn').disabled=files.length<2;
