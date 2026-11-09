@@ -35,6 +35,7 @@ yhile.com is a solo-built collection of free web utilities covering file convers
 - [Calculator](https://www.yhile.com/calculator.html): Scientific calculator with trig, log, sqrt, pi, and calculation history.
 - [Timer & Stopwatch](https://www.yhile.com/timer.html): Countdown timer with alarm plus a stopwatch with lap times.
 - [Disk Changer](https://www.yhile.com/diskchanger.html): Swap and manage Minecraft Bedrock music disk images.
+- [HomeworkX](https://www.yhile.com/homeworkx.html): Free Chrome extension for homework reminders. Type assignments in one line or import from Canvas. Stored only in the browser.
 
 ## Site
 
