@@ -1,8 +1,8 @@
 # yhile.com
 
-> Free, 100% client-side browser tools. No signup, no account, no data upload — every tool runs entirely in the user's browser and nothing is ever sent to a server.
+> A global collection of free tools: browser tools with no signup, a web scraping API at crawl.yhile.com, and open-source AI models at ai.yhile.com. The browser tools run entirely in the user's browser and nothing is sent to a server.
 
-yhile.com is a solo-built collection of free web utilities covering file conversion, audio, images, PDFs, text, and productivity. All processing happens locally in-browser (Canvas API, WebAssembly/ffmpeg.wasm); no files or text are ever uploaded or stored. No ads, no paywalls, no premium tier — free forever.
+yhile.com is a solo-built collection of free web utilities covering file conversion, audio, images, PDFs, text, and productivity. The browser tools process everything locally (Canvas API, WebAssembly/ffmpeg.wasm); no files or text are uploaded or stored. No ads, no paywalls, no premium tier. The site also links to a scraping API and AI models, listed under More from yhile.
 
 ## Audio and video
 
@@ -39,10 +39,15 @@ yhile.com is a solo-built collection of free web utilities covering file convers
 - [Extensions page](https://www.yhile.com/extensions.html): Free Chrome extensions from yhile.com.
 - [HomeworkX](https://www.yhile.com/homeworkx.html): Free Chrome extension for homework reminders. Type assignments in one line or import from Canvas. Stored only in the browser.
 
+## More from yhile
+
+- [crawl.yhile.com](https://crawl.yhile.com/): A cheap web scraping API. Send a URL, get clean text and links as JSON or CSV. Free during the beta; needs a free account for an API key.
+- [ai.yhile.com](https://ai.yhile.com/): Free, open-source AI models, like spam and toxic text classifiers.
+
 ## Site
 
 - [Tools index](https://www.yhile.com/tools.html): Full list of all available tools.
-- [About](https://www.yhile.com/about.html): Background on yhile.com and its no-signup, no-data-stored approach.
+- [About](https://www.yhile.com/about.html): Background on yhile.com and its tools, API and AI models.
 - [Contact](https://www.yhile.com/contact.html): Suggest a tool, report a bug, or get in touch.
 
 ## Optional
