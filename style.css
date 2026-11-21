@@ -378,7 +378,7 @@ button, a, input, select, textarea, summary {
 
   nav .logo { font-size: 17px; }
 
-  nav .nav-links { gap: 16px; }
+  nav .nav-links { gap: 6px 12px; flex-wrap: wrap; }
 
   nav a { font-size: 13px; }
 }
