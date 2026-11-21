@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4JRNGS3BZR');
+    if (localStorage.getItem('cookie_consent') === 'granted') {
+      var gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+      document.head.appendChild(gaScript);
+      window.gaLoaded = true;
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Longshot – Free Multiplayer Party Game in Your Browser</title>
+  <meta name="description" content="Longshot is a free browser party game where the rarest answer wins. Play with friends in a private room, join a public room, or play solo vs bots. No download, no account.">
+  <meta name="author" content="yhile.com">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yhile.com/longshot.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yhile.com/longshot.html">
+  <meta property="og:site_name" content="yhile.com">
+  <meta property="og:title" content="Longshot – say what nobody else would">
+  <meta property="og:description" content="Free multiplayer party game in your browser. The rarest answer wins. No download, no account.">
+  <meta property="og:image" content="https://www.yhile.com/images/longshot/og.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Longshot – say what nobody else would">
+  <meta name="twitter:description" content="Free multiplayer party game in your browser. The rarest answer wins.">
+  <meta name="twitter:image" content="https://www.yhile.com/images/longshot/og.png">
+
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ls { max-width: 960px; margin: 0 auto; padding: 48px 24px 40px; --mustard: #E1AD01; --cream: #FFF4CF; --ink: #2B1D0E; }
+    .ls-hero { background: var(--mustard); border-radius: 18px; padding: 44px 24px 36px; text-align: center; }
+    .ls-hero img.logo { width: min(520px, 90%); height: auto; }
+    .ls-hero p { max-width: 560px; margin: 14px auto 24px; font-size: 17px; line-height: 1.6; color: var(--ink); }
+    .ls-btn { display: inline-block; background: var(--ink); color: var(--cream); font-weight: 700; font-size: 16px; padding: 13px 30px; border-radius: 999px; text-decoration: none; box-shadow: 0 4px 0 rgba(0,0,0,0.25); }
+    .ls-btn:hover { opacity: 0.9; }
+    .ls-note { display: block; margin-top: 12px; font-size: 13px; color: var(--ink); opacity: 0.8; }
+    .ls h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; line-height: 1.25; }
+    .ls-videos { padding: 40px 0 8px; text-align: center; }
+    .ls-videos > p { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; }
+    .ls-vids { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .ls-vids figure { margin: 0; width: 280px; }
+    .ls-vids video { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 14px; background: var(--ink); display: block; }
+    .ls-vids figcaption { font-size: 13px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+    .ls-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; padding: 36px 0; border-top: 1px solid var(--border-faint); }
+    .ls-feature.flip .ls-text { order: 2; }
+    .ls-feature p { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
+    .ls-shot { background: var(--mustard); border-radius: 16px; padding: 24px; text-align: center; }
+    .ls-shot img { width: 100%; max-width: 270px; height: auto; border-radius: 14px; border: 3px solid var(--ink); display: inline-block; vertical-align: top; }
+    .ls-wide img { max-width: 100%; border-radius: 10px; border-width: 2px; }
+    .ls-modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 14px; }
+    .ls-modes div { border: 1px solid var(--border); border-radius: 10px; padding: 18px; background: var(--card-bg); }
+    .ls-modes h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .ls-modes p { font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+    .ls-cta { text-align: center; padding: 40px 0 8px; border-top: 1px solid var(--border-faint); margin-top: 12px; }
+    .ls-cta p { color: var(--text-muted); margin-bottom: 18px; }
+    .ls-cta .ls-btn { background: var(--mustard); color: var(--ink); }
+    .ls-more { margin-top: 28px; text-align: center; font-size: 14px; color: var(--text-muted); }
+    .ls-more a { color: var(--text); font-weight: 600; }
+    @media (max-width: 720px) {
+      .ls { padding: 24px 16px 24px; }
+      .ls-feature, .ls-feature.flip { grid-template-columns: 1fr; gap: 18px; }
+      .ls-feature.flip .ls-text { order: 0; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["VideoGame", "WebApplication"],
+    "name": "Longshot",
+    "url": "https://longshot.yhile.com/",
+    "sameAs": "https://www.yhile.com/longshot.html",
+    "image": "https://www.yhile.com/images/longshot/og.png",
+    "description": "A free multiplayer party game you play in your browser. Name the answer nobody else thinks of, vote on the funniest fill-in-the-blanks, and top the leaderboard.",
+    "genre": ["Party game", "Trivia", "Word game"],
+    "gamePlatform": "Web browser",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "playMode": ["MultiPlayer", "SinglePlayer"],
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "yhile.com", "url": "https://www.yhile.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.yhile.com/"},
+    {"@type":"ListItem","position":2,"name":"Entertainment","item":"https://www.yhile.com/entertainment.html"},
+    {"@type":"ListItem","position":3,"name":"Longshot","item":"https://www.yhile.com/longshot.html"}
+  ]}
+  </script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">yhile.com</a>
+    <div class="nav-links">
+      <a href="tools.html">Tools</a>
+      <a href="extensions.html">Extensions</a>
+      <a href="entertainment.html" class="active">Entertainment</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="ls">
+      <header class="ls-hero">
+        <h1 style="margin:0"><img class="logo" src="images/longshot/logo.png" width="626" height="128" alt="Longshot"></h1>
+        <p>The party game where the rarest answer wins. Name something nobody else would, vote on the funniest fill-in-the-blanks, and top the leaderboard.</p>
+        <a class="ls-btn" href="https://longshot.yhile.com/">Play Longshot</a>
+        <span class="ls-note">Free. No download. No account.</span>
+      </header>
+
+      <section class="ls-videos">
+        <h2>Watch</h2>
+        <p>A short animated trailer. The screenshots further down are from the real game.</p>
+        <div class="ls-vids">
+          <figure>
+            <video controls playsinline preload="none" poster="images/longshot/trailer-answers-poster.jpg" width="720" height="1280">
+              <source src="images/longshot/trailer-answers.mp4" type="video/mp4">
+            </video>
+            <figcaption>The longshot answers</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="ls-feature">
+        <div class="ls-text"><h2>Say what nobody else would</h2><p>Each question asks you to name something: a fruit, a dinosaur, a board game. Everyone answers at the same time, and the rarer your answer, the more points you get. Typos are fine, and the answer lists are checked so made-up answers don't count.</p></div>
+        <div class="ls-shot"><img src="images/longshot/question.jpg" width="600" height="1298" alt="A Longshot question: Name a fruit, with the answer jujube typed in" loading="lazy"></div>
+      </section>
+      <section class="ls-feature flip">
+        <div class="ls-text"><h2>The rarer, the better</h2><p>Answers are revealed one by one with how many players say them. Say apple and you get a few points, and half that if someone else said it too. Say jujube and you take 100.</p></div>
+        <div class="ls-shot"><img src="images/longshot/reveal.jpg" width="600" height="1298" alt="Longshot answer reveal showing jujube and dragonfruit worth 100 points each" loading="lazy"></div>
+      </section>
+      <section class="ls-feature">
+        <div class="ls-text"><h2>Then it gets funny</h2><p>Some rounds are fill-in-the-blanks. Everyone writes the funniest answer they can, then votes for their favorite. Every fifth round is a chaos round worth double points.</p></div>
+        <div class="ls-shot"><img src="images/longshot/vote.jpg" width="600" height="1298" alt="Voting on the most cursed fill-in-the-blank answer in Longshot" loading="lazy"></div>
+      </section>
+      <section class="ls-feature flip">
+        <div class="ls-text"><h2>15 questions, one winner</h2><p>After 15 questions the leaderboard shows who won, with awards like One of a Kind and Biggest NPC.</p></div>
+        <div class="ls-shot"><img src="images/longshot/leaderboard.jpg" width="600" height="1298" alt="Longshot leaderboard with a podium" loading="lazy"></div>
+      </section>
+
+      <section class="ls-feature">
+        <div class="ls-text">
+          <h2>Play your way</h2>
+          <div class="ls-modes">
+            <div><h3>Quick play</h3><p>Jump into a public room with up to 10 players. Games start on their own once a few people are in.</p></div>
+            <div><h3>Private room</h3><p>Send a link to your friends. Up to 16 players, and everyone picks their own name.</p></div>
+            <div><h3>Solo vs bots</h3><p>No one around? Play against bots that answer like real people. Solo games are all naming rounds.</p></div>
+          </div>
+        </div>
+        <div class="ls-shot"><img src="images/longshot/home.jpg" width="600" height="1298" alt="Longshot home screen with Quick play, Private room and Solo vs bots" loading="lazy"></div>
+      </section>
+
+      <section class="ls-feature">
+        <div class="ls-text"><h2>Works on any screen</h2><p>Phone, tablet or computer. Open the link and play: there's nothing to install and no account to make. Questions and answers are kept school-safe.</p></div>
+        <div class="ls-shot ls-wide"><img src="images/longshot/desktop-funny-results.jpg" width="1200" height="672" alt="Longshot on a computer screen showing a funny round's results and the scores" loading="lazy"></div>
+      </section>
+
+      <section class="ls-cta">
+        <h2>Ready?</h2>
+        <p>Grab a few friends, or play with whoever is online.</p>
+        <a class="ls-btn" href="https://longshot.yhile.com/">Play Longshot</a>
+      </section>
+
+      <p class="ls-more">Longshot is made by <a href="index.html">yhile.com</a>. <a href="entertainment.html">More entertainment</a> &middot; <a href="tools.html">Free tools</a></p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 yhile.com &nbsp;&middot;&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="https://longshot.yhile.com/">Play Longshot</a> &nbsp;&middot;&nbsp; <a href="mailto:yhileemail@gmail.com">Contact</a>
+  </footer>
+
+  <!-- Cookie consent -->
+  <div id="cookie-banner">
+    <p><strong>🍪 This site uses cookies.</strong><br>
+    We use Google Analytics to understand how visitors use the site. Your files and text <strong>never</strong> leave your browser — we have no server to store them on. <a href="privacy-policy.html">Privacy policy</a></p>
+    <div class="cb-btns">
+      <button class="cb-accept" onclick="cookieAccept()">Got it</button>
+      <button class="cb-decline" onclick="cookieDecline()">Decline</button>
+    </div>
+  </div>
+  <script>
+    function cookieAccept(){
+      localStorage.setItem('cookie_consent','granted');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+      if(!window.gaLoaded){
+        var gaScript=document.createElement('script');
+        gaScript.async=true;
+        gaScript.src='https://www.googletagmanager.com/gtag/js?id=G-4JRNGS3BZR';
+        document.head.appendChild(gaScript);
+        window.gaLoaded=true;
+      }
+    }
+    function cookieDecline(){
+      localStorage.setItem('cookie_consent','denied');
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+    if(localStorage.getItem('cookie_consent')) {
+      var b=document.getElementById('cookie-banner');
+      if(b) b.remove();
+    }
+  </script>
+</body>
+</html>

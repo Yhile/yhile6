@@ -38,6 +38,8 @@ yhile.com is a solo-built collection of free web utilities covering file convers
 - [Sentence Counter](https://www.yhile.com/sentence-counter.html): Count sentences, words, characters and paragraphs in your browser.
 - [Extensions page](https://www.yhile.com/extensions.html): Free Chrome extensions from yhile.com.
 - [HomeworkX](https://www.yhile.com/homeworkx.html): Free Chrome extension for homework reminders. Type assignments in one line or import from Canvas. Stored only in the browser.
+- [Entertainment page](https://www.yhile.com/entertainment.html): Free browser games from yhile.com.
+- [Longshot](https://www.yhile.com/longshot.html): Free multiplayer browser party game where the rarest answer wins. Private rooms with a link, public rooms with Quick play, or solo vs bots. Play at https://longshot.yhile.com/
 
 ## More from yhile
 
